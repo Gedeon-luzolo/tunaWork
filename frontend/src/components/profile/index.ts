@@ -1,0 +1,1 @@
+export { FreelancerProfileCard } from './FreelancerProfileCard';

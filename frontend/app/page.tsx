@@ -1,18 +1,16 @@
 "use client";
 
+import { FAQSection } from "@/src/components/faq";
 import { HeroSection } from "@/src/components/hero/HeroSection";
 import { Navbar } from "@/src/components/navigation/Navbar";
 import { OnboardingFlow } from "@/src/components/onboarding/OnboardingFlow";
-import { useOnboarding } from "@/src/components/onboarding/useOnboarding";
-import { Button } from "@/src/components/ui/button";
+import { PremiumFreelancersCarousel } from "@/src/components/showcase/PremiumFreelancersCarousel";
+import { VideoSection } from "@/src/components/video/VideoSection";
+import { useOnboarding } from "@/src/hooks/useOnboarding";
 
 export default function Home() {
-  const {
-    shouldShowOnboarding,
-    isLoading,
-    completeOnboarding,
-    resetOnboarding,
-  } = useOnboarding();
+  const { shouldShowOnboarding, isLoading, completeOnboarding } =
+    useOnboarding();
 
   if (isLoading) {
     return (
@@ -28,8 +26,11 @@ export default function Home() {
 
   return (
     <div>
-      <Navbar/>
+      <Navbar />
       <HeroSection />
+      <VideoSection />
+      <PremiumFreelancersCarousel />
+      <FAQSection />
     </div>
   );
 }
