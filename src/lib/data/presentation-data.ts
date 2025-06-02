@@ -85,7 +85,7 @@ export const revenueData = [
   { name: "Publicités ciblées", value: 5, color: "#F59E0B" },
 ];
 
-export  const financialData = [
+export const financialData = [
   { name: "Année 1", value: 6 },
   { name: "Année 2", value: 18 },
   { name: "Année 3", value: 36 },

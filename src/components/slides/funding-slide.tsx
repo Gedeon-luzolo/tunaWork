@@ -1,208 +1,234 @@
-import { funding } from "@/src/lib/data/presentation-data";
 import { motion } from "framer-motion";
+import {
+  DollarSign,
+  Building2,
+  Clock,
+  CheckCircle,
+  Target,
+} from "lucide-react";
 
 export function FundingSlide() {
   return (
-    <div className="h-full w-full flex items-center justify-center">
-      <div className="container mx-auto px-6 z-10 max-h-[90vh] overflow-hidden">
+    <div className="h-full w-full flex items-center justify-center overflow-y-auto py-20 pt-28">
+      <div className="container mx-auto px-6 z-10">
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8 }}
           viewport={{ once: true }}
-          className="max-w-5xl mx-auto h-full flex flex-col justify-center"
+          className="max-w-6xl mx-auto"
         >
-          <h2 className="text-3xl font-bold mb-4 bg-clip-text text-transparent bg-gradient-to-r from-blue-600 to-blue-800 text-center">
-            Opportunités de Financement
-          </h2>
+          <div className="flex items-center justify-center mb-8">
+            <div className="w-12 h-12 bg-blue-100 rounded-full flex items-center justify-center mr-4">
+              <DollarSign className="w-6 h-6 text-blue-600" />
+            </div>
+            <h2 className="text-3xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-blue-700 to-blue-900">
+              Financement & Création d'Entreprise
+            </h2>
+          </div>
 
-          <div className="bg-white/80 backdrop-blur-xl rounded-3xl p-4 border border-blue-200/30 shadow-xl">
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: 0.1 }}
-              viewport={{ once: true }}
-              className="text-center mb-4"
-            >
-              <p className="text-base text-gray-700 leading-relaxed mb-3">
-                Pour transformer notre vision en réalité et capturer ce marché
-                de <strong className="text-blue-600">2,8 milliards USD</strong>,
-                nous proposons{" "}
-                <strong className="text-green-600">
-                  différents niveaux d`investissement
-                </strong>{" "}
-                adaptés à tous les profils, à partir de{" "}
-                <strong className="text-green-600">4.000 USD</strong>.
-              </p>
-
-              <div className="grid md:grid-cols-4 gap-2 mb-4">
-                <div className="bg-green-50 p-2 rounded-lg border border-green-200">
-                  <div className="text-lg font-bold text-green-600">$4K+</div>
-                  <div className="text-xs text-gray-600">
-                    Investissement minimal
-                  </div>
-                </div>
-                <div className="bg-blue-50 p-2 rounded-lg border border-blue-200">
-                  <div className="text-lg font-bold text-blue-600">
-                    Flexible
-                  </div>
-                  <div className="text-xs text-gray-600">Montants adaptés</div>
-                </div>
-                <div className="bg-purple-50 p-2 rounded-lg border border-purple-200">
-                  <div className="text-lg font-bold text-purple-600">
-                    ROI 300%+
-                  </div>
-                  <div className="text-xs text-gray-600">Retour attendu</div>
-                </div>
-                <div className="bg-orange-50 p-2 rounded-lg border border-orange-200">
-                  <div className="text-lg font-bold text-orange-600">
-                    3-5 ans
-                  </div>
-                  <div className="text-xs text-gray-600">Horizon sortie</div>
+          {/* Budget requis */}
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, delay: 0.1 }}
+            viewport={{ once: true }}
+            className="bg-gradient-to-r from-blue-600 to-blue-800 rounded-xl p-6 text-white text-center mb-6"
+          >
+            <div className="flex items-center justify-center mb-4">
+              <Target className="w-8 h-8 mr-3" />
+              <h3 className="text-2xl font-bold">Budget Minimum Requis</h3>
+            </div>
+            <div className="text-4xl font-bold mb-2">7 000 USD</div>
+            <p className="text-blue-100 mb-4">
+              Financement minimum nécessaire pour la réalisation complète du
+              projet TunaWork
+            </p>
+            <div className="grid md:grid-cols-3 gap-4">
+              <div className="bg-white/10 rounded-lg p-3">
+                <div className="text-lg font-semibold">MVP</div>
+                <div className="text-sm text-blue-100">
+                  Développement initial
                 </div>
               </div>
-            </motion.div>
+              <div className="bg-white/10 rounded-lg p-3">
+                <div className="text-lg font-semibold">Lancement</div>
+                <div className="text-sm text-blue-100">
+                  Marketing & acquisition
+                </div>
+              </div>
+              <div className="bg-white/10 rounded-lg p-3">
+                <div className="text-lg font-semibold">Croissance</div>
+                <div className="text-sm text-blue-100">Expansion & équipe</div>
+              </div>
+            </div>
+          </motion.div>
 
-            <div className="grid md:grid-cols-2 gap-4">
+          <div className="grid md:grid-cols-2 gap-6 mb-6">
+            {/* Répartition du budget */}
+            <motion.div
+              initial={{ opacity: 0, x: -20 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              transition={{ duration: 0.6, delay: 0.2 }}
+              viewport={{ once: true }}
+              className="bg-white rounded-xl p-6 border border-gray-200 shadow-md"
+            >
+              <h3 className="text-lg font-semibold mb-4 flex items-center">
+                <DollarSign className="w-5 h-5 mr-2 text-green-600" />
+                Répartition du Budget (7 000 USD)
+              </h3>
               <div className="space-y-3">
-                <h3 className="text-base font-semibold text-gray-800 text-center mb-3">
-                  Niveaux d`Investissement
-                </h3>
-                {funding.map((level) => (
+                {[
+                  {
+                    category: "Développement technique",
+                    amount: 3500,
+                    percentage: 50,
+                    color: "blue",
+                  },
+                  {
+                    category: "Marketing & Acquisition",
+                    amount: 1750,
+                    percentage: 25,
+                    color: "green",
+                  },
+                  {
+                    category: "Opérations & Légal",
+                    amount: 1050,
+                    percentage: 15,
+                    color: "purple",
+                  },
+                  {
+                    category: "Fonds de roulement",
+                    amount: 700,
+                    percentage: 10,
+                    color: "orange",
+                  },
+                ].map((item) => (
                   <div
-                    key={level.tier}
-                    className={`p-2 rounded-lg border shadow-lg ${
-                      level.priority === "VIP"
-                        ? "bg-gold-50 border-yellow-300"
-                        : level.priority === "Premium"
-                        ? "bg-purple-50 border-purple-200"
-                        : level.priority === "Standard"
-                        ? "bg-blue-50 border-blue-200"
-                        : "bg-green-50 border-green-200"
-                    }`}
+                    key={item.category}
+                    className="flex justify-between items-center p-3 bg-gray-50 rounded-lg"
                   >
-                    <div className="flex justify-between items-center mb-1">
-                      <div className="flex items-center gap-2">
-                        <level.icon
-                          className={`w-4 h-4 ${
-                            level.priority === "VIP"
-                              ? "text-yellow-600"
-                              : level.priority === "Premium"
-                              ? "text-purple-600"
-                              : level.priority === "Standard"
-                              ? "text-blue-600"
-                              : "text-green-600"
-                          }`}
-                        />
-                        <span className="text-xs font-medium text-gray-800">
-                          {level.tier}
-                        </span>
+                    <div>
+                      <div className="font-medium text-gray-800">
+                        {item.category}
                       </div>
-                      <div className="flex gap-2">
-                        <span
-                          className={`font-bold text-xs ${
-                            level.priority === "VIP"
-                              ? "text-yellow-600"
-                              : level.priority === "Premium"
-                              ? "text-purple-600"
-                              : level.priority === "Standard"
-                              ? "text-blue-600"
-                              : "text-green-600"
-                          }`}
-                        >
-                          {level.amount}
-                        </span>
-                        <span className="text-gray-500 text-xs">
-                          {level.equity}
-                        </span>
+                      <div className="text-sm text-gray-600">
+                        {item.percentage}% du budget
                       </div>
                     </div>
-                    <p className="text-xs text-gray-600">{level.benefits}</p>
+                    <div className={`text-lg font-bold text-${item.color}-600`}>
+                      ${item.amount.toLocaleString()}
+                    </div>
                   </div>
                 ))}
               </div>
+            </motion.div>
 
-              <div className="space-y-3">
-                <h3 className="text-base font-semibold text-gray-800 text-center mb-3">
-                  Utilisation des Fonds
-                </h3>
+            {/* Création d'entreprise */}
+            <motion.div
+              initial={{ opacity: 0, x: 20 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              transition={{ duration: 0.6, delay: 0.3 }}
+              viewport={{ once: true }}
+              className="bg-white rounded-xl p-6 border border-gray-200 shadow-md"
+            >
+              <h3 className="text-lg font-semibold mb-4 flex items-center">
+                <Building2 className="w-5 h-5 mr-2 text-blue-600" />
+                Création d'Entreprise
+              </h3>
+              <div className="space-y-4">
+                <div className="bg-blue-50 p-4 rounded-lg">
+                  <div className="font-semibold text-blue-800 mb-2">
+                    Structure Juridique
+                  </div>
+                  <div className="text-sm text-blue-700">
+                    <div>• SARL (Société à Responsabilité Limitée)</div>
+                    <div>• Siège social : Kinshasa, RDC</div>
+                    <div>• Capital social : 1 000 USD minimum</div>
+                  </div>
+                </div>
+
                 <div className="space-y-2">
+                  <div className="font-medium text-gray-800">
+                    Timeline de création :
+                  </div>
                   {[
                     {
-                      priority: "CRITIQUE",
-                      category: "Marketing Digital",
-                      percentage: "40%",
-                      description:
-                        "Acquisition utilisateurs via Google, Facebook, LinkedIn",
+                      phase: "Préparation dossier",
+                      duration: "2 semaines",
+                      status: "planned",
                     },
                     {
-                      priority: "CRITIQUE",
-                      category: "Infrastructure Tech",
-                      percentage: "25%",
-                      description:
-                        "Serveurs cloud, sécurité, licences logiciels",
+                      phase: "Dépôt RCCM",
+                      duration: "3-4 semaines",
+                      status: "planned",
                     },
                     {
-                      priority: "IMPORTANT",
-                      category: "Équipe Core",
-                      percentage: "20%",
-                      description:
-                        "Développeurs, designers, responsables produit",
+                      phase: "Obtention NIF",
+                      duration: "1 semaine",
+                      status: "planned",
                     },
                     {
-                      priority: "IMPORTANT",
-                      category: "Opérations",
-                      percentage: "10%",
-                      description: "Support client, bureaux, équipements",
+                      phase: "Compte bancaire",
+                      duration: "1 semaine",
+                      status: "planned",
                     },
-                    {
-                      priority: "UTILE",
-                      category: "Légal & Compliance",
-                      percentage: "5%",
-                      description: "Avocats, audits, certifications",
-                    },
-                  ].map((use) => (
+                  ].map((step) => (
                     <div
-                      key={use.category}
-                      className="p-2 bg-gray-50 rounded-lg border border-gray-200"
+                      key={step.phase}
+                      className="flex items-center justify-between p-2 bg-gray-50 rounded"
                     >
-                      <div className="flex justify-between items-center mb-1">
-                        <span className="text-xs font-medium text-gray-800">
-                          {use.category}
+                      <div className="flex items-center">
+                        <Clock className="w-4 h-4 mr-2 text-gray-500" />
+                        <span className="text-sm font-medium">
+                          {step.phase}
                         </span>
-                        <div className="flex items-center gap-2">
-                          <span
-                            className={`text-xs px-2 py-0.5 rounded-full font-bold ${
-                              use.priority === "CRITIQUE"
-                                ? "bg-red-100 text-red-700"
-                                : use.priority === "IMPORTANT"
-                                ? "bg-orange-100 text-orange-700"
-                                : "bg-yellow-100 text-yellow-700"
-                            }`}
-                          >
-                            {use.priority}
-                          </span>
-                          <span className="font-bold text-blue-600 text-xs">
-                            {use.percentage}
-                          </span>
-                        </div>
                       </div>
-                      <p className="text-xs text-gray-600">{use.description}</p>
+                      <span className="text-xs text-gray-600">
+                        {step.duration}
+                      </span>
                     </div>
                   ))}
                 </div>
+              </div>
+            </motion.div>
+          </div>
 
-                <div className="mt-3 p-3 bg-gradient-to-r from-green-500 to-green-600 rounded-xl text-white text-center">
-                  <h4 className="text-sm font-semibold mb-1">
-                    💰 INVESTISSEMENT OUVERT
-                  </h4>
-                  <p className="text-xs opacity-90">
-                    Opportunité unique de marché $2.8B USD
-                  </p>
-                </div>
+          {/* Opportunités pour incubateurs */}
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, delay: 0.4 }}
+            viewport={{ once: true }}
+            className="bg-gradient-to-r from-green-500 to-green-600 rounded-xl p-6 text-white text-center"
+          >
+            <h3 className="text-xl font-bold mb-4">
+              🚀 Opportunité pour Incubateurs
+            </h3>
+            <div className="grid md:grid-cols-3 gap-4 mb-4">
+              <div className="bg-white/10 rounded-lg p-4">
+                <div className="text-2xl font-bold">7 000 USD</div>
+                <div className="text-sm text-green-100">Budget minimum</div>
+              </div>
+              <div className="bg-white/10 rounded-lg p-4">
+                <div className="text-2xl font-bold">6-8 mois</div>
+                <div className="text-sm text-green-100">Durée incubation</div>
+              </div>
+              <div className="bg-white/10 rounded-lg p-4">
+                <div className="text-2xl font-bold">ROI 300%+</div>
+                <div className="text-sm text-green-100">Retour attendu</div>
               </div>
             </div>
-          </div>
+            <p className="text-green-100 mb-4">
+              Nous recherchons un partenaire incubateur pour nous accompagner
+              dans le développement de TunaWork et la structuration du marché
+              des services freelance en RDC.
+            </p>
+            <div className="flex items-center justify-center">
+              <CheckCircle className="w-5 h-5 mr-2" />
+              <span className="font-semibold">Prêt pour l'incubation</span>
+            </div>
+          </motion.div>
         </motion.div>
       </div>
     </div>

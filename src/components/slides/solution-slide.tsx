@@ -8,7 +8,7 @@ import {
   Star,
 } from "lucide-react";
 
-export  function SolutionSlide() {
+export function SolutionSlide() {
   return (
     <div className="h-full w-full flex items-center justify-center">
       <div className="container mx-auto px-6 z-10 max-h-[90vh] overflow-hidden">
@@ -37,20 +37,10 @@ export  function SolutionSlide() {
                 un écosystème digital sécurisé.
               </p>
 
-              <div className="grid md:grid-cols-3 gap-2 mb-4">
-                <div className="bg-green-50 p-2 rounded-lg border border-green-200">
-                  <div className="text-lg font-bold text-green-600">$500M</div>
-                  <div className="text-xs text-gray-600">Marché initial</div>
-                </div>
+              <div className=" mb-4">
                 <div className="bg-blue-50 p-2 rounded-lg border border-blue-200">
                   <div className="text-lg font-bold text-blue-600">50,000+</div>
                   <div className="text-xs text-gray-600">Freelancers</div>
-                </div>
-                <div className="bg-purple-50 p-2 rounded-lg border border-purple-200">
-                  <div className="text-lg font-bold text-purple-600">
-                    15,000+
-                  </div>
-                  <div className="text-xs text-gray-600">Entreprises</div>
                 </div>
               </div>
             </motion.div>

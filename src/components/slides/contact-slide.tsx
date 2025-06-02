@@ -1,7 +1,13 @@
-import {motion} from "framer-motion"
-import { FileText, Linkedin, Mail, Phone, Smartphone, TrendingUp } from "lucide-react";
+import { motion } from "framer-motion";
+import {
+  FileText,
+  Linkedin,
+  Mail,
+  Phone,
+  Smartphone,
+  TrendingUp,
+} from "lucide-react";
 import { Logo } from "../ui/logo";
-
 
 export function ContactSlide() {
   return (
@@ -67,7 +73,7 @@ export function ContactSlide() {
                         Email
                       </h4>
                       <p className="text-blue-600 text-xs">
-                        contact@tunawork.com
+                        luzologedeon340@gmail.com
                       </p>
                     </div>
                   </a>
@@ -83,12 +89,14 @@ export function ContactSlide() {
                       <h4 className="text-sm font-medium text-gray-800">
                         Téléphone
                       </h4>
-                      <p className="text-green-600 text-xs">+243 123 456 789</p>
+                      <p className="text-green-600 text-xs">
+                        +243 85 48 160 76
+                      </p>
                     </div>
                   </a>
 
                   <a
-                    href="https://linkedin.com/company/tunawork"
+                    href="https://linkedin.com/in/gedeon-luzolo"
                     target="_blank"
                     rel="noopener noreferrer"
                     className="flex items-center gap-3 p-3 bg-blue-50/50 backdrop-blur-md rounded-xl border border-blue-100 shadow-lg hover:shadow-xl transition-all duration-300 group"
@@ -100,7 +108,7 @@ export function ContactSlide() {
                       <h4 className="text-sm font-medium text-gray-800">
                         LinkedIn
                       </h4>
-                      <p className="text-blue-700 text-xs">@tunawork</p>
+                      <p className="text-blue-700 text-xs">@Gedeon luzolo</p>
                     </div>
                   </a>
                 </div>
@@ -123,16 +131,6 @@ export function ContactSlide() {
                       title: "Démonstration produit",
                       description: "Découvrez TunaWork en action",
                       icon: Smartphone,
-                    },
-                    {
-                      title: "Business plan détaillé",
-                      description: "Accès aux projections complètes",
-                      icon: FileText,
-                    },
-                    {
-                      title: "Opportunités d`investissement",
-                      description: "Rejoignez notre aventure",
-                      icon: TrendingUp,
                     },
                   ].map((step) => (
                     <div

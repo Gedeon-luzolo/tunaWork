@@ -11,7 +11,6 @@ import "swiper/css/navigation";
 import "swiper/css/pagination";
 import {
   FeaturesSlide,
-  FinancialSlide,
   HeroSlide,
   MarketSlide,
   ProblemSlide,
@@ -139,11 +138,6 @@ export default function Home() {
         {/* Revenue Model Slide */}
         <SwiperSlide className="h-full w-full">
           <RevenueSlide />
-        </SwiperSlide>
-
-        {/* Financial Projections Slide */}
-        <SwiperSlide className="h-full w-full">
-          <FinancialSlide />
         </SwiperSlide>
 
         {/* Funding Slide */}
