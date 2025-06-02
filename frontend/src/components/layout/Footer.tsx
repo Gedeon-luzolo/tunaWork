@@ -1,9 +1,11 @@
 "use client";
 
-import Link from "next/link";
+import { Link } from "@/src/i18n/routing";
 import { Mail, Phone, MapPin } from "lucide-react";
+import { useTranslations } from "next-intl";
 
 export function Footer() {
+  const t = useTranslations("footer");
   return (
     <footer className="bg-gray-900 text-white">
       <div className="container mx-auto px-4 py-12">
@@ -16,10 +18,7 @@ export function Footer() {
               </div>
               <span className="text-xl font-bold">TunaWork</span>
             </div>
-            <p className="text-gray-300 mb-4">
-              Plateforme freelance congolaise connectant talents et
-              opportunités.
-            </p>
+            <p className="text-gray-300 mb-4">{t("company_description")}</p>
             <div className="space-y-2 text-sm text-gray-300">
               <div className="flex items-center space-x-2">
                 <MapPin className="w-4 h-4" />
@@ -38,26 +37,26 @@ export function Footer() {
 
           {/* Plateforme */}
           <div>
-            <h3 className="font-semibold mb-4">Plateforme</h3>
+            <h3 className="font-semibold mb-4">{t("platform")}</h3>
             <ul className="space-y-2 text-sm text-gray-300">
               <li>
                 <Link href="/freelancers" className="hover:text-blue-400">
-                  Trouver des freelancers
+                  {t("find_freelancers")}
                 </Link>
               </li>
               <li>
                 <Link href="/post-project" className="hover:text-blue-400">
-                  Publier un projet
+                  {t("post_project")}
                 </Link>
               </li>
               <li>
                 <Link href="/how-it-works" className="hover:text-blue-400">
-                  Comment ça marche
+                  {t("how_it_works")}
                 </Link>
               </li>
               <li>
                 <Link href="/pricing" className="hover:text-blue-400">
-                  Tarifs
+                  {t("pricing")}
                 </Link>
               </li>
             </ul>
@@ -65,21 +64,21 @@ export function Footer() {
 
           {/* Support */}
           <div>
-            <h3 className="font-semibold mb-4">Support</h3>
+            <h3 className="font-semibold mb-4">{t("support")}</h3>
             <ul className="space-y-2 text-sm text-gray-300">
               <li>
                 <Link href="/help" className="hover:text-blue-400">
-                  Centre d'aide
+                  {t("help_center")}
                 </Link>
               </li>
               <li>
                 <Link href="/faq" className="hover:text-blue-400">
-                  FAQ
+                  {t("faq")}
                 </Link>
               </li>
               <li>
                 <Link href="/contact" className="hover:text-blue-400">
-                  Contact
+                  {t("contact_us")}
                 </Link>
               </li>
               <li>
@@ -92,21 +91,21 @@ export function Footer() {
 
           {/* Légal */}
           <div>
-            <h3 className="font-semibold mb-4">Légal</h3>
+            <h3 className="font-semibold mb-4">{t("legal")}</h3>
             <ul className="space-y-2 text-sm text-gray-300">
               <li>
                 <Link href="/terms" className="hover:text-blue-400">
-                  Conditions d'utilisation
+                  {t("terms")}
                 </Link>
               </li>
               <li>
                 <Link href="/privacy" className="hover:text-blue-400">
-                  Confidentialité
+                  {t("privacy")}
                 </Link>
               </li>
               <li>
                 <Link href="/cookies" className="hover:text-blue-400">
-                  Cookies
+                  {t("cookies")}
                 </Link>
               </li>
             </ul>
@@ -115,9 +114,7 @@ export function Footer() {
 
         {/* Bottom */}
         <div className="border-t border-gray-700 mt-8 pt-6 flex flex-col md:flex-row justify-between items-center">
-          <p className="text-gray-400 text-sm">
-            © 2024 TunaWork. Tous droits réservés.
-          </p>
+          <p className="text-gray-400 text-sm">{t("copyright")}</p>
           <div className="flex space-x-4 mt-4 md:mt-0">
             <a href="#" className="text-gray-400 hover:text-blue-400">
               📘

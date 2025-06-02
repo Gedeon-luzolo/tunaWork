@@ -1,0 +1,375 @@
+{
+  "common": {
+    "loading": "Kozela...",
+    "error": "Libunga",
+    "success": "Malamu",
+    "cancel": "Kotika",
+    "confirm": "Kondima",
+    "save": "Kobomba",
+    "edit": "Kobongola",
+    "delete": "Kolongola",
+    "close": "Kokanga",
+    "next": "Oyo ekolanda",
+    "previous": "Oyo eleki",
+    "finish": "Kosilisa",
+    "continue": "Kokoba"
+  },
+  "navigation": {
+    "home": "Ndako",
+    "freelancers": "Basali ba mosala",
+    "projects": "Misala",
+    "about": "Na ntina ya biso",
+    "contact": "Kopesa sango",
+    "login": "Kokota",
+    "register": "Komikoma",
+    "logout": "Kobima",
+    "profile": "Profil",
+    "dashboard": "Tableau ya kotambola",
+    "features": "Makoki",
+    "pricing": "Ntalo",
+    "faq": "Mituna",
+    "talent_search": "Koluka mayele",
+    "talent_search_desc": "Zwa basali malamu ya liboso",
+    "project_management": "Kotambola misala",
+    "project_management_desc": "Bisaleli ya kosala elongo",
+    "secure_payments": "Kofuta na libateli",
+    "secure_payments_desc": "Misala ya mbongo ya solo"
+  },
+  "hero": {
+    "badge": "Plateforme ya boyokani mpo na basali ya liboso",
+    "title": "Plateforme ya Mosala ya",
+    "title_highlight": "Mayele ya Basali ya Congo",
+    "subtitle": "Kokutana na basali malamu ya Congo. TunaWork ezali kosalisa boyokani mpe kobatela mbongo.",
+    "cta_primary": "Kobanda sik'oyo",
+    "cta_secondary": "Komona démonstration",
+    "stats": {
+      "freelancers": "Basali ya liboso oyo bazali kosala",
+      "projects": "Misala oyo esalemi",
+      "clients": "Bakiliya oyo basepeli",
+      "success_rate": "Motango ya bolongi"
+    }
+  },
+  "auth": {
+    "login": {
+      "title": "Kokota",
+      "subtitle": "Kota na compte na yo ya TunaWork",
+      "email": "Adresse email",
+      "password": "Mot de passe",
+      "remember_me": "Kokanisa ngai",
+      "forgot_password": "Obosani mot de passe?",
+      "submit": "Kokota",
+      "no_account": "Ozali naino na compte te?",
+      "create_account": "Kosala compte"
+    },
+    "register": {
+      "title": "Komikoma",
+      "subtitle": "Sala compte na yo ya TunaWork",
+      "first_name": "Kombo ya liboso",
+      "last_name": "Kombo ya suka",
+      "email": "Adresse email",
+      "password": "Mot de passe",
+      "confirm_password": "Kondima mot de passe",
+      "user_type": "Lolenge ya mosaleli",
+      "client": "Mokiliya",
+      "freelancer": "Mosali ya liboso",
+      "terms": "Nandimi mibeko ya kosalela",
+      "submit": "Kosala compte na ngai",
+      "have_account": "Ozali naino na compte?",
+      "login_here": "Kota awa"
+    },
+    "forgot_password": {
+      "title": "Obosani mot de passe",
+      "subtitle": "Tia email na yo mpo na kozongisa mot de passe",
+      "email": "Adresse email",
+      "submit": "Kotinda lien",
+      "back_to_login": "Kozonga na kokota"
+    }
+  },
+  "onboarding": {
+    "welcome": "Boyei malamu na TunaWork",
+    "splash_tagline": "Mayele ya Congo",
+    "swipe_hint": "Sukola to finá mpo na kokoba",
+    "slide1": {
+      "title": "Talá mayele ya Congo",
+      "subtitle": "Mona malamu",
+      "description": "Kokutana na basali ya mayele ya Congo na makambo nyonso. Uta na programmation tii na design, zwa mosali ya malamu mpo na misala na yo.",
+      "button": "Komona"
+    },
+    "slide2": {
+      "title": "Salá misala ya ndoto na yo",
+      "subtitle": "Kosala makanisi na yo",
+      "description": "Kobongola makanisi na yo na bosolo na lisungi ya basali ya mayele. TunaWork ezali kosalisa boyokani mpe kopesa mbano ya malamu.",
+      "button": "Kobanda"
+    },
+    "slide3": {
+      "title": "Sepelá na expérience na yo ya mosali",
+      "subtitle": "Bolongi ebatelami",
+      "description": "Zwa plateforme ya libateli, kofuta ya kobatela mpe lisungi ya bakiliya. Esengo na yo ezali likambo na biso ya liboso.",
+      "button": "Kokota na TunaWork"
+    },
+    "get_started": "Kobanda",
+    "skip": "Koleka"
+  },
+  "footer": {
+    "company_description": "Plateforme ya basali ya liboso ya Congo oyo ekokangisa mayele na mabaku.",
+    "platform": "Plateforme",
+    "find_freelancers": "Luka basali ya liboso",
+    "post_project": "Kotinda mosala",
+    "how_it_works": "Ndenge esalaka",
+    "pricing": "Ntalo",
+    "support": "Lisungi",
+    "help_center": "Centre ya lisungi",
+    "contact_us": "Kopesa biso sango",
+    "faq": "Mituna oyo batunaka mingi",
+    "legal": "Mibeko",
+    "terms": "Mibeko ya kosalela",
+    "privacy": "Politique ya kobomba makambo",
+    "cookies": "Politique ya ba cookies",
+    "copyright": "© 2024 TunaWork. Makoki nyonso ebombami.",
+    "made_with_love": "Esalemi na ❤️ na RDC"
+  },
+  "faq": {
+    "title": "Mituna oyo batunaka mingi",
+    "subtitle": "Zwa noki biyano na mituna na yo",
+    "categories": {
+      "general": "Ya mobimba",
+      "freelancers": "Basali ya liboso",
+      "clients": "Bakiliya",
+      "payments": "Kofuta",
+      "security": "Libateli"
+    }
+  },
+  "video": {
+    "title": "Mona TunaWork na kosala",
+    "subtitle": "Mbongwana ya mosala ya liboso na RDC",
+    "description": "Tala ndenge TunaWork ezali kobongola lolenge basali ya liboso ya Congo bazwaka mabaku mpe ndenge bakompanyi bazwaka mayele malamu ya esika."
+  },
+  "profile": {
+    "about": "Na ntina ya",
+    "skills": "Mayele",
+    "languages": "Minoko",
+    "portfolio": "Misala na ngai",
+    "reviews": "Makanisi",
+    "contact": "Kopesa sango",
+    "hire": "Kosala na ye",
+    "rating": "Motango",
+    "completed_projects": "Misala oyo esilaki",
+    "response_time": "Ntango ya koyanola",
+    "hourly_rate": "Ntalo ya ngonga",
+    "availability": "Kozala",
+    "joined": "Akotaki",
+    "verified": "Atalami",
+    "online": "Na internet"
+  },
+  "showcase": {
+    "title": "Basali ya liboso ya malamu",
+    "subtitle": "Mona mayele na biso ya malamu",
+    "view_profile": "Mona profil",
+    "contact": "Kopesa sango",
+    "per_hour": "na ngonga",
+    "projects_completed": "misala oyo esilaki",
+    "rating": "Motango"
+  },
+  "professionals": {
+    "title": "Basali ya Mayele ya Congo",
+    "subtitle": "Libándá ya ba mayele ya sika ezali awa : ba congolais ya mayele bazali koteya basala na makambo bien. Pesa projet na yo bomoi elongo na ba experts ya solo, ya motema mpe ya 100 % RDC.",
+    "search_placeholder": "Luka mosali ya mayele...",
+    "filter_by_category": "Pona na lolenge ya mosala",
+    "filter_by_city": "Pona na engumba",
+    "sort_by": "Bongisa na",
+    "results_count": "Basali ya mayele {count} bamonani",
+    "no_results": "Mosali ya mayele moko te amonani",
+    "no_results_desc": "Meka kobongola makambo oyo ozali koluka",
+    "clear_filters": "Kolongola ba filtres",
+    "view_profile": "Mona profil",
+    "contact": "Kopesa sango",
+    "online": "Na internet",
+    "offline": "Azali te na internet",
+    "verified": "Atalami",
+    "response_time": "Ayanolaka na",
+    "completed_projects": "misala oyo esilaki",
+    "hourly_rate": "Ntalo ya ngonga",
+    "rating": "Motango",
+    "categories": {
+      "all": "Nyonso",
+      "mode_design": "Mode & Design",
+      "informatique": "Informatique",
+      "photographie": "Kokanga bililingi",
+      "automobile": "Mituka",
+      "services_domestiques": "Misala ya ndako",
+      "transport": "Transport",
+      "electricite": "Kura",
+      "design_graphique": "Design Graphique",
+      "plomberie": "Mayi"
+    },
+    "cities": {
+      "all": "Nyonso",
+      "kinshasa": "Kinshasa",
+      "lubumbashi": "Lubumbashi",
+      "goma": "Goma",
+      "bukavu": "Bukavu",
+      "kisangani": "Kisangani",
+      "mbuji_mayi": "Mbuji-Mayi"
+    },
+    "sort_options": {
+      "rating": "Oyo bazali na motango malamu",
+      "projects": "Oyo basali misala mingi",
+      "price_low": "Ntalo ya moke",
+      "price_high": "Ntalo ya mingi",
+      "recent": "Oyo basuki kokota"
+    }
+  },
+  "mobile_app_modal": {
+    "title": "Télécharger App TunaWork",
+    "subtitle": "Mpo na kosalela makoki oyo",
+    "description": "Télécharger application mpo na kozwa makoki nyonso ya malamu mpe kotambola misala na yo na pete.",
+    "features": {
+      "notifications": "Ba notifications ya mbala moko",
+      "offline": "Kosala kozanga internet",
+      "advanced_search": "Koluka ya malamu",
+      "chat": "Kosolola na ntango nyonso",
+      "portfolio": "Kotambola misala na yo",
+      "analytics": "Koyeba makambo ya malamu"
+    },
+    "download_on": "Télécharger na",
+    "app_store": "App Store",
+    "play_store": "Google Play",
+    "close": "Kokanga",
+    "later": "Na sima",
+    "coming_soon": "Ekoya noki"
+  },
+  "pricing": {
+    "title": "Ntalo ya Basali ya Mayele",
+    "subtitle": "Pona plan oyo ekokani na makanisi na yo ya mosala",
+    "currency_usd": "USD ($)",
+    "currency_cdf": "CDF (FC)",
+    "popular": "Oyo bato balingi mingi",
+    "per_month": "/sanza",
+    "free": "Ya ofele",
+    "plans": {
+      "gratuit": {
+        "name": "Ya Ofele",
+        "description": "Malamu mpo na kobanda mosala na yo ya freelancer",
+        "button": "Kobanda ya ofele"
+      },
+      "premium": {
+        "name": "Premium",
+        "description": "Oyo basali ya mayele ya malamu baponaka",
+        "button": "Kokoma Premium"
+      },
+      "entreprise": {
+        "name": "Entreprise",
+        "description": "Mpo na ba agences na ba équipes ya basali ya mayele",
+        "button": "Kopesa sango na équipe"
+      }
+    },
+    "features": {
+      "basic_profile": "Profil ya mosali ya mayele ya moboko",
+      "advanced_profile": "Profil ya mosali ya mayele ya malamu",
+      "team_management": "Kotambola équipe mobimba",
+      "limited_applications": "Kosala demande na misala 5/sanza",
+      "unlimited_applications": "Ba demandes ya kozanga ndelo",
+      "collaborative_projects": "Misala ya kosala elongo",
+      "basic_messaging": "Kotinda nsango ya moke",
+      "priority_messaging": "Kotinda nsango ya liboso",
+      "automated_billing": "Kofuta na ndenge ya automatique",
+      "community_support": "Lisungi ya lisanga",
+      "priority_support": "Lisungi ya liboso 24/7",
+      "dedicated_support": "Lisungi ya kaka mpo na yo",
+      "limited_portfolio": "Portfolio ya misala 3 kaka",
+      "unlimited_portfolio": "Portfolio ya kozanga ndelo",
+      "api_integrations": "API na ba intégrations",
+      "commission_10": "Commission 10% na misala",
+      "commission_5": "Commission ya moke 5%",
+      "commission_3": "Commission 3% kaka",
+      "premium_badge": "Badge 'Premium' oyo bamonaka",
+      "detailed_stats": "Ba statistiques ya malamu",
+      "advanced_reports": "Ba rapports ya malamu",
+      "real_time_notifications": "Ba notifications na ntango nyonso",
+      "custom_training": "Formation ya kaka mpo na yo",
+      "account_manager": "Motambolisi ya compte",
+      "custom_contracts": "Ba contrats ya kaka mpo na yo"
+    },
+    "info": {
+      "title": "Makambo ya ntina",
+      "no_commitment": "Kozanga engagement",
+      "cancel_anytime": "Kokanga na ntango nyonso",
+      "support_24_7": "Lisungi ya bakiliya 24/7"
+    }
+  },
+  "about": {
+    "title": "Makambo ya TunaWork",
+    "description": "TunaWork ezali plateforme ya liboso ya Congo oyo esalemi mpo na basali ya mayele na bakompanyi. Tokangisaka ba talents ya mboka na ba opportunités ya mosala, kotombola économie numérique na République Démocratique ya Congo.",
+    "mission": {
+      "title": "Mission na biso",
+      "description": "Kopesa nzela ya kokota na mosala ya freelance na RDC mpe kosala ba opportunités ya économie ya kozala ntango molai mpo na basali ya mayele ya Congo."
+    },
+    "vision": {
+      "title": "Vision na biso",
+      "description": "Kokoma référence ya Afrika ya freelancing na kopesa plateforme ya libateli, ya sika mpe oyo ekokani na ba réalités ya mboka."
+    },
+    "features_title": "Makoki na biso ya ntina",
+    "features": {
+      "secure_payments": {
+        "title": "Kofuta ya Libateli",
+        "description": "Système ya kofuta ya libateli na kobatela mbongo mpe garantie ya bosepeli"
+      },
+      "active_community": {
+        "title": "Lisanga ya Kosala",
+        "description": "Koleka basali ya mayele 1,200 oyo batatami mpe bankoto ya bakiliya oyo basepeli"
+      },
+      "global_reach": {
+        "title": "Kokoma na Mokili Mobimba",
+        "description": "Kokangana na bakiliya ya mboka mpe ya mikili mosusu wuta na RDC"
+      },
+      "fast_process": {
+        "title": "Processus ya Nokinoki",
+        "description": "Koluka misala mpe kobanda kosala na ba clics moke kaka"
+      },
+      "smooth_communication": {
+        "title": "Kosolola Malamu",
+        "description": "Messagerie oyo ekangami mpo na kosolola na pete na bakiliya na yo"
+      },
+      "simple_billing": {
+        "title": "Facturation ya Pete",
+        "description": "Bisaleli ya facturation automatique mpe kolandela kofuta na ntango nyonso"
+      }
+    },
+    "stats": {
+      "projects_completed": "Misala Oyo Esilaki",
+      "active_freelancers": "Basali ya Mayele Oyo Bazali Kosala",
+      "satisfaction_rate": "Motango ya Bosepeli",
+      "customer_support": "Lisungi ya Bakiliya"
+    },
+    "cta": {
+      "title": "Omeli Kokota na TunaWork?",
+      "description": "Soki ozali mosali ya mayele to kiliya, TunaWork epesaka yo bisaleli mpo na kolonga na économie numérique ya Congo.",
+      "become_freelancer": "Kokoma Mosali ya Mayele",
+      "post_project": "Kotinda Mosala"
+    }
+  },
+  "faq_data": {
+    "questions": {
+      "what_is_tunawork": {
+        "question": "TunaWork ezali nini?",
+        "answer": "TunaWork ezali plateforme ya Congo oyo ekokangisa basali ya mayele na bakiliya oyo bazali koluka misala ya mosala. Tosalisaka boyokani kati na basali ya liboso mpe bakompanyi na RDC mpe na mokili mobimba."
+      },
+      "how_it_works": {
+        "question": "TunaWork esalaka ndenge nini?",
+        "answer": "Ezali pete! Bakiliya batindaka misala na bango, basali ya liboso bapesaka makanisi na bango, mpe bakiliya baponaka oyo malamu. Soki mosala esilaki, kofuta esalemaka na libateli na nzela ya plateforme na biso."
+      },
+      "registration_free": {
+        "question": "Komikoma ezali ya ofele?",
+        "answer": "Iyo, komikoma na TunaWork ezali ya ofele mpenza mpo na basali ya liboso mpe bakiliya. Tofutisaka kaka mbongo ya mosala na misala oyo esalemi malamu."
+      },
+      "payment_security": {
+        "question": "Kofuta ebatelami ndenge nini?",
+        "answer": "Tosalaka na système ya kofuta ya libateli na kobatela mbongo. Mbongo ebombami tii mosala ekokisami malamu, kobatela bato nyonso."
+      },
+      "freelancer_verification": {
+        "question": "Ndenge nini okoma mosali ya liboso oyo atalami?",
+        "answer": "Mpo na kozwa badge ya kotatama, tinda mikanda na yo ya bomoto, ba certifications ya mosala mpe kotondisa profil na yo. Ekipi na biso etalaka sengi nyonso na kati ya mikolo 48."
+      }
+    }
+  }
+}

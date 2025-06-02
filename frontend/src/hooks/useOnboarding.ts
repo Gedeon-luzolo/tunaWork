@@ -8,12 +8,14 @@ export function useOnboarding() {
 
   useEffect(() => {
     // Check if onboarding has been completed
-    const onboardingCompleted = localStorage.getItem("tunawork_onboarding_completed");
-    
+    const onboardingCompleted = localStorage.getItem(
+      "tunawork_onboarding_completed"
+    );
+
     if (!onboardingCompleted) {
       setShouldShowOnboarding(true);
     }
-    
+
     setIsLoading(false);
   }, []);
 
@@ -25,9 +27,12 @@ export function useOnboarding() {
   const resetOnboarding = () => {
     localStorage.removeItem("tunawork_onboarding_completed");
     setShouldShowOnboarding(true);
+    // Recharger la page pour relancer l'onboarding
+    window.location.reload();
   };
 
   return {
+    showOnboarding: shouldShowOnboarding,
     shouldShowOnboarding,
     isLoading,
     completeOnboarding,

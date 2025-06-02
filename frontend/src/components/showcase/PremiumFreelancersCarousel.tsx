@@ -35,7 +35,7 @@ const premiumFreelancers: PremiumFreelancer[] = [
     rating: 4.9,
     completedProjects: 127,
     hourlyRate: "15-25$/h",
-    image: "/api/placeholder/120/120",
+    image: "/images/Image2.JPG",
     specialties: ["Robes de soirée", "Costumes"],
     socialNetworks: [
       { name: "Instagram", url: "#", icon: "📸", color: "bg-pink-500" },

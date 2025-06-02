@@ -2,19 +2,24 @@
 
 import { useState } from "react";
 import { motion } from "framer-motion";
+import { useTranslations } from "next-intl";
+import { Link } from "@/src/i18n/routing";
 import { Button } from "../ui/button";
 import { Menu, X, ChevronDown } from "lucide-react";
-
-const navItems = [
-  { name: "Fonctionnalités", href: "#features", hasDropdown: true },
-  { name: "Tarifs", href: "#pricing" },
-  { name: "À propos", href: "#about" },
-  { name: "FAQ", href: "#faq" },
-];
+import { LanguageSwitcher } from "./LanguageSwitcher";
 
 export function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
   const [activeDropdown, setActiveDropdown] = useState<string | null>(null);
+  const t = useTranslations("navigation");
+
+  const navItems = [
+    { name: t("features"), href: "#features", hasDropdown: true },
+    { name: "Professionnels", href: "/professionals" },
+    { name: t("pricing"), href: "#pricing" },
+    { name: t("about"), href: "#about" },
+    { name: t("faq"), href: "#faq" },
+  ];
 
   return (
     <motion.nav
@@ -50,10 +55,20 @@ export function Navbar() {
                   }
                   onMouseLeave={() => setActiveDropdown(null)}
                 >
-                  <button className="flex items-center space-x-1 text-gray-700 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400 transition-colors duration-200 font-medium">
-                    <span>{item.name}</span>
-                    {item.hasDropdown && <ChevronDown className="w-4 h-4" />}
-                  </button>
+                  {item.href.startsWith("#") ? (
+                    <button className="flex items-center space-x-1 text-gray-700 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400 transition-colors duration-200 font-medium">
+                      <span>{item.name}</span>
+                      {item.hasDropdown && <ChevronDown className="w-4 h-4" />}
+                    </button>
+                  ) : (
+                    <Link
+                      href={item.href as "/professionals"}
+                      className="flex items-center space-x-1 text-gray-700 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400 transition-colors duration-200 font-medium"
+                    >
+                      <span>{item.name}</span>
+                      {item.hasDropdown && <ChevronDown className="w-4 h-4" />}
+                    </Link>
+                  )}
 
                   {/* Dropdown Menu */}
                   {item.hasDropdown && activeDropdown === item.name && (
@@ -69,10 +84,10 @@ export function Navbar() {
                           className="block p-3 rounded-lg hover:bg-white/10 transition-colors duration-200"
                         >
                           <div className="font-medium text-gray-900 dark:text-white">
-                            Recherche de talents
+                            {t("talent_search")}
                           </div>
                           <div className="text-sm text-gray-600 dark:text-gray-400">
-                            Trouvez les meilleurs freelancers
+                            {t("talent_search_desc")}
                           </div>
                         </a>
                         <a
@@ -80,10 +95,10 @@ export function Navbar() {
                           className="block p-3 rounded-lg hover:bg-white/10 transition-colors duration-200"
                         >
                           <div className="font-medium text-gray-900 dark:text-white">
-                            Gestion de projets
+                            {t("project_management")}
                           </div>
                           <div className="text-sm text-gray-600 dark:text-gray-400">
-                            Outils collaboratifs intégrés
+                            {t("project_management_desc")}
                           </div>
                         </a>
                         <a
@@ -91,10 +106,10 @@ export function Navbar() {
                           className="block p-3 rounded-lg hover:bg-white/10 transition-colors duration-200"
                         >
                           <div className="font-medium text-gray-900 dark:text-white">
-                            Paiements sécurisés
+                            {t("secure_payments")}
                           </div>
                           <div className="text-sm text-gray-600 dark:text-gray-400">
-                            Transactions protégées
+                            {t("secure_payments_desc")}
                           </div>
                         </a>
                       </div>
@@ -106,15 +121,20 @@ export function Navbar() {
 
             {/* Desktop CTA Buttons */}
             <div className="hidden md:flex items-center space-x-4">
-              <Button
-                variant="ghost"
-                className="text-gray-700 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400 hover:bg-white/10 transition-all duration-200"
-              >
-                Se connecter
-              </Button>
-              <Button className="bg-gradient-to-r from-blue-500 to-blue-600 hover:from-blue-600 hover:to-blue-700 hover:scale-[1.02] transition-all duration-300 px-6 py-2 rounded-xl text-white font-semibold shadow-lg shadow-blue-500/25 border-0">
-                S'inscrire
-              </Button>
+              <LanguageSwitcher />
+              <Link href="/login">
+                <Button
+                  variant="ghost"
+                  className="text-gray-700 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400 hover:bg-white/10 transition-all duration-200"
+                >
+                  {t("login")}
+                </Button>
+              </Link>
+              <Link href="/register">
+                <Button className="bg-gradient-to-r from-blue-500 to-blue-600 hover:from-blue-600 hover:to-blue-700 hover:scale-[1.02] transition-all duration-300 px-6 py-2 rounded-xl text-white font-semibold shadow-lg shadow-blue-500/25 border-0">
+                  {t("register")}
+                </Button>
+              </Link>
             </div>
 
             {/* Mobile Menu Button */}
@@ -139,25 +159,42 @@ export function Navbar() {
               className="md:hidden mt-4 pt-4 border-t border-white/20"
             >
               <div className="space-y-4">
-                {navItems.map((item) => (
-                  <a
-                    key={item.name}
-                    href={item.href}
-                    className="block py-2 text-gray-700 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400 transition-colors duration-200 font-medium"
-                  >
-                    {item.name}
-                  </a>
-                ))}
+                {navItems.map((item) =>
+                  item.href.startsWith("#") ? (
+                    <a
+                      key={item.name}
+                      href={item.href}
+                      className="block py-2 text-gray-700 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400 transition-colors duration-200 font-medium"
+                    >
+                      {item.name}
+                    </a>
+                  ) : (
+                    <Link
+                      key={item.name}
+                      href={item.href as "/professionals"}
+                      className="block py-2 text-gray-700 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400 transition-colors duration-200 font-medium"
+                    >
+                      {item.name}
+                    </Link>
+                  )
+                )}
                 <div className="pt-4 space-y-3">
-                  <Button
-                    variant="ghost"
-                    className="w-full justify-start text-gray-700 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400 hover:bg-white/10"
-                  >
-                    Se connecter
-                  </Button>
-                  <Button className="w-full bg-gradient-to-r from-blue-500 to-blue-600 hover:from-blue-600 hover:to-blue-700 text-white font-semibold rounded-xl shadow-lg shadow-blue-500/25 border-0">
-                    S'inscrire
-                  </Button>
+                  <div className="flex justify-center mb-3">
+                    <LanguageSwitcher />
+                  </div>
+                  <Link href="/login">
+                    <Button
+                      variant="ghost"
+                      className="w-full justify-start text-gray-700 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400 hover:bg-white/10"
+                    >
+                      {t("login")}
+                    </Button>
+                  </Link>
+                  <Link href="/register">
+                    <Button className="w-full bg-gradient-to-r from-blue-500 to-blue-600 hover:from-blue-600 hover:to-blue-700 text-white font-semibold rounded-xl shadow-lg shadow-blue-500/25 border-0">
+                      {t("register")}
+                    </Button>
+                  </Link>
                 </div>
               </div>
             </motion.div>

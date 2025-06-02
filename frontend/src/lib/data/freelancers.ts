@@ -18,6 +18,14 @@ export interface PremiumFreelancer {
   specialties: string[];
   socialNetworks: SocialNetwork[];
   isVerified: boolean;
+  category: string;
+  city: string;
+  isOnline: boolean;
+  responseTime: string;
+  bio: string;
+  skills: string[];
+  languages: string[];
+  joinedDate: string;
 }
 
 // Données des freelancers premium
@@ -30,7 +38,7 @@ export const premiumFreelancers: PremiumFreelancer[] = [
     rating: 4.9,
     completedProjects: 127,
     hourlyRate: "15-25$/h",
-    image: "/api/placeholder/120/120",
+    image: "/images/Image2.JPG",
     specialties: ["Robes de soirée", "Costumes"],
     socialNetworks: [
       { name: "Instagram", url: "#", icon: "📸", color: "bg-pink-500" },
@@ -38,6 +46,14 @@ export const premiumFreelancers: PremiumFreelancer[] = [
       { name: "WhatsApp", url: "#", icon: "💬", color: "bg-green-500" },
     ],
     isVerified: true,
+    category: "Mode & Design",
+    city: "Kinshasa",
+    isOnline: true,
+    responseTime: "< 2 heures",
+    bio: "Couturière passionnée avec plus de 8 ans d'expérience dans la création de vêtements sur mesure.",
+    skills: ["Couture", "Design", "Patronage", "Broderie"],
+    languages: ["Français", "Lingala", "Anglais"],
+    joinedDate: "Janvier 2022",
   },
   {
     id: 2,
@@ -55,6 +71,14 @@ export const premiumFreelancers: PremiumFreelancer[] = [
       { name: "WhatsApp", url: "#", icon: "💬", color: "bg-green-500" },
     ],
     isVerified: true,
+    category: "Informatique",
+    city: "Lubumbashi",
+    isOnline: false,
+    responseTime: "< 4 heures",
+    bio: "Expert en informatique avec 10+ ans d'expérience en développement et réparation.",
+    skills: ["JavaScript", "Python", "Réparation PC", "Réseaux"],
+    languages: ["Français", "Swahili", "Anglais"],
+    joinedDate: "Mars 2021",
   },
   {
     id: 3,

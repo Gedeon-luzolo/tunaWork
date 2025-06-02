@@ -4,6 +4,7 @@ import { motion } from "framer-motion";
 import { OnboardingSlideProps } from "./types";
 import { Button } from "../ui/button";
 import { ChevronRight, Users, Briefcase, Star } from "lucide-react";
+import { useTranslations } from "next-intl";
 
 const slideVariants = {
   enter: (direction: number) => ({
@@ -49,6 +50,8 @@ export function OnboardingSlide({
   currentIndex,
   totalSlides,
 }: OnboardingSlideProps) {
+  const t = useTranslations("onboarding");
+
   if (!isActive) return null;
 
   return (
@@ -149,7 +152,7 @@ export function OnboardingSlide({
           initial={{ y: 20, opacity: 0 }}
           animate={{ y: 0, opacity: 1 }}
           transition={{ delay: 0.7, duration: 0.8, ease: "easeOut" }}
-          className="flex flex-col sm:flex-row gap-3 sm:gap-4 justify-start items-start"
+          className="flex sm:flex-row gap-3 sm:gap-4 justify-start items-start mb-10"
         >
           <Button
             onClick={onNext}
@@ -165,7 +168,7 @@ export function OnboardingSlide({
               variant="ghost"
               className="text-white/80 hover:text-white hover:bg-white/10 transition-all duration-300 px-4 sm:px-6 py-3 sm:py-4 rounded-xl sm:rounded-2xl text-sm sm:text-base backdrop-blur-sm border border-white/20"
             >
-              Passer
+              {t("skip")}
             </Button>
           )}
         </motion.div>

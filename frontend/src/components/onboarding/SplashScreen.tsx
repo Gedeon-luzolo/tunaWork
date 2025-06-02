@@ -2,12 +2,14 @@
 
 import { motion } from "framer-motion";
 import { useEffect } from "react";
+import { useTranslations } from "next-intl";
 
 interface SplashScreenProps {
   onComplete: () => void;
 }
 
 export function SplashScreen({ onComplete }: SplashScreenProps) {
+  const t = useTranslations("onboarding");
   useEffect(() => {
     const timer = setTimeout(() => {
       onComplete();
@@ -67,7 +69,7 @@ export function SplashScreen({ onComplete }: SplashScreenProps) {
           transition={{ delay: 1.2, duration: 0.8 }}
           className="text-blue-200 text-lg font-medium"
         >
-          Talents du Congo
+          {t("splash_tagline")}
         </motion.p>
 
         {/* Loading Animation */}

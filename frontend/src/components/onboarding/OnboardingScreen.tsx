@@ -4,39 +4,38 @@ import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { OnboardingSlide } from "./OnboardingSlide";
 import { OnboardingProps, OnboardingSlideData } from "./types";
-
-const onboardingData: OnboardingSlideData[] = [
-  {
-    id: 1,
-    title: "Explorez les talents du Congo",
-    subtitle: "Découvrez l'excellence",
-    description:
-      "Connectez-vous avec les meilleurs freelancers congolais dans tous les domaines. De la programmation au design, trouvez le talent parfait pour vos projets.",
-    image: "/images/onboarding/slide1.jpg",
-    buttonText: "Découvrir",
-  },
-  {
-    id: 2,
-    title: "Réalisez vos projets de rêve",
-    subtitle: "Concrétisez vos idées",
-    description:
-      "Transformez vos idées en réalité avec l'aide de professionnels qualifiés. TunaWork facilite la collaboration et garantit des résultats exceptionnels.",
-    image: "/images/onboarding/slide2.jpg",
-    buttonText: "Commencer",
-  },
-  {
-    id: 3,
-    title: "Profitez de votre expérience freelance",
-    subtitle: "Succès garanti",
-    description:
-      "Bénéficiez d'une plateforme sécurisée, de paiements protégés et d'un support client dédié. Votre satisfaction est notre priorité.",
-    image: "/images/onboarding/slide3.jpg",
-    buttonText: "Rejoindre TunaWork",
-    isLast: true,
-  },
-];
+import { useTranslations } from "next-intl";
 
 export function OnboardingScreen({ onComplete, onSkip }: OnboardingProps) {
+  const t = useTranslations("onboarding");
+
+  const onboardingData: OnboardingSlideData[] = [
+    {
+      id: 1,
+      title: t("slide1.title"),
+      subtitle: t("slide1.subtitle"),
+      description: t("slide1.description"),
+      image: "/images/onboarding/slide1.jpg",
+      buttonText: t("slide1.button"),
+    },
+    {
+      id: 2,
+      title: t("slide2.title"),
+      subtitle: t("slide2.subtitle"),
+      description: t("slide2.description"),
+      image: "/images/onboarding/slide2.jpg",
+      buttonText: t("slide2.button"),
+    },
+    {
+      id: 3,
+      title: t("slide3.title"),
+      subtitle: t("slide3.subtitle"),
+      description: t("slide3.description"),
+      image: "/images/onboarding/slide3.jpg",
+      buttonText: t("slide3.button"),
+      isLast: true,
+    },
+  ];
   const [currentSlide, setCurrentSlide] = useState(0);
   const [direction, setDirection] = useState(0);
 
@@ -122,7 +121,7 @@ export function OnboardingScreen({ onComplete, onSkip }: OnboardingProps) {
         className="absolute bottom-8 left-1/2 transform -translate-x-1/2 z-20"
       >
         <div className="flex items-center space-x-2 text-white/50 text-sm">
-          <span>Glissez ou cliquez pour continuer</span>
+          <span>{t("swipe_hint")}</span>
         </div>
       </motion.div>
     </div>

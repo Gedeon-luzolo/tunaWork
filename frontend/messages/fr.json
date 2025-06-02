@@ -1,0 +1,375 @@
+{
+  "common": {
+    "loading": "Chargement...",
+    "error": "Erreur",
+    "success": "Succès",
+    "cancel": "Annuler",
+    "confirm": "Confirmer",
+    "save": "Enregistrer",
+    "edit": "Modifier",
+    "delete": "Supprimer",
+    "close": "Fermer",
+    "next": "Suivant",
+    "previous": "Précédent",
+    "finish": "Terminer",
+    "continue": "Continuer"
+  },
+  "navigation": {
+    "home": "Accueil",
+    "freelancers": "Freelancers",
+    "projects": "Projets",
+    "about": "À propos",
+    "contact": "Contact",
+    "login": "Connexion",
+    "register": "Inscription",
+    "logout": "Déconnexion",
+    "profile": "Profil",
+    "dashboard": "Tableau de bord",
+    "features": "Fonctionnalités",
+    "pricing": "Tarifs",
+    "faq": "FAQ",
+    "talent_search": "Recherche de talents",
+    "talent_search_desc": "Trouvez les meilleurs freelancers",
+    "project_management": "Gestion de projets",
+    "project_management_desc": "Outils collaboratifs intégrés",
+    "secure_payments": "Paiements sécurisés",
+    "secure_payments_desc": "Transactions protégées"
+  },
+  "hero": {
+    "badge": "Plateforme de confiance pour freelancers",
+    "title": "Plateforme Professionnelle de",
+    "title_highlight": "Talents Freelance Congolais",
+    "subtitle": "Connectez-vous avec les meilleurs freelancers congolais. TunaWork facilite la collaboration et garantit des paiements sécurisés.",
+    "cta_primary": "Commencer maintenant",
+    "cta_secondary": "Voir la démo",
+    "stats": {
+      "freelancers": "Freelancers actifs",
+      "projects": "Projets réalisés",
+      "clients": "Clients satisfaits",
+      "success_rate": "Taux de réussite"
+    }
+  },
+  "auth": {
+    "login": {
+      "title": "Connexion",
+      "subtitle": "Connectez-vous à votre compte TunaWork",
+      "email": "Adresse email",
+      "password": "Mot de passe",
+      "remember_me": "Se souvenir de moi",
+      "forgot_password": "Mot de passe oublié ?",
+      "submit": "Se connecter",
+      "no_account": "Pas encore de compte ?",
+      "create_account": "Créer un compte"
+    },
+    "register": {
+      "title": "Inscription",
+      "subtitle": "Créez votre compte TunaWork",
+      "first_name": "Prénom",
+      "last_name": "Nom",
+      "email": "Adresse email",
+      "password": "Mot de passe",
+      "confirm_password": "Confirmer le mot de passe",
+      "user_type": "Type d'utilisateur",
+      "client": "Client",
+      "freelancer": "Freelancer",
+      "terms": "J'accepte les conditions d'utilisation",
+      "submit": "Créer mon compte",
+      "have_account": "Déjà un compte ?",
+      "login_here": "Se connecter"
+    },
+    "forgot_password": {
+      "title": "Mot de passe oublié",
+      "subtitle": "Entrez votre email pour réinitialiser votre mot de passe",
+      "email": "Adresse email",
+      "submit": "Envoyer le lien",
+      "back_to_login": "Retour à la connexion"
+    }
+  },
+  "onboarding": {
+    "welcome": "Bienvenue sur TunaWork",
+    "splash_tagline": "Talents du Congo",
+    "swipe_hint": "Glissez ou cliquez pour continuer",
+    "slide1": {
+      "title": "Explorez les talents du Congo",
+      "subtitle": "Découvrez l'excellence",
+      "description": "Connectez-vous avec les meilleurs freelancers congolais dans tous les domaines. De la programmation au design, trouvez le talent parfait pour vos projets.",
+      "button": "Découvrir"
+    },
+    "slide2": {
+      "title": "Réalisez vos projets de rêve",
+      "subtitle": "Concrétisez vos idées",
+      "description": "Transformez vos idées en réalité avec l'aide de professionnels qualifiés. TunaWork facilite la collaboration et garantit des résultats exceptionnels.",
+      "button": "Commencer"
+    },
+    "slide3": {
+      "title": "Profitez de votre expérience freelance",
+      "subtitle": "Succès garanti",
+      "description": "Bénéficiez d'une plateforme sécurisée, de paiements protégés et d'un support client dédié. Votre satisfaction est notre priorité.",
+      "button": "Rejoindre TunaWork"
+    },
+    "get_started": "Commencer",
+    "skip": "Passer"
+  },
+  "footer": {
+    "company_description": "Plateforme freelance congolaise connectant talents et opportunités.",
+    "platform": "Plateforme",
+    "find_freelancers": "Trouver des freelancers",
+    "post_project": "Publier un projet",
+    "how_it_works": "Comment ça marche",
+    "pricing": "Tarifs",
+    "support": "Support",
+    "help_center": "Centre d'aide",
+    "contact_us": "Nous contacter",
+    "faq": "FAQ",
+    "legal": "Légal",
+    "terms": "Conditions d'utilisation",
+    "privacy": "Politique de confidentialité",
+    "cookies": "Politique des cookies",
+    "copyright": "© 2024 TunaWork. Tous droits réservés.",
+    "made_with_love": "Fait avec ❤️ en RDC"
+  },
+  "faq": {
+    "title": "Questions fréquemment posées",
+    "subtitle": "Trouvez rapidement les réponses à vos questions",
+    "categories": {
+      "general": "Général",
+      "freelancers": "Freelancers",
+      "clients": "Clients",
+      "payments": "Paiements",
+      "security": "Sécurité"
+    }
+  },
+  "video": {
+    "title": "Découvrez TunaWork en Action",
+    "subtitle": "La révolution du freelancing en RDC",
+    "description": "Regardez comment TunaWork transforme la façon dont les freelancers congolais trouvent des opportunités et comment les entreprises accèdent aux meilleurs talents locaux."
+  },
+  "profile": {
+    "about": "À propos",
+    "skills": "Compétences",
+    "languages": "Langues",
+    "portfolio": "Portfolio",
+    "reviews": "Avis",
+    "contact": "Contacter",
+    "hire": "Embaucher",
+    "rating": "Note",
+    "completed_projects": "Projets terminés",
+    "response_time": "Temps de réponse",
+    "hourly_rate": "Tarif horaire",
+    "availability": "Disponibilité",
+    "joined": "Membre depuis",
+    "verified": "Vérifié",
+    "online": "En ligne"
+  },
+  "showcase": {
+    "title": "Freelancers Premium",
+    "subtitle": "Découvrez nos talents les mieux notés",
+    "view_profile": "Voir le profil",
+    "contact": "Contacter",
+    "per_hour": "par heure",
+    "projects_completed": "projets terminés",
+    "rating": "Note"
+  },
+  "professionals": {
+    "title": "Professionnels Congolais",
+    "subtitle": "Une nouvelle génération de talents congolais vous propose des services professionnels dans des domaines variés. Donnez vie à vos projets avec des experts passionnés, fiables et 100 % made in RDC.",
+    "search_placeholder": "Rechercher un professionnel...",
+    "filter_by_category": "Filtrer par domaine",
+    "filter_by_city": "Filtrer par ville",
+    "sort_by": "Trier par",
+    "results_count": "{count} professionnels trouvés",
+    "no_results": "Aucun professionnel trouvé",
+    "no_results_desc": "Essayez de modifier vos critères de recherche",
+    "clear_filters": "Effacer les filtres",
+    "view_profile": "Voir le profil",
+    "contact": "Contacter",
+    "online": "En ligne",
+    "offline": "Hors ligne",
+    "verified": "Vérifié",
+    "response_time": "Répond en",
+    "completed_projects": "projets terminés",
+    "hourly_rate": "Tarif horaire",
+    "rating": "Note",
+    "categories": {
+      "all": "Tous",
+      "mode_design": "Mode & Design",
+      "informatique": "Informatique",
+      "photographie": "Photographie",
+      "automobile": "Automobile",
+      "services_domestiques": "Services Domestiques",
+      "transport": "Transport",
+      "electricite": "Électricité",
+      "design_graphique": "Design Graphique",
+      "plomberie": "Plomberie"
+    },
+    "cities": {
+      "all": "Toutes",
+      "kinshasa": "Kinshasa",
+      "lubumbashi": "Lubumbashi",
+      "goma": "Goma",
+      "bukavu": "Bukavu",
+      "kisangani": "Kisangani",
+      "mbuji_mayi": "Mbuji-Mayi"
+    },
+    "sort_options": {
+      "rating": "Mieux notés",
+      "projects": "Plus de projets",
+      "price_low": "Prix croissant",
+      "price_high": "Prix décroissant",
+      "recent": "Plus récents"
+    }
+  },
+  "mobile_app_modal": {
+    "title": "Téléchargez l'App TunaWork",
+    "subtitle": "Pour utiliser cette fonctionnalité",
+    "description": "Veuillez télécharger l'application pour accéder à toutes les fonctionnalités avancées et gérer vos projets en toute simplicité.",
+    "features": {
+      "notifications": "Notifications instantanées",
+      "offline": "Mode hors ligne",
+      "advanced_search": "Recherche avancée",
+      "chat": "Chat en temps réel",
+      "portfolio": "Gestion portfolio",
+      "analytics": "Analyses détaillées"
+    },
+    "download_on": "Télécharger sur",
+    "app_store": "App Store",
+    "play_store": "Google Play",
+    "close": "Fermer",
+    "later": "Plus tard",
+    "coming_soon": "Bientôt disponible"
+  },
+  "pricing": {
+    "title": "Tarifs Freelancers",
+    "subtitle": "Choisissez le plan qui correspond à vos ambitions professionnelles",
+    "currency_usd": "USD ($)",
+    "currency_cdf": "CDF (FC)",
+    "popular": "Plus populaire",
+    "per_month": "/mois",
+    "free": "Gratuit",
+    "plans": {
+      "gratuit": {
+        "name": "Gratuit",
+        "description": "Parfait pour commencer votre carrière de freelancer",
+        "button": "Commencer gratuitement"
+      },
+      "premium": {
+        "name": "Premium",
+        "description": "Le choix des freelancers professionnels",
+        "button": "Devenir Premium"
+      },
+      "entreprise": {
+        "name": "Entreprise",
+        "description": "Pour les agences et équipes de freelancers",
+        "button": "Contacter l'équipe"
+      }
+    },
+    "features": {
+      "basic_profile": "Profil freelancer basique",
+      "advanced_profile": "Profil freelancer avancé",
+      "team_management": "Gestion d'équipe complète",
+      "limited_applications": "Postuler à 5 projets/mois",
+      "unlimited_applications": "Candidatures illimitées",
+      "collaborative_projects": "Projets collaboratifs",
+      "basic_messaging": "Messagerie limitée",
+      "priority_messaging": "Messagerie prioritaire",
+      "automated_billing": "Facturation automatisée",
+      "community_support": "Support communautaire",
+      "priority_support": "Support prioritaire 24/7",
+      "dedicated_support": "Support dédié",
+      "limited_portfolio": "Portfolio 3 projets max",
+      "unlimited_portfolio": "Portfolio illimité",
+      "api_integrations": "API et intégrations",
+      "commission_10": "Commission 10% sur projets",
+      "commission_5": "Commission réduite 5%",
+      "commission_3": "Commission 3% seulement",
+      "premium_badge": "Badge 'Premium' visible",
+      "detailed_stats": "Statistiques détaillées",
+      "advanced_reports": "Rapports avancés",
+      "real_time_notifications": "Notifications en temps réel",
+      "custom_training": "Formation personnalisée",
+      "account_manager": "Gestionnaire de compte",
+      "custom_contracts": "Contrats personnalisés"
+    },
+    "info": {
+      "title": "Informations importantes",
+      "no_commitment": "Aucun engagement",
+      "cancel_anytime": "Annulation à tout moment",
+      "support_24_7": "Support client 24/7"
+    }
+  },
+  "about": {
+    "title": "À Propos de TunaWork",
+    "description": "TunaWork est la première plateforme congolaise dédiée aux freelancers et aux entreprises. Nous connectons les talents locaux avec des opportunités professionnelles, favorisant l'économie numérique en République Démocratique du Congo.",
+    "mission": {
+      "title": "Notre Mission",
+      "description": "Démocratiser l'accès au travail freelance en RDC et créer des opportunités économiques durables pour les professionnels congolais."
+    },
+    "vision": {
+      "title": "Notre Vision",
+      "description": "Devenir la référence africaine du freelancing en offrant une plateforme sécurisée, innovante et adaptée aux réalités locales."
+    },
+    "features_title": "Nos Fonctionnalités Clés",
+    "features": {
+      "secure_payments": {
+        "title": "Paiements Sécurisés",
+        "description": "Système de paiement sécurisé avec protection des fonds et garantie de satisfaction"
+      },
+      "active_community": {
+        "title": "Communauté Active",
+        "description": "Plus de 1,200 freelancers vérifiés et des milliers de clients satisfaits"
+      },
+      "global_reach": {
+        "title": "Portée Internationale",
+        "description": "Connectez-vous avec des clients locaux et internationaux depuis la RDC"
+      },
+      "fast_process": {
+        "title": "Processus Rapide",
+        "description": "Trouvez des projets et commencez à travailler en quelques clics seulement"
+      },
+      "smooth_communication": {
+        "title": "Communication Fluide",
+        "description": "Messagerie intégrée pour échanger facilement avec vos clients"
+      },
+      "simple_billing": {
+        "title": "Facturation Simple",
+        "description": "Outils de facturation automatisés et suivi des paiements en temps réel"
+      }
+    },
+    "stats": {
+      "projects_completed": "Projets Réalisés",
+      "active_freelancers": "Freelancers Actifs",
+      "satisfaction_rate": "Taux de Satisfaction",
+      "customer_support": "Support Client"
+    },
+    "cta": {
+      "title": "Prêt à Rejoindre TunaWork ?",
+      "description": "Que vous soyez freelancer ou client, TunaWork vous offre les outils pour réussir dans l'économie numérique congolaise.",
+      "become_freelancer": "Devenir Freelancer",
+      "post_project": "Poster un Projet"
+    }
+  },
+  "faq_data": {
+    "questions": {
+      "what_is_tunawork": {
+        "question": "Qu'est-ce que TunaWork ?",
+        "answer": "TunaWork est une plateforme congolaise qui connecte les freelancers talentueux avec les clients à la recherche de services professionnels. Nous facilitons la collaboration entre les professionnels indépendants et les entreprises en RDC et à l'international."
+      },
+      "how_it_works": {
+        "question": "Comment fonctionne TunaWork ?",
+        "answer": "C'est simple ! Les clients publient leurs projets, les freelancers soumettent leurs propositions, et les clients choisissent le meilleur candidat. Une fois le projet terminé, le paiement est effectué de manière sécurisée via notre plateforme."
+      },
+      "registration_free": {
+        "question": "L'inscription est-elle gratuite ?",
+        "answer": "Oui, l'inscription sur TunaWork est entièrement gratuite pour les freelancers et les clients. Nous ne facturons que des frais de service sur les projets réalisés avec succès."
+      },
+      "payment_security": {
+        "question": "Comment les paiements sont-ils sécurisés ?",
+        "answer": "Nous utilisons un système de paiement sécurisé avec protection des fonds. L'argent est bloqué en séquestre jusqu'à la livraison satisfaisante du projet, garantissant la sécurité pour toutes les parties."
+      },
+      "freelancer_verification": {
+        "question": "Comment devenir un freelancer vérifié ?",
+        "answer": "Pour obtenir le badge vérifié, soumettez vos documents d'identité, certifications professionnelles et complétez votre profil. Notre équipe examine chaque demande sous 48h."
+      }
+    }
+  }
+}

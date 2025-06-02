@@ -2,17 +2,11 @@
 
 import { motion } from "framer-motion";
 import { Button } from "../ui/button";
-import {
-  ArrowRight,
-  Play,
-  Star,
-  Shield,
-  Briefcase,
-  CheckCircle,
-  TrendingUp,
-} from "lucide-react";
+import { ArrowRight, Play, Star, Briefcase } from "lucide-react";
+import { useTranslations } from "next-intl";
 
 export function HeroSection() {
+  const t = useTranslations("hero");
   return (
     <section className="relative min-h-screen bg-gradient-to-br from-blue-50 via-white to-blue-100 dark:from-blue-950 dark:via-gray-900 dark:to-blue-900 overflow-hidden">
       {/* Background Pattern */}
@@ -111,7 +105,7 @@ export function HeroSection() {
           >
             <div className="w-2 h-2 rounded-full bg-green-500 animate-pulse"></div>
             <span className="text-xs sm:text-sm font-medium text-gray-700 dark:text-gray-300">
-              Plateforme de confiance pour freelancers
+              {t("badge")}
             </span>
           </motion.div>
 
@@ -122,11 +116,11 @@ export function HeroSection() {
             transition={{ delay: 0.2, duration: 0.8 }}
             className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-gray-900 dark:text-white mb-4 sm:mb-6 leading-tight px-2"
           >
-            Plateforme Professionnelle de
+            {t("title")}
             <br className="hidden sm:block" />
             <span className="sm:hidden"> </span>
             <span className="bg-gradient-to-r from-blue-500 to-blue-600 bg-clip-text text-transparent">
-              Talents Freelance Congolais
+              {t("title_highlight")}
             </span>
           </motion.h1>
 
@@ -137,9 +131,7 @@ export function HeroSection() {
             transition={{ delay: 0.4, duration: 0.8 }}
             className="text-base sm:text-lg md:text-xl text-gray-600 dark:text-gray-300 mb-8 sm:mb-10 max-w-xs sm:max-w-2xl md:max-w-3xl mx-auto leading-relaxed px-2"
           >
-            Connectez-vous avec les meilleurs freelancers congolais. TunaWork
-            facilite la collaboration, garantit des paiements sécurisés et
-            assure le succès de vos projets.
+            {t("subtitle")}
           </motion.p>
 
           {/* CTA Buttons */}
@@ -150,7 +142,7 @@ export function HeroSection() {
             className="flex flex-col sm:flex-row gap-3 sm:gap-4 justify-center items-center px-4"
           >
             <Button className="w-full sm:w-auto bg-gradient-to-r from-blue-500 to-blue-600 hover:from-blue-600 hover:to-blue-700 hover:scale-[1.02] transition-all duration-300 px-6 sm:px-8 py-3 sm:py-4 rounded-xl sm:rounded-2xl text-sm sm:text-base text-white font-semibold shadow-xl shadow-blue-500/25 group border-0 backdrop-blur-sm">
-              Commencer maintenant
+              {t("cta_primary")}
               <ArrowRight className="ml-2 w-4 h-4 sm:w-5 sm:h-5 group-hover:translate-x-1 transition-transform duration-300" />
             </Button>
 
@@ -159,7 +151,7 @@ export function HeroSection() {
               className="w-full sm:w-auto glassmorphism hover:bg-white/10 transition-all duration-300 px-4 sm:px-6 py-3 sm:py-4 rounded-xl sm:rounded-2xl backdrop-blur-md border border-white/20 group text-sm sm:text-base"
             >
               <Play className="mr-2 w-4 h-4 sm:w-5 sm:h-5 group-hover:scale-110 transition-transform duration-300" />
-              Voir la démo
+              {t("cta_secondary")}
             </Button>
           </motion.div>
         </div>
