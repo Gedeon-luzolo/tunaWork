@@ -1,9 +1,9 @@
 "use client";
 
-import { useEffect, useRef, useState } from "react";
+import { useRef, useState, useEffect } from "react";
 import { Button } from "@/src/components/ui/button";
+import { Logo } from "@/src/components/ui/logo";
 import {
-  ChevronDown,
   ChevronRight,
   Smartphone,
   Globe,
@@ -23,48 +23,75 @@ import {
   Target,
   Heart,
   ArrowRight,
+  ChevronLeft,
+  ArrowUp,
+  ArrowDown,
+  Mail,
+  Phone,
+  Linkedin,
+  Github,
+  DollarSign,
+  Server,
+  Megaphone,
+  Zap,
+  Building,
+  Code,
 } from "lucide-react";
-import { motion, AnimatePresence } from "framer-motion";
+import { motion } from "framer-motion";
 import { cn } from "@/src/components/ui/lib/utils";
+import { Swiper, SwiperSlide } from "swiper/react";
+import { Navigation, Pagination, Mousewheel, Keyboard } from "swiper/modules";
+import type { Swiper as SwiperType } from "swiper";
+import {
+  ResponsiveContainer,
+  PieChart,
+  Pie,
+  Cell,
+  Tooltip,
+  Legend,
+  BarChart,
+  CartesianGrid,
+  XAxis,
+  YAxis,
+  Bar,
+} from "recharts";
 
-import { Footer } from "@/src/components/footer";
+// Import Swiper styles
+import "swiper/css";
+import "swiper/css/navigation";
+import "swiper/css/pagination";
 
 export default function Home() {
-  const [activeSection, setActiveSection] = useState("hero");
-  const sectionsRef = useRef<{ [key: string]: HTMLDivElement | null }>({});
+  const [activeSlide, setActiveSlide] = useState(0);
+  const [showNavigation, setShowNavigation] = useState(true);
+  const [isMobile, setIsMobile] = useState(false);
+  const swiperRef = useRef<SwiperType | null>(null);
 
-  const scrollToSection = (section: string) => {
-    setActiveSection(section);
-    sectionsRef.current[section]?.scrollIntoView({ behavior: "smooth" });
-  };
-
+  // Detect mobile device
   useEffect(() => {
-    const handleScroll = () => {
-      const sections = [
-        "hero",
-        "problem",
-        "solution",
-        "features",
-        "impact",
-        "mission",
-        "business",
-      ];
-
-      for (const section of sections) {
-        const element = sectionsRef.current[section];
-        if (!element) continue;
-
-        const rect = element.getBoundingClientRect();
-        if (rect.top <= 100 && rect.bottom >= 100) {
-          setActiveSection(section);
-          break;
-        }
-      }
+    const checkMobile = () => {
+      setIsMobile(window.innerWidth < 768);
     };
 
-    window.addEventListener("scroll", handleScroll);
-    return () => window.removeEventListener("scroll", handleScroll);
+    checkMobile();
+    window.addEventListener("resize", checkMobile);
+
+    return () => window.removeEventListener("resize", checkMobile);
   }, []);
+
+  const slides = [
+    { id: "hero", title: "Accueil" },
+    { id: "problem", title: "Problématique" },
+    { id: "solution", title: "Solution" },
+    { id: "market-size", title: "Marché" },
+    { id: "features-1", title: "Fonctionnalités" },
+    { id: "revenue-model", title: "Revenus" },
+    { id: "financial", title: "Projections" },
+    { id: "funding", title: "Financement" },
+    { id: "impact", title: "Impact" },
+    { id: "mission", title: "Mission" },
+    { id: "contact", title: "Contact" },
+  ];
 
   // Revenue data for pie chart
   const revenueData = [
@@ -76,10 +103,10 @@ export default function Home() {
 
   // Financial projections data for bar chart
   const financialData = [
-    { name: "Année 1", value: 50 },
-    { name: "Année 2", value: 200 },
-    { name: "Année 3", value: 400 },
-    { name: "Année 4", value: 500 },
+    { name: "Année 1", value: 6 },
+    { name: "Année 2", value: 18 },
+    { name: "Année 3", value: 36 },
+    { name: "Année 4", value: 60 },
   ];
 
   // User growth data for area chart
@@ -94,1258 +121,1822 @@ export default function Home() {
     { name: "Q8", freelancers: 7000, clients: 3500 },
   ];
 
+  const handleSlideChange = (direction: "prev" | "next") => {
+    if (swiperRef.current) {
+      if (direction === "prev") {
+        swiperRef.current.slidePrev();
+      } else {
+        swiperRef.current.slideNext();
+      }
+    }
+  };
+
+  const goToSlide = (index: number) => {
+    if (swiperRef.current) {
+      swiperRef.current.slideTo(index);
+    }
+  };
+
   return (
-    <main className="min-h-screen relative text-gray-100 overflow-hidden">
-      {/* Background image */}
+    <main className="h-screen w-screen overflow-hidden relative text-gray-800">
+      {/* Background with elegant white theme */}
       <div className="fixed inset-0 -z-10">
-        <img
-          src="/images/hero.jpg"
-          alt="Hero background"
-          className="w-full h-full object-cover object-center"
-          style={{ filter: "brightness(0.5) blur(1px)" }}
-        />
-        <div className="absolute inset-0 bg-gradient-to-b from-black/90 via-emerald-900/30 to-black/70" />
-        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top_right,_rgba(16,185,129,0.2)_0%,_transparent_70%)] pointer-events-none" />
-        <div className="absolute inset-0 bg-[radial-gradient(circle_at_bottom_left,_rgba(16,185,129,0.15)_0%,_transparent_60%)] pointer-events-none" />
-        <div
-          className="absolute inset-0 bg-grid-pattern opacity-10 pointer-events-none"
-          style={{
-            backgroundImage:
-              "url(\"data:image/svg+xml,%3Csvg width='20' height='20' viewBox='0 0 20 20' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M1 0V20M0 1H20' stroke='white' stroke-opacity='0.1'/%3E%3C/svg%3E\")",
-            backgroundSize: "40px 40px",
-          }}
-        />
+        <div className="absolute inset-0 bg-gradient-to-br from-blue-50 via-white to-blue-100" />
+        <div className="absolute inset-0 bg-[url('data:image/svg+xml,%3Csvg width=%2260%22 height=%2260%22 viewBox=%220 0 60 60%22 xmlns=%22http://www.w3.org/2000/svg%22%3E%3Cg fill=%22none%22 fill-rule=%22evenodd%22%3E%3Cg fill=%22%233b82f6%22 fill-opacity=%220.03%22%3E%3Ccircle cx=%2230%22 cy=%2230%22 r=%221%22/%3E%3C/g%3E%3C/g%3E%3C/svg%3E')] opacity-40" />
+        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top_right,_rgba(59,130,246,0.1)_0%,_transparent_70%)] pointer-events-none" />
+        <div className="absolute inset-0 bg-[radial-gradient(circle_at_bottom_left,_rgba(59,130,246,0.05)_0%,_transparent_60%)] pointer-events-none" />
       </div>
-      {/* Navigation */}
-      <nav className="fixed top-0 left-0 w-full z-50 bg-black/40 backdrop-blur-xl border-b border-white/10 shadow-[0_2px_30px_rgba(16,185,129,0.15)]">
-        <div className="container mx-auto px-6 py-4 flex justify-between items-center">
+
+      {/* Navigation Toggle Button */}
+      <motion.button
+        onClick={() => setShowNavigation(!showNavigation)}
+        whileHover={{ scale: 1.05 }}
+        whileTap={{ scale: 0.95 }}
+        className="fixed top-4 left-4 z-[60] glassmorphism backdrop-blur-md border border-blue-200/30 shadow-lg rounded-xl p-3 cursor-pointer"
+        initial={{ x: -200, opacity: 0 }}
+        animate={{ x: 0, opacity: 1 }}
+        transition={{ duration: 0.8, delay: 0.2 }}
+      >
+        <div className="flex items-center gap-2">
+          {showNavigation ? (
+            <ChevronLeft className="h-4 w-4 text-blue-600" />
+          ) : (
+            <ChevronRight className="h-4 w-4 text-blue-600" />
+          )}
+          <Logo size="sm" showText={false} />
+        </div>
+      </motion.button>
+
+      {/* Desktop Navigation Arrows */}
+      {!isMobile && (
+        <>
+          <motion.button
+            onClick={() => handleSlideChange("prev")}
+            whileHover={{ scale: 1.1, x: -2 }}
+            whileTap={{ scale: 0.9 }}
+            className="fixed left-4 top-1/2 -translate-y-1/2 z-50 glassmorphism backdrop-blur-md border border-blue-200/30 shadow-lg rounded-full p-4 cursor-pointer group"
+            initial={{ x: -100, opacity: 0 }}
+            animate={{ x: 0, opacity: 1 }}
+            transition={{ duration: 0.8, delay: 0.4 }}
+            disabled={activeSlide === 0}
+          >
+            <ChevronLeft
+              className={cn(
+                "h-6 w-6 transition-colors",
+                activeSlide === 0
+                  ? "text-gray-400"
+                  : "text-blue-600 group-hover:text-blue-700"
+              )}
+            />
+          </motion.button>
+
+          <motion.button
+            onClick={() => handleSlideChange("next")}
+            whileHover={{ scale: 1.1, x: 2 }}
+            whileTap={{ scale: 0.9 }}
+            className="fixed right-4 top-1/2 -translate-y-1/2 z-50 glassmorphism backdrop-blur-md border border-blue-200/30 shadow-lg rounded-full p-4 cursor-pointer group"
+            initial={{ x: 100, opacity: 0 }}
+            animate={{ x: 0, opacity: 1 }}
+            transition={{ duration: 0.8, delay: 0.4 }}
+            disabled={activeSlide === slides.length - 1}
+          >
+            <ChevronRight
+              className={cn(
+                "h-6 w-6 transition-colors",
+                activeSlide === slides.length - 1
+                  ? "text-gray-400"
+                  : "text-blue-600 group-hover:text-blue-700"
+              )}
+            />
+          </motion.button>
+        </>
+      )}
+
+      {/* Mobile Navigation Indicators */}
+      {isMobile && (
+        <motion.div
+          className="fixed bottom-4 left-1/2 -translate-x-1/2 z-50 glassmorphism backdrop-blur-md border border-blue-200/30 shadow-lg rounded-full px-4 py-2"
+          initial={{ y: 100, opacity: 0 }}
+          animate={{ y: 0, opacity: 1 }}
+          transition={{ duration: 0.8, delay: 0.4 }}
+        >
           <div className="flex items-center gap-3">
-            <div className="w-10 h-10 bg-gradient-to-br from-emerald-400 to-teal-400 rounded-xl shadow-[0_0_20px_rgba(16,185,129,0.5)] flex items-center justify-center">
-              <div className="w-6 h-6 bg-white/20 backdrop-blur-sm rounded-md"></div>
-            </div>
-            <span className="text-xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-white to-emerald-200 drop-shadow-[0_2px_8px_rgba(16,185,129,0.4)]">
-              TunaWork
-            </span>
+            <ArrowUp className="h-4 w-4 text-blue-600" />
+            <span className="text-xs text-gray-600">Slide pour naviguer</span>
+            <ArrowDown className="h-4 w-4 text-blue-600" />
           </div>
-          <div className="hidden md:flex gap-2">
-            {[
-              "problem",
-              "solution",
-              "features",
-              "impact",
-              "mission",
-              "business",
-            ].map((section) => (
-              <motion.button
-                key={section}
-                onClick={() => scrollToSection(section)}
-                whileHover={{ scale: 1.05 }}
-                whileTap={{ scale: 0.98 }}
-                className={cn(
-                  "text-sm font-medium transition-all duration-300 px-4 py-2 rounded-full backdrop-blur-md",
-                  activeSection === section
-                    ? "text-white bg-emerald-500/30 border border-emerald-400/30 shadow-[0_2px_10px_rgba(16,185,129,0.3)]"
-                    : "text-white/80 hover:text-white border border-white/5 hover:border-white/20 hover:bg-white/5"
-                )}
-              >
-                {section.charAt(0).toUpperCase() + section.slice(1)}
-              </motion.button>
-            ))}
-          </div>
-          <Button className="bg-gradient-to-r from-emerald-500 to-teal-500 hover:from-emerald-400 hover:to-teal-400 text-white px-6 py-2 rounded-full border border-emerald-400/30 shadow-[0_0_20px_rgba(16,185,129,0.3)] transition-all duration-300">
-            <span>Contacter</span>
-            <ArrowRight className="w-4 h-4 ml-2" />
+        </motion.div>
+      )}
+
+      {/* Slide Navigation Draggable à gauche */}
+      <motion.div
+        drag="y"
+        dragConstraints={{
+          top: 50,
+          bottom:
+            typeof window !== "undefined" ? window.innerHeight - 400 : 500,
+        }}
+        className={cn(
+          "fixed top-20 left-4 z-50 glassmorphism backdrop-blur-md border border-blue-200/30 shadow-lg rounded-2xl p-4 cursor-move w-48 transition-all duration-300",
+          showNavigation
+            ? "opacity-100 translate-x-0"
+            : "opacity-0 -translate-x-full pointer-events-none"
+        )}
+        initial={{ x: -200, opacity: 0 }}
+        animate={{
+          x: showNavigation ? 0 : -200,
+          opacity: showNavigation ? 1 : 0,
+        }}
+        transition={{ duration: 0.8 }}
+      >
+        <div className="flex items-center gap-2 mb-4 pb-3 border-b border-blue-200/30">
+          <Logo size="sm" showText={false} />
+          <span className="font-semibold text-gray-700 text-sm">
+            Navigation
+          </span>
+        </div>
+
+        <div className="space-y-2 max-h-80 overflow-y-auto hide-scrollbar">
+          {slides.map((slide, index) => (
+            <motion.button
+              key={slide.id}
+              onClick={() => goToSlide(index)}
+              whileHover={{ scale: 1.02, x: 4 }}
+              whileTap={{ scale: 0.98 }}
+              className={cn(
+                "w-full text-left text-xs font-medium transition-all duration-300 px-3 py-2 rounded-lg backdrop-blur-md border relative overflow-hidden",
+                activeSlide === index
+                  ? "text-white bg-blue-500 border-blue-400 shadow-md"
+                  : "text-gray-700 hover:text-blue-600 border-gray-200/50 hover:border-blue-300/50 hover:bg-blue-50/50"
+              )}
+            >
+              <div className="flex items-center gap-2">
+                <div
+                  className={cn(
+                    "w-2 h-2 rounded-full transition-all duration-300",
+                    activeSlide === index ? "bg-white" : "bg-blue-400"
+                  )}
+                />
+                <span className="truncate">{slide.title}</span>
+              </div>
+              {activeSlide === index && (
+                <motion.div
+                  layoutId="activeSlideIndicator"
+                  className="absolute inset-0 bg-blue-500 rounded-lg -z-10"
+                  transition={{ type: "spring", duration: 0.6 }}
+                />
+              )}
+            </motion.button>
+          ))}
+        </div>
+
+        <div className="flex gap-1 mt-4 pt-3 border-t border-blue-200/30">
+          <Button
+            variant="outline"
+            size="sm"
+            className="rounded-lg border-gray-200 bg-white/70 hover:bg-blue-50 text-gray-600 hover:text-blue-600 flex-1 text-xs"
+            onClick={() => handleSlideChange("prev")}
+          >
+            <ChevronLeft className="h-3 w-3" />
+          </Button>
+          <Button
+            variant="outline"
+            size="sm"
+            className="rounded-lg border-gray-200 bg-white/70 hover:bg-blue-50 text-gray-600 hover:text-blue-600 flex-1 text-xs"
+            onClick={() => handleSlideChange("next")}
+          >
+            <ChevronRight className="h-3 w-3" />
           </Button>
         </div>
-      </nav>
-      {/* Hero Section */}
-      <section
-        ref={(el: HTMLDivElement | null) => {
-          if (el) sectionsRef.current.hero = el;
+      </motion.div>
+
+      {/* Swiper Slides */}
+      <Swiper
+        onSwiper={(swiper) => {
+          swiperRef.current = swiper;
         }}
-        className="h-screen relative flex items-center justify-center overflow-hidden"
+        spaceBetween={0}
+        slidesPerView={1}
+        direction="horizontal"
+        mousewheel={!isMobile}
+        keyboard={{ enabled: true }}
+        allowTouchMove={true}
+        pagination={{
+          clickable: true,
+          dynamicBullets: true,
+        }}
+        modules={[Navigation, Pagination, Mousewheel, Keyboard]}
+        className="h-screen w-screen"
+        onSlideChange={(swiper) => setActiveSlide(swiper.activeIndex)}
       >
-        <div className="absolute inset-0 z-0">
-          <div className="absolute top-1/4 -left-20 w-80 h-80 bg-emerald-500/10 rounded-full filter blur-3xl"></div>
-          <div className="absolute bottom-1/4 -right-20 w-80 h-80 bg-teal-500/10 rounded-full filter blur-3xl"></div>
-        </div>
-
-        <div className="container mx-auto px-6 z-10 text-center">
-          <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8 }}
-            className="max-w-3xl mx-auto"
-          >
-            <motion.div
-              initial={{ scale: 0.9, opacity: 0 }}
-              animate={{ scale: 1, opacity: 1 }}
-              transition={{ duration: 0.8, delay: 0.2 }}
-              className="mb-8 inline-block"
-            >
-              <div className="w-20 h-20 mx-auto bg-gradient-to-br from-emerald-400 to-teal-400 rounded-2xl shadow-[0_0_30px_rgba(16,185,129,0.5)] flex items-center justify-center mb-6 transform rotate-12">
-                <div className="w-10 h-10 bg-white/20 backdrop-blur-sm rounded-lg transform -rotate-12"></div>
-              </div>
-            </motion.div>
-
-            <h1 className="text-5xl md:text-7xl font-bold mb-6 bg-clip-text text-transparent bg-gradient-to-r from-white via-emerald-100 to-teal-200 drop-shadow-[0_2px_12px_rgba(16,185,129,0.3)]">
-              TunaWork
-            </h1>
-
-            <motion.p
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8, delay: 0.3 }}
-              className="text-xl md:text-2xl mb-8 text-white/90 drop-shadow-lg"
-            >
-              Digitalisation du marché informel des services en RDC
-            </motion.p>
-
-            <motion.p
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8, delay: 0.4 }}
-              className="text-lg mb-12 text-white/80 max-w-2xl mx-auto drop-shadow-md"
-            >
-              Une solution SaaS innovante pour la mise en relation entre
-              freelancers et clients à Kinshasa
-            </motion.p>
-
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8, delay: 0.5 }}
-              className="flex flex-col sm:flex-row gap-4 justify-center"
-            >
-              <Button
-                onClick={() => scrollToSection("problem")}
-                className="bg-gradient-to-r from-emerald-500 to-teal-500 hover:from-emerald-400 hover:to-teal-400 text-white px-8 py-6 text-lg rounded-full border border-emerald-400/30 shadow-[0_0_30px_rgba(16,185,129,0.4)] transition-all duration-300 hover:shadow-[0_0_40px_rgba(16,185,129,0.6)]"
+        {/* Hero Slide */}
+        <SwiperSlide className="h-full w-full">
+          <div className="h-full w-full flex items-center justify-center">
+            <div className="container mx-auto px-6 z-10 text-center max-h-[90vh] flex flex-col justify-center">
+              <motion.div
+                initial={{ opacity: 0, y: 30 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.8 }}
+                className="max-w-4xl mx-auto"
               >
-                <span>Découvrir le projet</span>
-                <ArrowRight className="w-5 h-5 ml-2 inline-block" />
-              </Button>
-            </motion.div>
-          </motion.div>
-        </div>
-
-        <motion.div
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ duration: 1, delay: 0.8 }}
-          className="absolute bottom-10 left-1/2 transform -translate-x-1/2"
-        >
-          <motion.div
-            animate={{ y: [0, 10, 0] }}
-            transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
-          >
-            <ChevronDown className="w-8 h-8 text-emerald-100 drop-shadow-[0_2px_8px_rgba(16,185,129,0.3)]" />
-          </motion.div>
-        </motion.div>
-      </section>
-
-      {/* Problem Section */}
-      <section
-        ref={(el: HTMLDivElement | null) => {
-          if (el) sectionsRef.current.problem = el;
-        }}
-        className="min-h-screen py-20 relative"
-      >
-        <div className="absolute inset-0 z-0">
-          <div className="absolute top-1/3 right-0 w-96 h-96 bg-emerald-500/5 rounded-full filter blur-3xl"></div>
-          <div className="absolute bottom-1/3 left-0 w-96 h-96 bg-teal-500/5 rounded-full filter blur-3xl"></div>
-        </div>
-
-        <div className="container mx-auto px-6 z-10 relative">
-          <div className="max-w-4xl mx-auto">
-            <motion.div
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8 }}
-              viewport={{ once: true }}
-            >
-              <h2 className="text-4xl font-bold mb-12 bg-clip-text text-transparent bg-gradient-to-r from-white via-emerald-100 to-teal-200 text-center drop-shadow-[0_2px_8px_rgba(16,185,129,0.3)]">
-                Problématique
-              </h2>
-
-              <div className="bg-black/30 backdrop-blur-xl rounded-3xl p-8 border border-white/10 shadow-[0_8px_40px_rgba(16,185,129,0.15)] ring-1 ring-emerald-500/20">
-                <motion.p
-                  initial={{ opacity: 0, y: 20 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.6, delay: 0.1 }}
-                  viewport={{ once: true }}
-                  className="text-xl mb-8 text-white/90 leading-relaxed"
-                >
-                  Le marché des services en République Démocratique du Congo,
-                  particulièrement à Kinshasa, est largement informel et
-                  désorganisé.
-                </motion.p>
-
-                <div className="grid md:grid-cols-2 gap-6">
-                  <motion.div
-                    initial={{ opacity: 0, x: -20 }}
-                    whileInView={{ opacity: 1, x: 0 }}
-                    transition={{ duration: 0.6, delay: 0.2 }}
-                    viewport={{ once: true }}
-                    whileHover={{ y: -5 }}
-                    className="bg-white/5 backdrop-blur-xl rounded-2xl p-6 border border-white/10 shadow-[0_0_20px_rgba(16,185,129,0.08)] transition-all duration-300 hover:shadow-[0_0_30px_rgba(16,185,129,0.2)] group"
-                  >
-                    <div className="w-12 h-12 bg-gradient-to-br from-emerald-500/20 to-teal-500/20 rounded-xl flex items-center justify-center mb-4 border border-emerald-500/20 shadow-[0_0_15px_rgba(16,185,129,0.15)] group-hover:shadow-[0_0_20px_rgba(16,185,129,0.25)] transition-all duration-300">
-                      <Users className="w-6 h-6 text-emerald-200" />
-                    </div>
-                    <h3 className="text-xl font-semibold mb-4 text-white drop-shadow-md">
-                      Pour les clients
-                    </h3>
-                    <ul className="space-y-3">
-                      <li className="flex items-start gap-3">
-                        <div className="w-6 h-6 rounded-full bg-emerald-500/20 flex items-center justify-center flex-shrink-0 mt-0.5">
-                          <ChevronRight className="w-4 h-4 text-emerald-200" />
-                        </div>
-                        <span className="text-white/80">
-                          Difficulté à trouver des prestataires fiables
-                        </span>
-                      </li>
-                      <li className="flex items-start gap-3">
-                        <div className="w-6 h-6 rounded-full bg-emerald-500/20 flex items-center justify-center flex-shrink-0 mt-0.5">
-                          <ChevronRight className="w-4 h-4 text-emerald-200" />
-                        </div>
-                        <span className="text-white/80">
-                          Manque de transparence sur les prix
-                        </span>
-                      </li>
-                      <li className="flex items-start gap-3">
-                        <div className="w-6 h-6 rounded-full bg-emerald-500/20 flex items-center justify-center flex-shrink-0 mt-0.5">
-                          <ChevronRight className="w-4 h-4 text-emerald-200" />
-                        </div>
-                        <span className="text-white/80">
-                          Absence de garantie de qualité
-                        </span>
-                      </li>
-                    </ul>
-                  </motion.div>
-
-                  <motion.div
-                    initial={{ opacity: 0, x: 20 }}
-                    whileInView={{ opacity: 1, x: 0 }}
-                    transition={{ duration: 0.6, delay: 0.3 }}
-                    viewport={{ once: true }}
-                    whileHover={{ y: -5 }}
-                    className="bg-white/5 backdrop-blur-xl rounded-2xl p-6 border border-white/10 shadow-[0_0_20px_rgba(16,185,129,0.08)] transition-all duration-300 hover:shadow-[0_0_30px_rgba(16,185,129,0.2)] group"
-                  >
-                    <div className="w-12 h-12 bg-gradient-to-br from-emerald-500/20 to-teal-500/20 rounded-xl flex items-center justify-center mb-4 border border-emerald-500/20 shadow-[0_0_15px_rgba(16,185,129,0.15)] group-hover:shadow-[0_0_20px_rgba(16,185,129,0.25)] transition-all duration-300">
-                      <Star className="w-6 h-6 text-emerald-200" />
-                    </div>
-                    <h3 className="text-xl font-semibold mb-4 text-white drop-shadow-md">
-                      Pour les freelancers
-                    </h3>
-                    <ul className="space-y-3">
-                      <li className="flex items-start gap-3">
-                        <div className="w-6 h-6 rounded-full bg-emerald-500/20 flex items-center justify-center flex-shrink-0 mt-0.5">
-                          <ChevronRight className="w-4 h-4 text-emerald-200" />
-                        </div>
-                        <span className="text-white/80">
-                          Difficulté à se faire connaître
-                        </span>
-                      </li>
-                      <li className="flex items-start gap-3">
-                        <div className="w-6 h-6 rounded-full bg-emerald-500/20 flex items-center justify-center flex-shrink-0 mt-0.5">
-                          <ChevronRight className="w-4 h-4 text-emerald-200" />
-                        </div>
-                        <span className="text-white/80">
-                          Instabilité des revenus
-                        </span>
-                      </li>
-                      <li className="flex items-start gap-3">
-                        <div className="w-6 h-6 rounded-full bg-emerald-500/20 flex items-center justify-center flex-shrink-0 mt-0.5">
-                          <ChevronRight className="w-4 h-4 text-emerald-200" />
-                        </div>
-                        <span className="text-white/80">
-                          Absence de protection contractuelle
-                        </span>
-                      </li>
-                    </ul>
-                  </motion.div>
-                </div>
-
                 <motion.div
-                  initial={{ opacity: 0, y: 20 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.6, delay: 0.4 }}
-                  viewport={{ once: true }}
-                  whileHover={{ y: -5 }}
-                  className="mt-6 bg-white/5 backdrop-blur-xl rounded-2xl p-6 border border-white/10 shadow-[0_0_20px_rgba(16,185,129,0.08)] transition-all duration-300 hover:shadow-[0_0_30px_rgba(16,185,129,0.2)] group"
+                  initial={{ scale: 0.9, opacity: 0 }}
+                  animate={{ scale: 1, opacity: 1 }}
+                  transition={{ duration: 0.8, delay: 0.2 }}
+                  className="mb-8 inline-block"
                 >
-                  <div className="w-12 h-12 bg-gradient-to-br from-emerald-500/20 to-teal-500/20 rounded-xl flex items-center justify-center mb-4 border border-emerald-500/20 shadow-[0_0_15px_rgba(16,185,129,0.15)] group-hover:shadow-[0_0_20px_rgba(16,185,129,0.25)] transition-all duration-300">
-                    <Globe className="w-6 h-6 text-emerald-200" />
-                  </div>
-                  <h3 className="text-xl font-semibold mb-4 text-white drop-shadow-md">
-                    Pour l'économie
-                  </h3>
-                  <p className="text-white/80 leading-relaxed">
-                    Un secteur informel important qui échappe à la fiscalité et
-                    limite le développement économique structuré
-                  </p>
+                  <Logo
+                    size="xl"
+                    showText={false}
+                    animated={true}
+                    className="animate-float"
+                  />
                 </motion.div>
-              </div>
-            </motion.div>
-          </div>
-        </div>
-      </section>
 
-      {/* Solution Section */}
-      <section
-        ref={(el: HTMLDivElement | null) => {
-          if (el) sectionsRef.current.solution = el;
-        }}
-        className="min-h-screen py-20 relative"
-      >
-        <div className="absolute inset-0 z-0">
-          <div className="absolute inset-0 bg-gradient-to-b from-black/90 via-emerald-900/20 to-black/80" />
-          <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,_var(--tw-gradient-stops))] from-emerald-500/10 via-transparent to-transparent"></div>
-          <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-emerald-500/5 rounded-full filter blur-3xl"></div>
-          <div className="absolute bottom-1/4 right-1/4 w-96 h-96 bg-teal-500/5 rounded-full filter blur-3xl"></div>
-        </div>
+                <h1 className="text-4xl md:text-6xl font-bold mb-6 bg-clip-text text-transparent bg-gradient-to-r from-blue-600 via-blue-700 to-blue-800">
+                  TunaWork
+                </h1>
 
-        <div className="container mx-auto px-6 z-10 relative">
-          <div className="max-w-5xl mx-auto">
-            <motion.div
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8 }}
-              viewport={{ once: true }}
-            >
-              <h2 className="text-4xl font-bold mb-12 bg-clip-text text-transparent bg-gradient-to-r from-white via-emerald-100 to-teal-200 text-center drop-shadow-[0_2px_8px_rgba(16,185,129,0.3)]">
-                Notre Solution
-              </h2>
-
-              <div className="bg-black/30 backdrop-blur-xl rounded-3xl p-8 border border-white/10 shadow-[0_8px_40px_rgba(16,185,129,0.15)] ring-1 ring-emerald-500/20">
                 <motion.p
                   initial={{ opacity: 0, y: 20 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.6, delay: 0.1 }}
-                  viewport={{ once: true }}
-                  className="text-xl mb-8 text-white/90 leading-relaxed"
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.8, delay: 0.3 }}
+                  className="text-lg md:text-xl mb-6 text-gray-700"
                 >
-                  TunaWork est une plateforme SaaS innovante qui vise à
-                  digitaliser et structurer le marché des services freelance à
-                  Kinshasa, en créant un écosystème sécurisé et transparent.
+                  Digitalisation du marché informel des services en RDC
                 </motion.p>
 
-                <div className="grid md:grid-cols-3 gap-6 mb-8">
-                  {[
-                    {
-                      title: "Profils vérifiés",
-                      description:
-                        "Vérification des compétences et de l'identité des freelancers",
-                      icon: Shield,
-                    },
-                    {
-                      title: "Système d'évaluation",
-                      description:
-                        "Notation mutuelle entre clients et freelancers",
-                      icon: Star,
-                    },
-                    {
-                      title: "Paiements sécurisés",
-                      description:
-                        "Système d'escrow pour garantir les transactions",
-                      icon: CreditCard,
-                    },
-                    {
-                      title: "Contrats standardisés",
-                      description:
-                        "Protection juridique pour toutes les parties",
-                      icon: FileText,
-                    },
-                    {
-                      title: "Catégorisation",
-                      description:
-                        "Organisation claire par domaine d'expertise",
-                      icon: FolderTree,
-                    },
-                    {
-                      title: "Matching intelligent",
-                      description:
-                        "Recommandation basée sur les besoins et compétences",
-                      icon: Sparkles,
-                    },
-                  ].map((feature, index) => (
-                    <motion.div
-                      key={feature.title}
-                      initial={{ opacity: 0, y: 20 }}
-                      whileInView={{ opacity: 1, y: 0 }}
-                      transition={{ duration: 0.5, delay: index * 0.1 }}
-                      viewport={{ once: true }}
-                      whileHover={{ y: -5 }}
-                      className="bg-white/5 backdrop-blur-xl rounded-2xl p-6 border border-white/10 shadow-[0_0_15px_rgba(16,185,129,0.1)] transition-all duration-300 hover:shadow-[0_0_25px_rgba(16,185,129,0.2)] group"
-                    >
-                      <div className="w-12 h-12 bg-gradient-to-br from-emerald-500/20 to-teal-500/20 rounded-xl flex items-center justify-center mb-4 border border-emerald-500/20 shadow-[0_0_15px_rgba(16,185,129,0.15)] group-hover:shadow-[0_0_20px_rgba(16,185,129,0.25)] transition-all duration-300">
-                        <feature.icon className="w-6 h-6 text-emerald-200" />
-                      </div>
-                      <h3 className="text-xl font-semibold mb-3 text-white drop-shadow-md">
-                        {feature.title}
-                      </h3>
-                      <p className="text-white/80">{feature.description}</p>
-                    </motion.div>
-                  ))}
-                </div>
+                <motion.p
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.8, delay: 0.4 }}
+                  className="text-base mb-8 text-gray-600 max-w-2xl mx-auto"
+                >
+                  Une solution SaaS révolutionnaire qui transforme le marché
+                  informel de Kinshasa en un écosystème numérique structuré,
+                  créant des opportunités pour plus de 50,000 freelancers
+                </motion.p>
 
                 <motion.div
                   initial={{ opacity: 0, y: 20 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.6, delay: 0.4 }}
-                  viewport={{ once: true }}
-                  className="bg-white/5 backdrop-blur-xl rounded-2xl p-6 mt-8 border border-white/10 shadow-[0_0_15px_rgba(16,185,129,0.1)] transition-all duration-300 hover:shadow-[0_0_25px_rgba(16,185,129,0.2)]"
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.8, delay: 0.5 }}
+                  className="flex flex-col sm:flex-row gap-4 justify-center"
                 >
-                  <h3 className="text-xl font-semibold mb-6 text-white drop-shadow-md text-center">
-                    Fonctionnement
-                  </h3>
+                  <Button
+                    onClick={() => goToSlide(1)}
+                    className="bg-gradient-to-r from-blue-500 to-blue-600 hover:from-blue-600 hover:to-blue-700 text-white px-6 py-4 text-base rounded-xl shadow-lg shadow-blue-500/25 hover:shadow-xl hover:shadow-blue-500/30 transition-all duration-300"
+                  >
+                    <span>Découvrir le projet</span>
+                    <ArrowRight className="w-4 h-4 ml-2 inline-block" />
+                  </Button>
+                </motion.div>
+              </motion.div>
+            </div>
+          </div>
+        </SwiperSlide>
 
-                  <div className="flex flex-col md:flex-row justify-between items-center gap-4 relative">
-                    <div className="absolute top-1/2 left-0 right-0 h-0.5 bg-gradient-to-r from-transparent via-emerald-500/30 to-transparent hidden md:block"></div>
+        {/* Problem Slide */}
+        <SwiperSlide className="h-full w-full">
+          <div className="h-full w-full flex items-center justify-center">
+            <div className="container mx-auto px-6 z-10 max-h-[90vh] overflow-hidden">
+              <motion.div
+                initial={{ opacity: 0, y: 30 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.8 }}
+                viewport={{ once: true }}
+                className="max-w-5xl mx-auto h-full flex flex-col justify-center"
+              >
+                <h2 className="text-3xl font-bold mb-6 bg-clip-text text-transparent bg-gradient-to-r from-blue-600 to-blue-800 text-center">
+                  Un Marché de 2,8 Milliards USD Non Exploité
+                </h2>
 
+                <div className="bg-white/80 backdrop-blur-xl rounded-3xl p-6 border border-blue-200/30 shadow-xl">
+                  <motion.div
+                    initial={{ opacity: 0, y: 20 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    transition={{ duration: 0.6, delay: 0.1 }}
+                    viewport={{ once: true }}
+                    className="text-center mb-6"
+                  >
+                    <p className="text-lg text-gray-700 leading-relaxed mb-4">
+                      Le marché des services en RDC représente une opportunité
+                      économique colossale largement inexploitée.
+                      <span className="font-semibold text-blue-600">
+                        {" "}
+                        Plus de 70% de l'économie congolaise fonctionne dans
+                        l'informel
+                      </span>
+                      , générant annuellement plus de{" "}
+                      <span className="font-bold text-blue-700">
+                        2,8 milliards USD
+                      </span>{" "}
+                      sans aucune structuration digitale.
+                    </p>
+
+                    <div className="grid md:grid-cols-3 gap-3 mb-6">
+                      <div className="bg-red-50 p-3 rounded-xl border border-red-200">
+                        <div className="text-xl font-bold text-red-600">
+                          78%
+                        </div>
+                        <div className="text-xs text-gray-600">
+                          Transactions non sécurisées
+                        </div>
+                      </div>
+                      <div className="bg-orange-50 p-3 rounded-xl border border-orange-200">
+                        <div className="text-xl font-bold text-orange-600">
+                          65%
+                        </div>
+                        <div className="text-xs text-gray-600">
+                          Revenus instables
+                        </div>
+                      </div>
+                      <div className="bg-yellow-50 p-3 rounded-xl border border-yellow-200">
+                        <div className="text-xl font-bold text-yellow-600">
+                          82%
+                        </div>
+                        <div className="text-xs text-gray-600">
+                          Aucune visibilité digitale
+                        </div>
+                      </div>
+                    </div>
+                  </motion.div>
+
+                  <div className="grid md:grid-cols-2 gap-6">
+                    <motion.div
+                      initial={{ opacity: 0, x: -20 }}
+                      whileInView={{ opacity: 1, x: 0 }}
+                      transition={{ duration: 0.6, delay: 0.2 }}
+                      viewport={{ once: true }}
+                      className="bg-blue-50/50 backdrop-blur-xl rounded-2xl p-4 border border-blue-100 shadow-lg"
+                    >
+                      <div className="w-10 h-10 bg-gradient-to-br from-blue-500 to-blue-600 rounded-xl flex items-center justify-center mb-3 shadow-lg">
+                        <Users className="w-5 h-5 text-white" />
+                      </div>
+                      <h3 className="text-lg font-semibold mb-3 text-gray-800">
+                        Clients - Une recherche frustrante
+                      </h3>
+                      <ul className="space-y-2 text-sm">
+                        <li className="flex items-start gap-2">
+                          <div className="w-4 h-4 rounded-full bg-blue-100 flex items-center justify-center flex-shrink-0 mt-0.5">
+                            <ChevronRight className="w-3 h-3 text-blue-600" />
+                          </div>
+                          <span className="text-gray-600">
+                            <strong>Pas de garantie qualité:</strong> 89% des
+                            clients ont déjà été déçus par un service
+                          </span>
+                        </li>
+                        <li className="flex items-start gap-2">
+                          <div className="w-4 h-4 rounded-full bg-blue-100 flex items-center justify-center flex-shrink-0 mt-0.5">
+                            <ChevronRight className="w-3 h-3 text-blue-600" />
+                          </div>
+                          <span className="text-gray-600">
+                            <strong>Prix imprévisibles:</strong> Variations de
+                            300% pour le même service
+                          </span>
+                        </li>
+                        <li className="flex items-start gap-2">
+                          <div className="w-4 h-4 rounded-full bg-blue-100 flex items-center justify-center flex-shrink-0 mt-0.5">
+                            <ChevronRight className="w-3 h-3 text-blue-600" />
+                          </div>
+                          <span className="text-gray-600">
+                            <strong>Recherche chronophage:</strong> En moyenne
+                            48h pour trouver un freelancer qualifié
+                          </span>
+                        </li>
+                      </ul>
+                    </motion.div>
+
+                    <motion.div
+                      initial={{ opacity: 0, x: 20 }}
+                      whileInView={{ opacity: 1, x: 0 }}
+                      transition={{ duration: 0.6, delay: 0.3 }}
+                      viewport={{ once: true }}
+                      className="bg-blue-50/50 backdrop-blur-xl rounded-2xl p-4 border border-blue-100 shadow-lg"
+                    >
+                      <div className="w-10 h-10 bg-gradient-to-br from-blue-500 to-blue-600 rounded-xl flex items-center justify-center mb-3 shadow-lg">
+                        <Star className="w-5 h-5 text-white" />
+                      </div>
+                      <h3 className="text-lg font-semibold mb-3 text-gray-800">
+                        Freelancers - Un potentiel gâché
+                      </h3>
+                      <ul className="space-y-2 text-sm">
+                        <li className="flex items-start gap-2">
+                          <div className="w-4 h-4 rounded-full bg-blue-100 flex items-center justify-center flex-shrink-0 mt-0.5">
+                            <ChevronRight className="w-3 h-3 text-blue-600" />
+                          </div>
+                          <span className="text-gray-600">
+                            <strong>Revenus imprévisibles:</strong> 73% gagnent
+                            moins de 200 USD/mois
+                          </span>
+                        </li>
+                        <li className="flex items-start gap-2">
+                          <div className="w-4 h-4 rounded-full bg-blue-100 flex items-center justify-center flex-shrink-0 mt-0.5">
+                            <ChevronRight className="w-3 h-3 text-blue-600" />
+                          </div>
+                          <span className="text-gray-600">
+                            <strong>Invisibilité totale:</strong> Aucune vitrine
+                            digitale pour 98% des freelancers
+                          </span>
+                        </li>
+                        <li className="flex items-start gap-2">
+                          <div className="w-4 h-4 rounded-full bg-blue-100 flex items-center justify-center flex-shrink-0 mt-0.5">
+                            <ChevronRight className="w-3 h-3 text-blue-600" />
+                          </div>
+                          <span className="text-gray-600">
+                            <strong>Paiements risqués:</strong> 45% des
+                            freelancers ne sont jamais payés intégralement
+                          </span>
+                        </li>
+                      </ul>
+                    </motion.div>
+                  </div>
+                </div>
+              </motion.div>
+            </div>
+          </div>
+        </SwiperSlide>
+
+        {/* Solution Slide */}
+        <SwiperSlide className="h-full w-full">
+          <div className="h-full w-full flex items-center justify-center">
+            <div className="container mx-auto px-6 z-10 max-h-[90vh] overflow-hidden">
+              <motion.div
+                initial={{ opacity: 0, y: 30 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.8 }}
+                viewport={{ once: true }}
+                className="max-w-5xl mx-auto h-full flex flex-col justify-center"
+              >
+                <h2 className="text-3xl font-bold mb-4 bg-clip-text text-transparent bg-gradient-to-r from-blue-600 to-blue-800 text-center">
+                  TunaWork : La Solution qui Révolutionne
+                </h2>
+
+                <div className="bg-white/80 backdrop-blur-xl rounded-3xl p-4 border border-blue-200/30 shadow-xl">
+                  <motion.div
+                    initial={{ opacity: 0, y: 20 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    transition={{ duration: 0.6, delay: 0.1 }}
+                    viewport={{ once: true }}
+                    className="text-center mb-4"
+                  >
+                    <p className="text-base text-gray-700 leading-relaxed mb-3">
+                      TunaWork transforme ce marché informel de{" "}
+                      <strong className="text-blue-600">
+                        2,8 milliards USD
+                      </strong>{" "}
+                      en un écosystème digital sécurisé.
+                    </p>
+
+                    <div className="grid md:grid-cols-3 gap-2 mb-4">
+                      <div className="bg-green-50 p-2 rounded-lg border border-green-200">
+                        <div className="text-lg font-bold text-green-600">
+                          $500M
+                        </div>
+                        <div className="text-xs text-gray-600">
+                          Marché initial
+                        </div>
+                      </div>
+                      <div className="bg-blue-50 p-2 rounded-lg border border-blue-200">
+                        <div className="text-lg font-bold text-blue-600">
+                          50,000+
+                        </div>
+                        <div className="text-xs text-gray-600">Freelancers</div>
+                      </div>
+                      <div className="bg-purple-50 p-2 rounded-lg border border-purple-200">
+                        <div className="text-lg font-bold text-purple-600">
+                          15,000+
+                        </div>
+                        <div className="text-xs text-gray-600">Entreprises</div>
+                      </div>
+                    </div>
+                  </motion.div>
+
+                  <div className="grid md:grid-cols-3 gap-3">
                     {[
-                      { step: 1, label: "Inscription" },
-                      { step: 2, label: "Mise en relation" },
-                      { step: 3, label: "Contrat sécurisé" },
-                      { step: 4, label: "Paiement sécurisé" },
-                      { step: 5, label: "Évaluation" },
-                    ].map((step, index) => (
+                      {
+                        title: "Profils vérifiés",
+                        icon: Shield,
+                        benefit: "100% sécurisé",
+                      },
+                      {
+                        title: "Paiements intelligents",
+                        icon: CreditCard,
+                        benefit: "Garanti",
+                      },
+                      {
+                        title: "Matching IA",
+                        icon: Sparkles,
+                        benefit: "97% précis",
+                      },
+                      {
+                        title: "Contrats digitaux",
+                        icon: FileText,
+                        benefit: "Légal",
+                      },
+                      {
+                        title: "Portfolio dynamique",
+                        icon: FolderTree,
+                        benefit: "Visible",
+                      },
+                      {
+                        title: "Reviews transparents",
+                        icon: Star,
+                        benefit: "Confiance",
+                      },
+                    ].map((feature, index) => (
                       <motion.div
-                        key={step.step}
+                        key={feature.title}
+                        initial={{ opacity: 0, y: 20 }}
+                        whileInView={{ opacity: 1, y: 0 }}
+                        transition={{ duration: 0.5, delay: index * 0.1 }}
+                        viewport={{ once: true }}
+                        className="bg-blue-50/50 backdrop-blur-xl rounded-lg p-3 border border-blue-100 shadow-lg"
+                      >
+                        <div className="w-6 h-6 bg-gradient-to-br from-blue-500 to-blue-600 rounded-lg flex items-center justify-center mb-2 shadow-lg">
+                          <feature.icon className="w-3 h-3 text-white" />
+                        </div>
+                        <div className="mb-1">
+                          <span className="inline-block bg-green-100 text-green-700 text-xs px-2 py-0.5 rounded-full font-semibold">
+                            {feature.benefit}
+                          </span>
+                        </div>
+                        <h3 className="text-xs font-semibold mb-1 text-gray-800">
+                          {feature.title}
+                        </h3>
+                      </motion.div>
+                    ))}
+                  </div>
+                </div>
+              </motion.div>
+            </div>
+          </div>
+        </SwiperSlide>
+
+        {/* Market Size Slide */}
+        <SwiperSlide className="h-full w-full">
+          <div className="h-full w-full flex items-center justify-center">
+            <div className="container mx-auto px-6 z-10 max-h-[90vh] overflow-hidden">
+              <motion.div
+                initial={{ opacity: 0, y: 30 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.8 }}
+                viewport={{ once: true }}
+                className="max-w-5xl mx-auto h-full flex flex-col justify-center"
+              >
+                <h2 className="text-3xl font-bold mb-6 bg-clip-text text-transparent bg-gradient-to-r from-blue-600 to-blue-800 text-center">
+                  Un Marché de 2,8 Milliards USD
+                </h2>
+
+                <div className="bg-white/80 backdrop-blur-xl rounded-3xl p-6 border border-blue-200/30 shadow-xl">
+                  <motion.div
+                    initial={{ opacity: 0, y: 20 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    transition={{ duration: 0.6, delay: 0.1 }}
+                    viewport={{ once: true }}
+                    className="text-center mb-6"
+                  >
+                    <p className="text-lg text-gray-700 leading-relaxed mb-4">
+                      Le marché congolais représente une opportunité
+                      exceptionnelle avec
+                      <strong className="text-blue-600">
+                        {" "}
+                        84 millions d'habitants
+                      </strong>{" "}
+                      et une économie de
+                      <strong className="text-blue-700">
+                        {" "}
+                        55 milliards USD
+                      </strong>
+                      , dont 70% restent dans l'informel.
+                    </p>
+
+                    <div className="grid md:grid-cols-4 gap-3 mb-6">
+                      <div className="bg-green-50 p-3 rounded-xl border border-green-200">
+                        <div className="text-xl font-bold text-green-600">
+                          $2.8B
+                        </div>
+                        <div className="text-xs text-gray-600">
+                          Marché total (TAM)
+                        </div>
+                      </div>
+                      <div className="bg-blue-50 p-3 rounded-xl border border-blue-200">
+                        <div className="text-xl font-bold text-blue-600">
+                          $850M
+                        </div>
+                        <div className="text-xs text-gray-600">
+                          Marché serviceable (SAM)
+                        </div>
+                      </div>
+                      <div className="bg-purple-50 p-3 rounded-xl border border-purple-200">
+                        <div className="text-xl font-bold text-purple-600">
+                          $280M
+                        </div>
+                        <div className="text-xs text-gray-600">
+                          Marché atteignable (SOM)
+                        </div>
+                      </div>
+                      <div className="bg-orange-50 p-3 rounded-xl border border-orange-200">
+                        <div className="text-xl font-bold text-orange-600">
+                          15%
+                        </div>
+                        <div className="text-xs text-gray-600">
+                          Croissance annuelle
+                        </div>
+                      </div>
+                    </div>
+                  </motion.div>
+
+                  <div className="grid md:grid-cols-4 gap-4">
+                    {[
+                      {
+                        category: "IT & Digital",
+                        market: "$420M",
+                        growth: "+35%",
+                        icon: Smartphone,
+                      },
+                      {
+                        category: "Design & Créatif",
+                        market: "$280M",
+                        growth: "+28%",
+                        icon: ImageIcon,
+                      },
+                      {
+                        category: "Marketing",
+                        market: "$350M",
+                        growth: "+32%",
+                        icon: TrendingUp,
+                      },
+                      {
+                        category: "Services Pro",
+                        market: "$650M",
+                        growth: "+22%",
+                        icon: Users,
+                      },
+                    ].map((segment, index) => (
+                      <motion.div
+                        key={segment.category}
                         initial={{ opacity: 0, scale: 0.8 }}
                         whileInView={{ opacity: 1, scale: 1 }}
                         transition={{ duration: 0.5, delay: index * 0.1 }}
                         viewport={{ once: true }}
-                        whileHover={{ y: -5 }}
-                        className="text-center z-10"
+                        className="text-center bg-blue-50/50 p-4 rounded-xl shadow-md border border-blue-100"
                       >
-                        <div className="w-16 h-16 rounded-full bg-gradient-to-br from-emerald-500/20 to-teal-500/20 flex items-center justify-center mx-auto mb-3 border border-emerald-500/30 shadow-[0_0_15px_rgba(16,185,129,0.2)] transition-all duration-300 hover:shadow-[0_0_25px_rgba(16,185,129,0.3)]">
-                          <span className="text-xl font-bold text-white">
-                            {step.step}
-                          </span>
+                        <div className="w-8 h-8 bg-gradient-to-br from-blue-500 to-blue-600 rounded-lg flex items-center justify-center mx-auto mb-2 shadow-lg">
+                          <segment.icon className="w-4 h-4 text-white" />
                         </div>
-                        <p className="text-white/80">{step.label}</p>
+                        <h4 className="font-semibold text-gray-800 mb-1 text-sm">
+                          {segment.category}
+                        </h4>
+                        <p className="text-lg font-bold text-blue-600 mb-1">
+                          {segment.market}
+                        </p>
+                        <p className="text-green-600 text-xs font-medium">
+                          {segment.growth} / an
+                        </p>
                       </motion.div>
                     ))}
                   </div>
-                </motion.div>
-              </div>
-            </motion.div>
+                </div>
+              </motion.div>
+            </div>
           </div>
-        </div>
-      </section>
+        </SwiperSlide>
 
-      {/* Features Section */}
-      <section
-        ref={(el: HTMLDivElement | null) => {
-          if (el) sectionsRef.current.features = el;
-        }}
-        className="min-h-screen py-20 relative"
-      >
-        <div className="absolute inset-0 z-0">
-          <div className="absolute inset-0 bg-gradient-to-b from-black/90 via-emerald-900/20 to-black/80" />
-          <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,_var(--tw-gradient-stops))] from-emerald-500/10 via-transparent to-transparent"></div>
-          <div className="absolute top-1/3 right-1/4 w-96 h-96 bg-emerald-500/5 rounded-full filter blur-3xl"></div>
-          <div className="absolute bottom-1/3 left-1/4 w-96 h-96 bg-teal-500/5 rounded-full filter blur-3xl"></div>
-        </div>
+        {/* Features Slide */}
+        <SwiperSlide className="h-full w-full">
+          <div className="h-full w-full flex items-center justify-center">
+            <div className="container mx-auto px-6 z-10 max-h-[90vh] overflow-hidden">
+              <motion.div
+                initial={{ opacity: 0, y: 30 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.8 }}
+                viewport={{ once: true }}
+                className="max-w-5xl mx-auto h-full flex flex-col justify-center"
+              >
+                <h2 className="text-3xl font-bold mb-6 bg-clip-text text-transparent bg-gradient-to-r from-blue-600 to-blue-800 text-center">
+                  Fonctionnalités Clés
+                </h2>
 
-        <div className="container mx-auto px-6 z-10 relative">
-          <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8 }}
-            viewport={{ once: true }}
-          >
-            <h2 className="text-4xl font-bold mb-12 bg-clip-text text-transparent bg-gradient-to-r from-white via-emerald-100 to-teal-200 text-center drop-shadow-[0_2px_8px_rgba(16,185,129,0.3)]">
-              Fonctionnalités de la Plateforme
-            </h2>
-
-            <div className="max-w-6xl mx-auto mb-16">
-              <div className="bg-black/30 backdrop-blur-xl rounded-3xl p-8 border border-white/10 shadow-[0_8px_40px_rgba(16,185,129,0.15)] ring-1 ring-emerald-500/20 mb-12">
-                <div className="flex flex-col md:flex-row items-center justify-between gap-8">
+                <div className="bg-white/80 backdrop-blur-xl rounded-3xl p-6 border border-blue-200/30 shadow-xl">
                   <motion.div
-                    initial={{ opacity: 0, x: -20 }}
-                    whileInView={{ opacity: 1, x: 0 }}
-                    transition={{ duration: 0.8 }}
+                    initial={{ opacity: 0, y: 20 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    transition={{ duration: 0.6, delay: 0.1 }}
                     viewport={{ once: true }}
-                    className="w-full md:w-1/2"
+                    className="text-center mb-6"
                   >
-                    <h3 className="text-2xl font-semibold mb-4 text-white drop-shadow-md">
-                      Disponible sur Web et Mobile
-                    </h3>
-                    <p className="text-white/80 mb-6 leading-relaxed">
+                    <p className="text-lg text-gray-700 leading-relaxed">
                       TunaWork sera accessible depuis n'importe quel appareil,
                       offrant une expérience utilisateur fluide et cohérente sur
                       ordinateur et smartphone.
                     </p>
-                    <div className="flex gap-6 mb-6">
-                      <div className="flex items-center gap-3 bg-white/5 backdrop-blur-md rounded-full px-4 py-2 border border-white/10 shadow-[0_0_15px_rgba(16,185,129,0.1)]">
-                        <Globe className="w-5 h-5 text-emerald-200" />
-                        <span className="text-white/80">Application Web</span>
-                      </div>
-                      <div className="flex items-center gap-3 bg-white/5 backdrop-blur-md rounded-full px-4 py-2 border border-white/10 shadow-[0_0_15px_rgba(16,185,129,0.1)]">
-                        <Smartphone className="w-5 h-5 text-emerald-200" />
-                        <span className="text-white/80">
-                          Application Mobile
-                        </span>
-                      </div>
-                    </div>
                   </motion.div>
 
-                  <motion.div
-                    initial={{ opacity: 0, x: 20 }}
-                    whileInView={{ opacity: 1, x: 0 }}
-                    transition={{ duration: 0.8 }}
-                    viewport={{ once: true }}
-                    className="w-full md:w-1/2 flex justify-center"
-                  >
-                    <div className="relative">
-                      <div className="absolute inset-0 bg-gradient-to-br from-emerald-500/20 to-teal-500/20 rounded-3xl blur-xl"></div>
-
-                      <div className="relative flex justify-center gap-6">
-                        <div className="bg-black/40 backdrop-blur-md rounded-2xl shadow-[0_0_20px_rgba(16,185,129,0.15)] overflow-hidden w-48 h-96 border border-white/10 transition-all duration-300 hover:shadow-[0_0_30px_rgba(16,185,129,0.25)] transform hover:-translate-y-2">
-                          <div className="h-8 bg-black/60 flex items-center justify-center">
-                            <div className="w-16 h-1 bg-white/20 rounded-full"></div>
-                          </div>
-                          <div className="p-3">
-                            <div className="bg-emerald-500/10 h-40 rounded-lg mb-3 border border-emerald-500/20"></div>
-                            <div className="space-y-2">
-                              <div className="h-2 bg-white/10 rounded-full w-3/4"></div>
-                              <div className="h-2 bg-white/10 rounded-full w-1/2"></div>
-                              <div className="h-2 bg-white/10 rounded-full w-5/6"></div>
-                            </div>
-                          </div>
+                  <div className="grid md:grid-cols-3 gap-4">
+                    {[
+                      {
+                        icon: Search,
+                        title: "Recherche Avancée",
+                        description:
+                          "Recherche par compétences, localisation, tarifs et disponibilité avec filtres personnalisés.",
+                      },
+                      {
+                        icon: MessageSquare,
+                        title: "Messagerie Intégrée",
+                        description:
+                          "Chat en temps réel pour faciliter la communication. Partage de fichiers et suivi des conversations.",
+                      },
+                      {
+                        icon: Star,
+                        title: "Système d'Avis",
+                        description:
+                          "Évaluations et commentaires détaillés après chaque mission. Notation sur plusieurs critères.",
+                      },
+                      {
+                        icon: ImageIcon,
+                        title: "Portfolio",
+                        description:
+                          "Espace personnalisé pour présenter les réalisations. Galerie de projets avec témoignages.",
+                      },
+                      {
+                        icon: Activity,
+                        title: "Fil d'Actualités",
+                        description:
+                          "Publications des travaux récents et mises à jour de statut. Suivi des freelancers.",
+                      },
+                      {
+                        icon: Shield,
+                        title: "Protection Transactions",
+                        description:
+                          "Système d'escrow pour sécuriser les paiements. Libération des fonds après validation.",
+                      },
+                    ].map((feature, index) => (
+                      <motion.div
+                        key={feature.title}
+                        initial={{ opacity: 0, y: 20 }}
+                        whileInView={{ opacity: 1, y: 0 }}
+                        transition={{ duration: 0.5, delay: index * 0.1 }}
+                        viewport={{ once: true }}
+                        className="bg-blue-50/50 backdrop-blur-xl rounded-xl p-4 border border-blue-100 shadow-lg"
+                      >
+                        <div className="w-8 h-8 bg-gradient-to-br from-blue-500 to-blue-600 rounded-lg flex items-center justify-center mb-3 shadow-lg">
+                          <feature.icon className="w-4 h-4 text-white" />
                         </div>
-
-                        <div className="hidden md:block bg-black/40 backdrop-blur-md rounded-2xl shadow-[0_0_20px_rgba(16,185,129,0.15)] overflow-hidden w-64 h-48 border border-white/10 transition-all duration-300 hover:shadow-[0_0_30px_rgba(16,185,129,0.25)] transform hover:-translate-y-2">
-                          <div className="h-6 bg-black/60 flex items-center px-3">
-                            <div className="w-20 h-1 bg-white/20 rounded-full"></div>
-                          </div>
-                          <div className="p-3 flex">
-                            <div className="bg-emerald-500/10 w-20 h-32 rounded-lg mr-3 border border-emerald-500/20"></div>
-                            <div className="flex-1 space-y-2">
-                              <div className="h-2 bg-white/10 rounded-full w-full"></div>
-                              <div className="h-2 bg-white/10 rounded-full w-3/4"></div>
-                              <div className="h-2 bg-white/10 rounded-full w-5/6"></div>
-                              <div className="h-2 bg-white/10 rounded-full w-1/2"></div>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                  </motion.div>
+                        <h3 className="text-sm font-semibold mb-2 text-gray-800">
+                          {feature.title}
+                        </h3>
+                        <p className="text-gray-600 text-xs leading-relaxed">
+                          {feature.description}
+                        </p>
+                      </motion.div>
+                    ))}
+                  </div>
                 </div>
-              </div>
-
-              <div className="grid md:grid-cols-3 gap-6 mb-12">
-                {[
-                  {
-                    icon: Search,
-                    title: "Recherche de Freelancers",
-                    description:
-                      "Recherche avancée par compétences, localisation, tarifs et disponibilité. Filtres personnalisés pour trouver le freelancer idéal.",
-                  },
-                  {
-                    icon: MessageSquare,
-                    title: "Messagerie Intégrée",
-                    description:
-                      "Système de chat en temps réel pour faciliter la communication entre clients et freelancers. Partage de fichiers et suivi des conversations.",
-                  },
-                  {
-                    icon: Star,
-                    title: "Système d'Avis",
-                    description:
-                      "Évaluations et commentaires détaillés après chaque mission. Notation sur plusieurs critères pour une évaluation complète.",
-                  },
-                  {
-                    icon: ImageIcon,
-                    title: "Portfolio",
-                    description:
-                      "Espace personnalisé pour présenter les réalisations passées. Galerie de projets avec descriptions et témoignages clients.",
-                  },
-                  {
-                    icon: Activity,
-                    title: "Fil d'Actualités",
-                    description:
-                      "Publications des travaux récents et mises à jour de statut. Possibilité de suivre les freelancers et de rester informé de leurs activités.",
-                  },
-                  {
-                    icon: Shield,
-                    title: "Protection des Transactions",
-                    description:
-                      "Système d'escrow pour sécuriser les paiements. Libération des fonds uniquement après validation du travail.",
-                  },
-                ].map((feature, index) => (
-                  <motion.div
-                    key={feature.title}
-                    initial={{ opacity: 0, y: 20 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    transition={{ duration: 0.5, delay: index * 0.1 }}
-                    viewport={{ once: true }}
-                    whileHover={{ y: -5 }}
-                    className="bg-white/5 backdrop-blur-xl rounded-2xl p-6 border border-white/10 shadow-[0_0_15px_rgba(16,185,129,0.1)] transition-all duration-300 hover:shadow-[0_0_25px_rgba(16,185,129,0.2)] group"
-                  >
-                    <div className="w-12 h-12 bg-gradient-to-br from-emerald-500/20 to-teal-500/20 rounded-xl flex items-center justify-center mb-4 border border-emerald-500/20 shadow-[0_0_15px_rgba(16,185,129,0.15)] group-hover:shadow-[0_0_20px_rgba(16,185,129,0.25)] transition-all duration-300">
-                      <feature.icon className="w-6 h-6 text-emerald-200" />
-                    </div>
-                    <h3 className="text-xl font-semibold mb-3 text-white drop-shadow-md">
-                      {feature.title}
-                    </h3>
-                    <p className="text-white/80 leading-relaxed">
-                      {feature.description}
-                    </p>
-                  </motion.div>
-                ))}
-              </div>
-
-              <div className="grid md:grid-cols-3 gap-6">
-                {[
-                  {
-                    icon: CreditCard,
-                    title: "Paiements Flexibles",
-                    description:
-                      "Multiples options de paiement adaptées au contexte local. Suivi des transactions et historique des paiements.",
-                  },
-                  {
-                    icon: Award,
-                    title: "Certification des Compétences",
-                    description:
-                      "Badges et certifications pour valoriser l'expertise. Tests de compétences pour valider les savoir-faire.",
-                  },
-                  {
-                    icon: Users,
-                    title: "Communauté",
-                    description:
-                      "Forums d'entraide et groupes thématiques. Événements virtuels et opportunités de networking.",
-                  },
-                ].map((feature, index) => (
-                  <motion.div
-                    key={feature.title}
-                    initial={{ opacity: 0, y: 20 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    transition={{ duration: 0.5, delay: index * 0.1 }}
-                    viewport={{ once: true }}
-                    whileHover={{ y: -5 }}
-                    className="bg-white/5 backdrop-blur-xl rounded-2xl p-6 border border-white/10 shadow-[0_0_15px_rgba(16,185,129,0.1)] transition-all duration-300 hover:shadow-[0_0_25px_rgba(16,185,129,0.2)] group"
-                  >
-                    <div className="w-12 h-12 bg-gradient-to-br from-emerald-500/20 to-teal-500/20 rounded-xl flex items-center justify-center mb-4 border border-emerald-500/20 shadow-[0_0_15px_rgba(16,185,129,0.15)] group-hover:shadow-[0_0_20px_rgba(16,185,129,0.25)] transition-all duration-300">
-                      <feature.icon className="w-6 h-6 text-emerald-200" />
-                    </div>
-                    <h3 className="text-xl font-semibold mb-3 text-white drop-shadow-md">
-                      {feature.title}
-                    </h3>
-                    <p className="text-white/80 leading-relaxed">
-                      {feature.description}
-                    </p>
-                  </motion.div>
-                ))}
-              </div>
+              </motion.div>
             </div>
-          </motion.div>
-        </div>
-      </section>
+          </div>
+        </SwiperSlide>
 
-      {/* Impact Section */}
-      <section
-        ref={(el: HTMLDivElement | null) => {
-          if (el) sectionsRef.current.impact = el;
-        }}
-        className="min-h-screen py-20 relative"
-      >
-        <div className="absolute inset-0 z-0">
-          <div className="absolute inset-0 bg-gradient-to-b from-black/90 via-emerald-900/20 to-black/80" />
-          <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,_var(--tw-gradient-stops))] from-emerald-500/10 via-transparent to-transparent"></div>
-          <div className="absolute top-1/4 right-1/3 w-96 h-96 bg-emerald-500/5 rounded-full filter blur-3xl"></div>
-          <div className="absolute bottom-1/4 left-1/3 w-96 h-96 bg-teal-500/5 rounded-full filter blur-3xl"></div>
-        </div>
+        {/* Revenue Model Slide */}
+        <SwiperSlide className="h-full w-full">
+          <div className="h-full w-full flex items-center justify-center">
+            <div className="container mx-auto px-6 z-10 max-h-[90vh] overflow-hidden">
+              <motion.div
+                initial={{ opacity: 0, y: 30 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.8 }}
+                viewport={{ once: true }}
+                className="max-w-5xl mx-auto h-full flex flex-col justify-center"
+              >
+                <h2 className="text-3xl font-bold mb-4 bg-clip-text text-transparent bg-gradient-to-r from-blue-600 to-blue-800 text-center">
+                  Modèle de Revenus Diversifié
+                </h2>
 
-        <div className="container mx-auto px-6 z-10 relative">
-          <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8 }}
-            viewport={{ once: true }}
-          >
-            <h2 className="text-4xl font-bold mb-12 bg-clip-text text-transparent bg-gradient-to-r from-white via-emerald-100 to-teal-200 text-center drop-shadow-[0_2px_8px_rgba(16,185,129,0.3)]">
-              Impact Social et Économique
-            </h2>
+                <div className="bg-white/80 backdrop-blur-xl rounded-3xl p-4 border border-blue-200/30 shadow-xl">
+                  <motion.div
+                    initial={{ opacity: 0, y: 20 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    transition={{ duration: 0.6, delay: 0.1 }}
+                    viewport={{ once: true }}
+                    className="text-center mb-4"
+                  >
+                    <p className="text-base text-gray-700 leading-relaxed mb-3">
+                      Génération de revenus par{" "}
+                      <strong className="text-blue-600">
+                        4 streams principaux
+                      </strong>
+                      , avec un objectif de{" "}
+                      <strong className="text-blue-700">$50M de GMV</strong> la
+                      première année.
+                    </p>
 
-            <div className="max-w-6xl mx-auto">
-              <div className="grid md:grid-cols-2 gap-8 mb-16">
-                <motion.div
-                  initial={{ opacity: 0, x: -20 }}
-                  whileInView={{ opacity: 1, x: 0 }}
-                  transition={{ duration: 0.8 }}
-                  viewport={{ once: true }}
-                  className="bg-black/30 backdrop-blur-xl rounded-3xl p-8 border border-white/10 shadow-[0_8px_40px_rgba(16,185,129,0.15)] ring-1 ring-emerald-500/20"
-                >
-                  <h3 className="text-2xl font-semibold mb-6 text-white drop-shadow-md">
-                    Impact sur l'Emploi
-                  </h3>
-                  <div className="space-y-6">
-                    {[
-                      {
-                        title: "Création d'Emplois",
-                        value: "50,000+",
-                        description: "Freelancers actifs sur la plateforme",
-                      },
-                      {
-                        title: "Taux d'Activité",
-                        value: "85%",
-                        description:
-                          "Des freelancers travaillent régulièrement",
-                      },
-                      {
-                        title: "Revenus Moyens",
-                        value: "2,500€",
-                        description: "Par mois pour les freelancers actifs",
-                      },
-                    ].map((stat, index) => (
-                      <motion.div
-                        key={stat.title}
-                        initial={{ opacity: 0, y: 20 }}
-                        whileInView={{ opacity: 1, y: 0 }}
-                        transition={{ duration: 0.5, delay: index * 0.1 }}
-                        viewport={{ once: true }}
-                        whileHover={{ y: -5 }}
-                        className="flex items-center justify-between p-5 bg-white/5 backdrop-blur-md rounded-2xl border border-white/10 shadow-[0_0_15px_rgba(16,185,129,0.1)] transition-all duration-300 hover:shadow-[0_0_25px_rgba(16,185,129,0.2)] group"
-                      >
-                        <div>
-                          <h4 className="text-lg font-medium text-white">
-                            {stat.title}
-                          </h4>
-                          <p className="text-white/70 text-sm">
-                            {stat.description}
+                    <div className="grid md:grid-cols-2 gap-3 mb-4">
+                      <div className="bg-green-50 p-3 rounded-lg border border-green-200">
+                        <div className="text-lg font-bold text-green-600 mb-1">
+                          $50M
+                        </div>
+                        <div className="text-xs text-gray-600">
+                          GMV cible Année 1
+                        </div>
+                      </div>
+                      <div className="bg-blue-50 p-3 rounded-lg border border-blue-200">
+                        <div className="text-lg font-bold text-blue-600 mb-1">
+                          12%
+                        </div>
+                        <div className="text-xs text-gray-600">
+                          Take Rate moyen
+                        </div>
+                      </div>
+                    </div>
+                  </motion.div>
+
+                  <div className="grid md:grid-cols-2 gap-4">
+                    <div className="space-y-2">
+                      <h3 className="text-base font-semibold text-gray-800 text-center mb-3">
+                        Sources de Revenus
+                      </h3>
+                      {[
+                        {
+                          name: "Commission transactions",
+                          percentage: "60%",
+                          projection: "$3.6M",
+                        },
+                        {
+                          name: "Abonnements premium",
+                          percentage: "25%",
+                          projection: "$1.5M",
+                        },
+                        {
+                          name: "Services à valeur ajoutée",
+                          percentage: "10%",
+                          projection: "$600K",
+                        },
+                        {
+                          name: "Publicités ciblées",
+                          percentage: "5%",
+                          projection: "$300K",
+                        },
+                      ].map((revenue, index) => (
+                        <div
+                          key={revenue.name}
+                          className="p-2 bg-blue-50 rounded-lg border border-blue-100"
+                        >
+                          <div className="flex justify-between items-center">
+                            <span className="text-xs font-medium text-gray-800">
+                              {revenue.name}
+                            </span>
+                            <div className="flex gap-2">
+                              <span className="text-blue-600 font-bold text-xs">
+                                {revenue.percentage}
+                              </span>
+                              <span className="text-green-600 font-medium text-xs">
+                                {revenue.projection}
+                              </span>
+                            </div>
+                          </div>
+                        </div>
+                      ))}
+                    </div>
+
+                    <div className="flex flex-col justify-center">
+                      <h3 className="text-base font-semibold text-gray-800 text-center mb-3">
+                        Répartition
+                      </h3>
+                      <div className="h-32 mb-3">
+                        <ResponsiveContainer width="100%" height="100%">
+                          <PieChart>
+                            <Pie
+                              data={revenueData}
+                              cx="50%"
+                              cy="50%"
+                              innerRadius={20}
+                              outerRadius={50}
+                              paddingAngle={5}
+                              dataKey="value"
+                            >
+                              {revenueData.map((entry, index) => (
+                                <Cell key={index} fill={entry.color} />
+                              ))}
+                            </Pie>
+                            <Tooltip />
+                          </PieChart>
+                        </ResponsiveContainer>
+                      </div>
+                      <div className="bg-green-50 p-2 rounded-lg border border-green-100 text-center">
+                        <div className="text-xs text-gray-600">
+                          Revenue Run Rate
+                        </div>
+                        <div className="text-sm font-semibold text-green-600">
+                          $500K / mois
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </motion.div>
+            </div>
+          </div>
+        </SwiperSlide>
+
+        {/* Financial Projections Slide */}
+        <SwiperSlide className="h-full w-full">
+          <div className="h-full w-full flex items-center justify-center">
+            <div className="container mx-auto px-6 z-10 max-h-[90vh] overflow-hidden">
+              <motion.div
+                initial={{ opacity: 0, y: 30 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.8 }}
+                viewport={{ once: true }}
+                className="max-w-5xl mx-auto h-full flex flex-col justify-center"
+              >
+                <h2 className="text-3xl font-bold mb-4 bg-clip-text text-transparent bg-gradient-to-r from-blue-600 to-blue-800 text-center">
+                  Projections Financières
+                </h2>
+
+                <div className="bg-white/80 backdrop-blur-xl rounded-3xl p-4 border border-blue-200/30 shadow-xl">
+                  <motion.div
+                    initial={{ opacity: 0, y: 20 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    transition={{ duration: 0.6, delay: 0.1 }}
+                    viewport={{ once: true }}
+                    className="text-center mb-4"
+                  >
+                    <p className="text-base text-gray-700 leading-relaxed mb-3">
+                      Croissance exponentielle avec un business model scalable :
+                      <strong className="text-blue-600">
+                        {" "}
+                        profitabilité dès l'année 2
+                      </strong>
+                      .
+                    </p>
+
+                    <div className="grid md:grid-cols-4 gap-2 mb-4">
+                      <div className="bg-green-50 p-2 rounded-lg border border-green-200">
+                        <div className="text-lg font-bold text-green-600">
+                          $6M
+                        </div>
+                        <div className="text-xs text-gray-600">
+                          Revenus Année 1
+                        </div>
+                      </div>
+                      <div className="bg-blue-50 p-2 rounded-lg border border-blue-200">
+                        <div className="text-lg font-bold text-blue-600">
+                          $60M
+                        </div>
+                        <div className="text-xs text-gray-600">
+                          Revenus Année 4
+                        </div>
+                      </div>
+                      <div className="bg-purple-50 p-2 rounded-lg border border-purple-200">
+                        <div className="text-lg font-bold text-purple-600">
+                          35%
+                        </div>
+                        <div className="text-xs text-gray-600">
+                          Marge EBITDA
+                        </div>
+                      </div>
+                      <div className="bg-orange-50 p-2 rounded-lg border border-orange-200">
+                        <div className="text-lg font-bold text-orange-600">
+                          $15M
+                        </div>
+                        <div className="text-xs text-gray-600">Série A</div>
+                      </div>
+                    </div>
+                  </motion.div>
+
+                  <div className="grid md:grid-cols-2 gap-4">
+                    <div>
+                      <h3 className="text-base font-semibold mb-3 text-gray-800 text-center">
+                        Croissance des Revenus
+                      </h3>
+                      <div className="h-32 mb-3">
+                        <ResponsiveContainer width="100%" height="100%">
+                          <BarChart data={financialData}>
+                            <CartesianGrid strokeDasharray="3 3" />
+                            <XAxis dataKey="name" />
+                            <YAxis />
+                            <Tooltip
+                              formatter={(value) => [`$${value}M`, "Revenus"]}
+                            />
+                            <Bar dataKey="value" fill="#3B82F6" />
+                          </BarChart>
+                        </ResponsiveContainer>
+                      </div>
+                      <div className="space-y-1">
+                        <div className="flex justify-between items-center p-2 bg-gray-50 rounded-lg">
+                          <span className="text-gray-600 text-xs">
+                            CAGR 4 ans
+                          </span>
+                          <span className="font-bold text-green-600 text-xs">
+                            185%
+                          </span>
+                        </div>
+                        <div className="flex justify-between items-center p-2 bg-gray-50 rounded-lg">
+                          <span className="text-gray-600 text-xs">
+                            Break-even
+                          </span>
+                          <span className="font-bold text-blue-600 text-xs">
+                            Mois 18
+                          </span>
+                        </div>
+                      </div>
+                    </div>
+
+                    <div>
+                      <h3 className="text-base font-semibold mb-3 text-gray-800 text-center">
+                        Métriques Clés
+                      </h3>
+                      <div className="space-y-2">
+                        {[
+                          {
+                            year: "Année 1",
+                            gmv: "$50M",
+                            users: "5K",
+                            margin: "-20%",
+                          },
+                          {
+                            year: "Année 2",
+                            gmv: "$150M",
+                            users: "15K",
+                            margin: "5%",
+                          },
+                          {
+                            year: "Année 3",
+                            gmv: "$300M",
+                            users: "35K",
+                            margin: "22%",
+                          },
+                          {
+                            year: "Année 4",
+                            gmv: "$500M",
+                            users: "65K",
+                            margin: "35%",
+                          },
+                        ].map((year, index) => (
+                          <div
+                            key={year.year}
+                            className="p-2 bg-blue-50 rounded-lg border border-blue-100"
+                          >
+                            <div className="flex justify-between items-center mb-1">
+                              <h4 className="font-semibold text-gray-800 text-xs">
+                                {year.year}
+                              </h4>
+                              <span
+                                className={`font-bold text-xs ${
+                                  year.margin.startsWith("-")
+                                    ? "text-red-600"
+                                    : "text-green-600"
+                                }`}
+                              >
+                                {year.margin}
+                              </span>
+                            </div>
+                            <div className="grid grid-cols-2 gap-2 text-xs">
+                              <div>
+                                <div className="text-gray-600">GMV</div>
+                                <div className="font-medium text-blue-600">
+                                  {year.gmv}
+                                </div>
+                              </div>
+                              <div>
+                                <div className="text-gray-600">Users</div>
+                                <div className="font-medium text-purple-600">
+                                  {year.users}
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                        ))}
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </motion.div>
+            </div>
+          </div>
+        </SwiperSlide>
+
+        {/* Funding Slide */}
+        <SwiperSlide className="h-full w-full">
+          <div className="h-full w-full flex items-center justify-center">
+            <div className="container mx-auto px-6 z-10 max-h-[90vh] overflow-hidden">
+              <motion.div
+                initial={{ opacity: 0, y: 30 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.8 }}
+                viewport={{ once: true }}
+                className="max-w-5xl mx-auto h-full flex flex-col justify-center"
+              >
+                <h2 className="text-3xl font-bold mb-4 bg-clip-text text-transparent bg-gradient-to-r from-blue-600 to-blue-800 text-center">
+                  Opportunités de Financement
+                </h2>
+
+                <div className="bg-white/80 backdrop-blur-xl rounded-3xl p-4 border border-blue-200/30 shadow-xl">
+                  <motion.div
+                    initial={{ opacity: 0, y: 20 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    transition={{ duration: 0.6, delay: 0.1 }}
+                    viewport={{ once: true }}
+                    className="text-center mb-4"
+                  >
+                    <p className="text-base text-gray-700 leading-relaxed mb-3">
+                      Pour transformer notre vision en réalité et capturer ce
+                      marché de{" "}
+                      <strong className="text-blue-600">
+                        2,8 milliards USD
+                      </strong>
+                      , nous proposons{" "}
+                      <strong className="text-green-600">
+                        différents niveaux d'investissement
+                      </strong>{" "}
+                      adaptés à tous les profils, à partir de{" "}
+                      <strong className="text-green-600">4.000 USD</strong>.
+                    </p>
+
+                    <div className="grid md:grid-cols-4 gap-2 mb-4">
+                      <div className="bg-green-50 p-2 rounded-lg border border-green-200">
+                        <div className="text-lg font-bold text-green-600">
+                          $4K+
+                        </div>
+                        <div className="text-xs text-gray-600">
+                          Investissement minimal
+                        </div>
+                      </div>
+                      <div className="bg-blue-50 p-2 rounded-lg border border-blue-200">
+                        <div className="text-lg font-bold text-blue-600">
+                          Flexible
+                        </div>
+                        <div className="text-xs text-gray-600">
+                          Montants adaptés
+                        </div>
+                      </div>
+                      <div className="bg-purple-50 p-2 rounded-lg border border-purple-200">
+                        <div className="text-lg font-bold text-purple-600">
+                          ROI 300%+
+                        </div>
+                        <div className="text-xs text-gray-600">
+                          Retour attendu
+                        </div>
+                      </div>
+                      <div className="bg-orange-50 p-2 rounded-lg border border-orange-200">
+                        <div className="text-lg font-bold text-orange-600">
+                          3-5 ans
+                        </div>
+                        <div className="text-xs text-gray-600">
+                          Horizon sortie
+                        </div>
+                      </div>
+                    </div>
+                  </motion.div>
+
+                  <div className="grid md:grid-cols-2 gap-4">
+                    <div className="space-y-3">
+                      <h3 className="text-base font-semibold text-gray-800 text-center mb-3">
+                        Niveaux d'Investissement
+                      </h3>
+                      {[
+                        {
+                          tier: "Partenaire Fondateur",
+                          amount: "$50K+",
+                          equity: "5-15%",
+                          icon: Award,
+                          benefits:
+                            "Conseil d'administration, décisions stratégiques",
+                          priority: "VIP",
+                        },
+                        {
+                          tier: "Investisseur Principal",
+                          amount: "$20K+",
+                          equity: "2-5%",
+                          icon: TrendingUp,
+                          benefits: "Rapports mensuels, accès privilégié",
+                          priority: "Premium",
+                        },
+                        {
+                          tier: "Investisseur Actif",
+                          amount: "$10K+",
+                          equity: "1-2%",
+                          icon: Users,
+                          benefits: "Rapports trimestriels, événements",
+                          priority: "Standard",
+                        },
+                        {
+                          tier: "Soutien Initial",
+                          amount: "$4K+",
+                          equity: "0.5-1%",
+                          icon: Heart,
+                          benefits: "Reconnaissance, mises à jour",
+                          priority: "Base",
+                        },
+                      ].map((level, index) => (
+                        <div
+                          key={level.tier}
+                          className={`p-2 rounded-lg border shadow-lg ${
+                            level.priority === "VIP"
+                              ? "bg-gold-50 border-yellow-300"
+                              : level.priority === "Premium"
+                              ? "bg-purple-50 border-purple-200"
+                              : level.priority === "Standard"
+                              ? "bg-blue-50 border-blue-200"
+                              : "bg-green-50 border-green-200"
+                          }`}
+                        >
+                          <div className="flex justify-between items-center mb-1">
+                            <div className="flex items-center gap-2">
+                              <level.icon
+                                className={`w-4 h-4 ${
+                                  level.priority === "VIP"
+                                    ? "text-yellow-600"
+                                    : level.priority === "Premium"
+                                    ? "text-purple-600"
+                                    : level.priority === "Standard"
+                                    ? "text-blue-600"
+                                    : "text-green-600"
+                                }`}
+                              />
+                              <span className="text-xs font-medium text-gray-800">
+                                {level.tier}
+                              </span>
+                            </div>
+                            <div className="flex gap-2">
+                              <span
+                                className={`font-bold text-xs ${
+                                  level.priority === "VIP"
+                                    ? "text-yellow-600"
+                                    : level.priority === "Premium"
+                                    ? "text-purple-600"
+                                    : level.priority === "Standard"
+                                    ? "text-blue-600"
+                                    : "text-green-600"
+                                }`}
+                              >
+                                {level.amount}
+                              </span>
+                              <span className="text-gray-500 text-xs">
+                                {level.equity}
+                              </span>
+                            </div>
+                          </div>
+                          <p className="text-xs text-gray-600">
+                            {level.benefits}
                           </p>
                         </div>
-                        <div className="text-2xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-emerald-300 to-teal-200 drop-shadow-[0_2px_4px_rgba(16,185,129,0.3)]">
-                          {stat.value}
-                        </div>
-                      </motion.div>
-                    ))}
-                  </div>
-                </motion.div>
-
-                <motion.div
-                  initial={{ opacity: 0, x: 20 }}
-                  whileInView={{ opacity: 1, x: 0 }}
-                  transition={{ duration: 0.8 }}
-                  viewport={{ once: true }}
-                  className="bg-black/30 backdrop-blur-xl rounded-3xl p-8 border border-white/10 shadow-[0_8px_40px_rgba(16,185,129,0.15)] ring-1 ring-emerald-500/20"
-                >
-                  <h3 className="text-2xl font-semibold mb-6 text-white drop-shadow-md">
-                    Impact Économique
-                  </h3>
-                  <div className="space-y-6">
-                    {[
-                      {
-                        title: "Volume d'Affaires",
-                        value: "100M€",
-                        description: "Transactions annuelles",
-                      },
-                      {
-                        title: "Croissance",
-                        value: "+150%",
-                        description: "En 2023",
-                      },
-                      {
-                        title: "Taux de Satisfaction",
-                        value: "95%",
-                        description: "Des utilisateurs satisfaits",
-                      },
-                    ].map((stat, index) => (
-                      <motion.div
-                        key={stat.title}
-                        initial={{ opacity: 0, y: 20 }}
-                        whileInView={{ opacity: 1, y: 0 }}
-                        transition={{ duration: 0.5, delay: index * 0.1 }}
-                        viewport={{ once: true }}
-                        whileHover={{ y: -5 }}
-                        className="flex items-center justify-between p-5 bg-white/5 backdrop-blur-md rounded-2xl border border-white/10 shadow-[0_0_15px_rgba(16,185,129,0.1)] transition-all duration-300 hover:shadow-[0_0_25px_rgba(16,185,129,0.2)] group"
-                      >
-                        <div>
-                          <h4 className="text-lg font-medium text-white">
-                            {stat.title}
-                          </h4>
-                          <p className="text-white/70 text-sm">
-                            {stat.description}
-                          </p>
-                        </div>
-                        <div className="text-2xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-emerald-300 to-teal-200 drop-shadow-[0_2px_4px_rgba(16,185,129,0.3)]">
-                          {stat.value}
-                        </div>
-                      </motion.div>
-                    ))}
-                  </div>
-                </motion.div>
-              </div>
-
-              <div className="grid md:grid-cols-3 gap-6">
-                {[
-                  {
-                    icon: Globe,
-                    title: "Couverture Géographique",
-                    description:
-                      "Présence dans plus de 20 pays avec une forte concentration en Europe et en Afrique.",
-                  },
-                  {
-                    icon: Users,
-                    title: "Communauté Active",
-                    description:
-                      "Plus de 100,000 utilisateurs actifs mensuellement, créant un réseau dynamique.",
-                  },
-                  {
-                    icon: TrendingUp,
-                    title: "Croissance Soutenue",
-                    description:
-                      "Une croissance mensuelle moyenne de 15% depuis le lancement.",
-                  },
-                ].map((feature, index) => (
-                  <motion.div
-                    key={feature.title}
-                    initial={{ opacity: 0, y: 20 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    transition={{ duration: 0.5, delay: index * 0.1 }}
-                    viewport={{ once: true }}
-                    whileHover={{ y: -5 }}
-                    className="bg-white/5 backdrop-blur-xl rounded-2xl p-6 border border-white/10 shadow-[0_0_15px_rgba(16,185,129,0.1)] transition-all duration-300 hover:shadow-[0_0_25px_rgba(16,185,129,0.2)] group"
-                  >
-                    <div className="w-12 h-12 bg-gradient-to-br from-emerald-500/20 to-teal-500/20 rounded-xl flex items-center justify-center mb-4 border border-emerald-500/20 shadow-[0_0_15px_rgba(16,185,129,0.15)] group-hover:shadow-[0_0_20px_rgba(16,185,129,0.25)] transition-all duration-300">
-                      <feature.icon className="w-6 h-6 text-emerald-200" />
+                      ))}
                     </div>
-                    <h3 className="text-xl font-semibold mb-3 text-white drop-shadow-md">
-                      {feature.title}
-                    </h3>
-                    <p className="text-white/80 leading-relaxed">
-                      {feature.description}
-                    </p>
-                  </motion.div>
-                ))}
-              </div>
+
+                    <div className="space-y-3">
+                      <h3 className="text-base font-semibold text-gray-800 text-center mb-3">
+                        Utilisation des Fonds
+                      </h3>
+                      <div className="space-y-2">
+                        {[
+                          {
+                            priority: "CRITIQUE",
+                            category: "Marketing Digital",
+                            percentage: "40%",
+                            description:
+                              "Acquisition utilisateurs via Google, Facebook, LinkedIn",
+                          },
+                          {
+                            priority: "CRITIQUE",
+                            category: "Infrastructure Tech",
+                            percentage: "25%",
+                            description:
+                              "Serveurs cloud, sécurité, licences logiciels",
+                          },
+                          {
+                            priority: "IMPORTANT",
+                            category: "Équipe Core",
+                            percentage: "20%",
+                            description:
+                              "Développeurs, designers, responsables produit",
+                          },
+                          {
+                            priority: "IMPORTANT",
+                            category: "Opérations",
+                            percentage: "10%",
+                            description: "Support client, bureaux, équipements",
+                          },
+                          {
+                            priority: "UTILE",
+                            category: "Légal & Compliance",
+                            percentage: "5%",
+                            description: "Avocats, audits, certifications",
+                          },
+                        ].map((use, index) => (
+                          <div
+                            key={use.category}
+                            className="p-2 bg-gray-50 rounded-lg border border-gray-200"
+                          >
+                            <div className="flex justify-between items-center mb-1">
+                              <span className="text-xs font-medium text-gray-800">
+                                {use.category}
+                              </span>
+                              <div className="flex items-center gap-2">
+                                <span
+                                  className={`text-xs px-2 py-0.5 rounded-full font-bold ${
+                                    use.priority === "CRITIQUE"
+                                      ? "bg-red-100 text-red-700"
+                                      : use.priority === "IMPORTANT"
+                                      ? "bg-orange-100 text-orange-700"
+                                      : "bg-yellow-100 text-yellow-700"
+                                  }`}
+                                >
+                                  {use.priority}
+                                </span>
+                                <span className="font-bold text-blue-600 text-xs">
+                                  {use.percentage}
+                                </span>
+                              </div>
+                            </div>
+                            <p className="text-xs text-gray-600">
+                              {use.description}
+                            </p>
+                          </div>
+                        ))}
+                      </div>
+
+                      <div className="mt-3 p-3 bg-gradient-to-r from-green-500 to-green-600 rounded-xl text-white text-center">
+                        <h4 className="text-sm font-semibold mb-1">
+                          💰 INVESTISSEMENT OUVERT
+                        </h4>
+                        <p className="text-xs opacity-90">
+                          Opportunité unique de marché $2.8B USD
+                        </p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </motion.div>
             </div>
-          </motion.div>
-        </div>
-      </section>
+          </div>
+        </SwiperSlide>
 
-      {/* Mission Section */}
-      <section
-        ref={(el: HTMLDivElement | null) => {
-          if (el) sectionsRef.current.mission = el;
-        }}
-        className="min-h-screen py-20 relative"
-      >
-        <div className="absolute inset-0 z-0">
-          <div className="absolute inset-0 bg-gradient-to-b from-black/90 via-emerald-900/20 to-black/80" />
-          <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,_var(--tw-gradient-stops))] from-emerald-500/10 via-transparent to-transparent"></div>
-          <div className="absolute top-1/3 left-1/3 w-96 h-96 bg-emerald-500/5 rounded-full filter blur-3xl"></div>
-          <div className="absolute bottom-1/3 right-1/3 w-96 h-96 bg-teal-500/5 rounded-full filter blur-3xl"></div>
-        </div>
+        {/* Impact Slide */}
+        <SwiperSlide className="h-full w-full">
+          <div className="h-full w-full flex items-center justify-center">
+            <div className="container mx-auto px-6 z-10 max-h-[90vh] overflow-hidden">
+              <motion.div
+                initial={{ opacity: 0, y: 30 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.8 }}
+                viewport={{ once: true }}
+                className="max-w-5xl mx-auto h-full flex flex-col justify-center"
+              >
+                <h2 className="text-3xl font-bold mb-6 bg-clip-text text-transparent bg-gradient-to-r from-blue-600 to-blue-800 text-center">
+                  Impact Social et Économique
+                </h2>
 
-        <div className="container mx-auto px-6 z-10 relative">
-          <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8 }}
-            viewport={{ once: true }}
-          >
-            <h2 className="text-4xl font-bold mb-12 bg-clip-text text-transparent bg-gradient-to-r from-white via-emerald-100 to-teal-200 text-center drop-shadow-[0_2px_8px_rgba(16,185,129,0.3)]">
-              Notre Mission
-            </h2>
+                <div className="bg-white/80 backdrop-blur-xl rounded-3xl p-6 border border-blue-200/30 shadow-xl">
+                  <div className="grid md:grid-cols-2 gap-6">
+                    <motion.div
+                      initial={{ opacity: 0, x: -20 }}
+                      whileInView={{ opacity: 1, x: 0 }}
+                      transition={{ duration: 0.8 }}
+                      viewport={{ once: true }}
+                    >
+                      <h3 className="text-xl font-semibold mb-4 text-gray-800 text-center">
+                        Impact sur l'Emploi
+                      </h3>
+                      <div className="space-y-4">
+                        {[
+                          {
+                            title: "Création d'Emplois",
+                            value: "50,000+",
+                            description: "Freelancers actifs sur la plateforme",
+                          },
+                          {
+                            title: "Revenus Moyens",
+                            value: "$2,500",
+                            description: "Par mois pour les freelancers actifs",
+                          },
+                          {
+                            title: "Taux d'Activité",
+                            value: "85%",
+                            description:
+                              "Des freelancers travaillent régulièrement",
+                          },
+                        ].map((stat, index) => (
+                          <div
+                            key={stat.title}
+                            className="p-4 bg-blue-50/50 backdrop-blur-md rounded-xl border border-blue-100 shadow-lg"
+                          >
+                            <div className="flex justify-between items-center mb-2">
+                              <h4 className="text-sm font-medium text-gray-800">
+                                {stat.title}
+                              </h4>
+                              <span className="text-blue-600 font-semibold">
+                                {stat.value}
+                              </span>
+                            </div>
+                            <p className="text-gray-600 text-xs">
+                              {stat.description}
+                            </p>
+                          </div>
+                        ))}
+                      </div>
+                    </motion.div>
 
-            <div className="max-w-6xl mx-auto">
-              <div className="grid md:grid-cols-2 gap-8 mb-16">
-                <motion.div
-                  initial={{ opacity: 0, x: -20 }}
-                  whileInView={{ opacity: 1, x: 0 }}
-                  transition={{ duration: 0.8 }}
-                  viewport={{ once: true }}
-                  className="bg-black/30 backdrop-blur-xl rounded-3xl p-8 border border-white/10 shadow-[0_8px_40px_rgba(16,185,129,0.15)] ring-1 ring-emerald-500/20"
-                >
-                  <h3 className="text-2xl font-semibold mb-6 text-white drop-shadow-md">
-                    Vision
-                  </h3>
-                  <p className="text-white/80 mb-8 leading-relaxed">
-                    TunaWork aspire à devenir la plateforme de référence pour le
-                    travail indépendant en Afrique, en connectant les talents
-                    locaux aux opportunités mondiales. Notre vision est de créer
-                    un écosystème dynamique où chaque freelancer peut s'épanouir
-                    professionnellement et contribuer au développement
-                    économique de son pays.
-                  </p>
-                  <div className="space-y-4">
+                    <motion.div
+                      initial={{ opacity: 0, x: 20 }}
+                      whileInView={{ opacity: 1, x: 0 }}
+                      transition={{ duration: 0.8 }}
+                      viewport={{ once: true }}
+                    >
+                      <h3 className="text-xl font-semibold mb-4 text-gray-800 text-center">
+                        Impact Économique
+                      </h3>
+                      <div className="space-y-4">
+                        {[
+                          {
+                            title: "Volume d'Affaires",
+                            value: "$100M",
+                            description: "Transactions annuelles",
+                          },
+                          {
+                            title: "Croissance",
+                            value: "+150%",
+                            description: "Croissance annuelle",
+                          },
+                          {
+                            title: "Satisfaction",
+                            value: "95%",
+                            description: "Des utilisateurs satisfaits",
+                          },
+                        ].map((stat, index) => (
+                          <div
+                            key={stat.title}
+                            className="p-4 bg-blue-50/50 backdrop-blur-md rounded-xl border border-blue-100 shadow-lg"
+                          >
+                            <div className="flex justify-between items-center mb-2">
+                              <h4 className="text-sm font-medium text-gray-800">
+                                {stat.title}
+                              </h4>
+                              <span className="text-blue-600 font-semibold">
+                                {stat.value}
+                              </span>
+                            </div>
+                            <p className="text-gray-600 text-xs">
+                              {stat.description}
+                            </p>
+                          </div>
+                        ))}
+                      </div>
+                    </motion.div>
+                  </div>
+
+                  <div className="grid md:grid-cols-3 gap-4 mt-6">
                     {[
-                      {
-                        icon: Target,
-                        title: "Excellence",
-                        description:
-                          "Promouvoir l'excellence et la qualité dans le travail indépendant",
-                      },
-                      {
-                        icon: Heart,
-                        title: "Impact Social",
-                        description:
-                          "Créer un impact social positif en favorisant l'emploi local",
-                      },
                       {
                         icon: Globe,
-                        title: "Ouverture",
+                        title: "Couverture Géographique",
                         description:
-                          "Faciliter l'accès aux marchés internationaux",
+                          "20+ pays avec une forte concentration en Afrique",
                       },
-                    ].map((value, index) => (
+                      {
+                        icon: Users,
+                        title: "Communauté Active",
+                        description:
+                          "100,000+ utilisateurs actifs mensuellement",
+                      },
+                      {
+                        icon: TrendingUp,
+                        title: "Croissance Soutenue",
+                        description: "15% de croissance mensuelle moyenne",
+                      },
+                    ].map((feature, index) => (
                       <motion.div
-                        key={value.title}
+                        key={feature.title}
                         initial={{ opacity: 0, y: 20 }}
                         whileInView={{ opacity: 1, y: 0 }}
                         transition={{ duration: 0.5, delay: index * 0.1 }}
                         viewport={{ once: true }}
-                        whileHover={{ y: -3 }}
-                        className="flex items-start gap-4 p-4 bg-white/5 backdrop-blur-md rounded-2xl border border-white/10 shadow-[0_0_15px_rgba(16,185,129,0.1)] transition-all duration-300 hover:shadow-[0_0_25px_rgba(16,185,129,0.2)] group"
+                        className="bg-blue-50/50 backdrop-blur-xl rounded-xl p-4 border border-blue-100 shadow-lg text-center"
                       >
-                        <div className="w-10 h-10 bg-gradient-to-br from-emerald-500/20 to-teal-500/20 rounded-xl flex items-center justify-center border border-emerald-500/20 shadow-[0_0_15px_rgba(16,185,129,0.15)] group-hover:shadow-[0_0_20px_rgba(16,185,129,0.25)] transition-all duration-300">
-                          <value.icon className="w-5 h-5 text-emerald-200" />
+                        <div className="w-8 h-8 bg-gradient-to-br from-blue-500 to-blue-600 rounded-lg flex items-center justify-center mb-3 shadow-lg mx-auto">
+                          <feature.icon className="w-4 h-4 text-white" />
                         </div>
-                        <div>
-                          <h4 className="text-lg font-medium text-white mb-1">
-                            {value.title}
-                          </h4>
-                          <p className="text-white/70 text-sm">
-                            {value.description}
-                          </p>
-                        </div>
-                      </motion.div>
-                    ))}
-                  </div>
-                </motion.div>
-
-                <motion.div
-                  initial={{ opacity: 0, x: 20 }}
-                  whileInView={{ opacity: 1, x: 0 }}
-                  transition={{ duration: 0.8 }}
-                  viewport={{ once: true }}
-                  className="bg-black/30 backdrop-blur-xl rounded-3xl p-8 border border-white/10 shadow-[0_8px_40px_rgba(16,185,129,0.15)] ring-1 ring-emerald-500/20"
-                >
-                  <h3 className="text-2xl font-semibold mb-6 text-white drop-shadow-md">
-                    Objectifs
-                  </h3>
-                  <div className="space-y-6">
-                    {[
-                      {
-                        title: "Développement Local",
-                        description:
-                          "Créer 50,000 opportunités d'emploi pour les freelancers africains d'ici 2025",
-                        progress: 75,
-                      },
-                      {
-                        title: "Formation",
-                        description:
-                          "Former 10,000 nouveaux freelancers aux meilleures pratiques du travail indépendant",
-                        progress: 60,
-                      },
-                      {
-                        title: "Expansion",
-                        description:
-                          "Étendre nos services à 30 pays africains d'ici 2026",
-                        progress: 45,
-                      },
-                    ].map((goal, index) => (
-                      <motion.div
-                        key={goal.title}
-                        initial={{ opacity: 0, y: 20 }}
-                        whileInView={{ opacity: 1, y: 0 }}
-                        transition={{ duration: 0.5, delay: index * 0.1 }}
-                        viewport={{ once: true }}
-                        whileHover={{ y: -3 }}
-                        className="p-5 bg-white/5 backdrop-blur-md rounded-2xl border border-white/10 shadow-[0_0_15px_rgba(16,185,129,0.1)] transition-all duration-300 hover:shadow-[0_0_25px_rgba(16,185,129,0.2)] group"
-                      >
-                        <div className="flex justify-between items-center mb-3">
-                          <h4 className="text-lg font-medium text-white">
-                            {goal.title}
-                          </h4>
-                          <span className="text-emerald-300 font-semibold">
-                            {goal.progress}%
-                          </span>
-                        </div>
-                        <p className="text-white/70 text-sm mb-4">
-                          {goal.description}
+                        <h3 className="text-sm font-semibold mb-2 text-gray-800">
+                          {feature.title}
+                        </h3>
+                        <p className="text-gray-600 text-xs leading-relaxed">
+                          {feature.description}
                         </p>
-                        <div className="h-2 w-full bg-white/5 rounded-full overflow-hidden border border-white/10">
-                          <motion.div
-                            initial={{ width: 0 }}
-                            whileInView={{ width: `${goal.progress}%` }}
-                            transition={{ duration: 1, delay: index * 0.2 }}
-                            viewport={{ once: true }}
-                            className="h-full bg-gradient-to-r from-emerald-500/80 to-teal-500/80 rounded-full"
-                          />
-                        </div>
                       </motion.div>
                     ))}
                   </div>
-                </motion.div>
-              </div>
+                </div>
+              </motion.div>
+            </div>
+          </div>
+        </SwiperSlide>
 
-              <div className="grid md:grid-cols-3 gap-6">
-                {[
-                  {
-                    icon: Users,
-                    title: "Communauté",
-                    description:
-                      "Une communauté active de plus de 100,000 freelancers et clients",
-                  },
-                  {
-                    icon: Award,
-                    title: "Reconnaissance",
-                    description:
-                      "Reconnue comme la meilleure plateforme de freelancing en Afrique",
-                  },
-                  {
-                    icon: Sparkles,
-                    title: "Innovation",
-                    description:
-                      "Pionnière dans l'utilisation de l'IA pour la mise en relation",
-                  },
-                ].map((feature, index) => (
+        {/* Mission Slide */}
+        <SwiperSlide className="h-full w-full">
+          <div className="h-full w-full flex items-center justify-center">
+            <div className="container mx-auto px-6 z-10 max-h-[90vh] overflow-hidden">
+              <motion.div
+                initial={{ opacity: 0, y: 30 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.8 }}
+                viewport={{ once: true }}
+                className="max-w-5xl mx-auto h-full flex flex-col justify-center"
+              >
+                <h2 className="text-3xl font-bold mb-6 bg-clip-text text-transparent bg-gradient-to-r from-blue-600 to-blue-800 text-center">
+                  Notre Mission
+                </h2>
+
+                <div className="bg-white/80 backdrop-blur-xl rounded-3xl p-6 border border-blue-200/30 shadow-xl">
+                  <div className="grid md:grid-cols-2 gap-6">
+                    <motion.div
+                      initial={{ opacity: 0, x: -20 }}
+                      whileInView={{ opacity: 1, x: 0 }}
+                      transition={{ duration: 0.8 }}
+                      viewport={{ once: true }}
+                    >
+                      <h3 className="text-xl font-semibold mb-4 text-gray-800">
+                        Vision
+                      </h3>
+                      <p className="text-gray-600 mb-6 text-sm leading-relaxed">
+                        TunaWork aspire à devenir la plateforme de référence
+                        pour le travail indépendant en Afrique, en connectant
+                        les talents locaux aux opportunités mondiales.
+                      </p>
+                      <div className="space-y-3">
+                        {[
+                          {
+                            icon: Target,
+                            title: "Excellence",
+                            description:
+                              "Promouvoir l'excellence dans le travail indépendant",
+                          },
+                          {
+                            icon: Heart,
+                            title: "Impact Social",
+                            description: "Créer un impact social positif",
+                          },
+                          {
+                            icon: Globe,
+                            title: "Ouverture",
+                            description:
+                              "Faciliter l'accès aux marchés internationaux",
+                          },
+                        ].map((value, index) => (
+                          <div
+                            key={value.title}
+                            className="flex items-start gap-3 p-3 bg-blue-50/50 backdrop-blur-md rounded-xl border border-blue-100 shadow-lg"
+                          >
+                            <div className="w-8 h-8 bg-gradient-to-br from-blue-500 to-blue-600 rounded-lg flex items-center justify-center border border-blue-500/20 shadow-lg">
+                              <value.icon className="w-4 h-4 text-white" />
+                            </div>
+                            <div>
+                              <h4 className="text-sm font-medium text-gray-800 mb-1">
+                                {value.title}
+                              </h4>
+                              <p className="text-gray-600 text-xs">
+                                {value.description}
+                              </p>
+                            </div>
+                          </div>
+                        ))}
+                      </div>
+                    </motion.div>
+
+                    <motion.div
+                      initial={{ opacity: 0, x: 20 }}
+                      whileInView={{ opacity: 1, x: 0 }}
+                      transition={{ duration: 0.8 }}
+                      viewport={{ once: true }}
+                    >
+                      <h3 className="text-xl font-semibold mb-4 text-gray-800">
+                        Objectifs
+                      </h3>
+                      <div className="space-y-4">
+                        {[
+                          {
+                            title: "Développement Local",
+                            description: "50,000 emplois créés d'ici 2025",
+                            progress: 75,
+                          },
+                          {
+                            title: "Formation",
+                            description: "10,000 freelancers formés",
+                            progress: 60,
+                          },
+                          {
+                            title: "Expansion",
+                            description: "30 pays africains d'ici 2026",
+                            progress: 45,
+                          },
+                        ].map((goal, index) => (
+                          <div
+                            key={goal.title}
+                            className="p-4 bg-blue-50/50 backdrop-blur-md rounded-xl border border-blue-100 shadow-lg"
+                          >
+                            <div className="flex justify-between items-center mb-2">
+                              <h4 className="text-sm font-medium text-gray-800">
+                                {goal.title}
+                              </h4>
+                              <span className="text-blue-600 font-semibold text-sm">
+                                {goal.progress}%
+                              </span>
+                            </div>
+                            <p className="text-gray-600 text-xs mb-3">
+                              {goal.description}
+                            </p>
+                            <div className="h-2 w-full bg-gray-200 rounded-full overflow-hidden">
+                              <motion.div
+                                initial={{ width: 0 }}
+                                whileInView={{ width: `${goal.progress}%` }}
+                                transition={{ duration: 1, delay: index * 0.2 }}
+                                viewport={{ once: true }}
+                                className="h-full bg-gradient-to-r from-blue-500 to-blue-600 rounded-full"
+                              />
+                            </div>
+                          </div>
+                        ))}
+                      </div>
+                    </motion.div>
+                  </div>
+                </div>
+              </motion.div>
+            </div>
+          </div>
+        </SwiperSlide>
+
+        {/* Contact Slide */}
+        <SwiperSlide className="h-full w-full">
+          <div className="h-full w-full flex items-center justify-center">
+            <div className="container mx-auto px-6 z-10 max-h-[90vh] overflow-hidden">
+              <motion.div
+                initial={{ opacity: 0, y: 30 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.8 }}
+                viewport={{ once: true }}
+                className="max-w-4xl mx-auto h-full flex flex-col justify-center"
+              >
+                <h2 className="text-3xl font-bold mb-6 bg-clip-text text-transparent bg-gradient-to-r from-blue-600 to-blue-800 text-center">
+                  Merci de votre attention !
+                </h2>
+
+                <div className="bg-white/80 backdrop-blur-xl rounded-3xl p-6 border border-blue-200/30 shadow-xl">
                   <motion.div
-                    key={feature.title}
                     initial={{ opacity: 0, y: 20 }}
                     whileInView={{ opacity: 1, y: 0 }}
-                    transition={{ duration: 0.5, delay: index * 0.1 }}
+                    transition={{ duration: 0.6, delay: 0.1 }}
                     viewport={{ once: true }}
-                    whileHover={{ y: -5 }}
-                    className="bg-white/5 backdrop-blur-xl rounded-2xl p-6 border border-white/10 shadow-[0_0_15px_rgba(16,185,129,0.1)] transition-all duration-300 hover:shadow-[0_0_25px_rgba(16,185,129,0.2)] group"
+                    className="text-center mb-6"
                   >
-                    <div className="w-12 h-12 bg-gradient-to-br from-emerald-500/20 to-teal-500/20 rounded-xl flex items-center justify-center mb-4 border border-emerald-500/20 shadow-[0_0_15px_rgba(16,185,129,0.15)] group-hover:shadow-[0_0_20px_rgba(16,185,129,0.25)] transition-all duration-300">
-                      <feature.icon className="w-6 h-6 text-emerald-200" />
+                    <div className="mb-6 inline-block">
+                      <Logo size="lg" showText={false} animated={true} />
                     </div>
-                    <h3 className="text-xl font-semibold mb-3 text-white drop-shadow-md">
-                      {feature.title}
-                    </h3>
-                    <p className="text-white/80 leading-relaxed">
-                      {feature.description}
+
+                    <p className="text-lg text-gray-700 leading-relaxed mb-4">
+                      Nous espérons que cette présentation vous a donné un
+                      aperçu complet de{" "}
+                      <strong className="text-blue-600">TunaWork</strong> et de
+                      son potentiel à transformer l'économie numérique en RDC.
+                    </p>
+
+                    <p className="text-base text-gray-600 mb-6">
+                      Nous serions ravis de discuter de ce projet avec vous et
+                      d'explorer les opportunités de collaboration.
                     </p>
                   </motion.div>
-                ))}
-              </div>
-            </div>
-          </motion.div>
-        </div>
-      </section>
 
-      {/* Business Plan Section */}
-      <section
-        ref={(el: HTMLDivElement | null) => {
-          if (el) sectionsRef.current.business = el;
-        }}
-        className="min-h-screen py-20 relative"
-      >
-        <div className="absolute inset-0 z-0">
-          <div className="absolute inset-0 bg-gradient-to-b from-black/90 via-emerald-900/20 to-black/80" />
-          <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,_var(--tw-gradient-stops))] from-emerald-500/10 via-transparent to-transparent"></div>
-          <div className="absolute top-1/4 right-1/4 w-96 h-96 bg-emerald-500/5 rounded-full filter blur-3xl"></div>
-          <div className="absolute bottom-1/4 left-1/4 w-96 h-96 bg-teal-500/5 rounded-full filter blur-3xl"></div>
-        </div>
+                  <div className="grid md:grid-cols-2 gap-6">
+                    <motion.div
+                      initial={{ opacity: 0, x: -20 }}
+                      whileInView={{ opacity: 1, x: 0 }}
+                      transition={{ duration: 0.8 }}
+                      viewport={{ once: true }}
+                      className="space-y-4"
+                    >
+                      <h3 className="text-xl font-semibold text-gray-800 mb-4">
+                        Contactez-nous
+                      </h3>
 
-        <div className="container mx-auto px-6 z-10 relative">
-          <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8 }}
-            viewport={{ once: true }}
-          >
-            <h2 className="text-4xl font-bold mb-12 bg-clip-text text-transparent bg-gradient-to-r from-white via-emerald-100 to-teal-200 text-center drop-shadow-[0_2px_8px_rgba(16,185,129,0.3)]">
-              Business Plan
-            </h2>
+                      <div className="space-y-3">
+                        <a
+                          href="mailto:contact@tunawork.com"
+                          className="flex items-center gap-3 p-3 bg-blue-50/50 backdrop-blur-md rounded-xl border border-blue-100 shadow-lg hover:shadow-xl transition-all duration-300 group"
+                        >
+                          <div className="w-10 h-10 bg-gradient-to-br from-blue-500 to-blue-600 rounded-lg flex items-center justify-center border border-blue-500/20 shadow-lg group-hover:scale-110 transition-transform">
+                            <Mail className="w-5 h-5 text-white" />
+                          </div>
+                          <div>
+                            <h4 className="text-sm font-medium text-gray-800">
+                              Email
+                            </h4>
+                            <p className="text-blue-600 text-xs">
+                              contact@tunawork.com
+                            </p>
+                          </div>
+                        </a>
 
-            <div className="max-w-6xl mx-auto">
-              <div className="grid md:grid-cols-2 gap-8 mb-16">
-                <motion.div
-                  initial={{ opacity: 0, x: -20 }}
-                  whileInView={{ opacity: 1, x: 0 }}
-                  transition={{ duration: 0.8 }}
-                  viewport={{ once: true }}
-                  className="bg-black/30 backdrop-blur-xl rounded-3xl p-8 border border-white/10 shadow-[0_8px_40px_rgba(16,185,129,0.15)] ring-1 ring-emerald-500/20"
-                >
-                  <h3 className="text-2xl font-semibold mb-6 text-white drop-shadow-md">
-                    Modèle de Revenus
-                  </h3>
-                  <div className="space-y-6">
-                    {[
-                      {
-                        title: "Commission sur les Transactions",
-                        description:
-                          "10% sur chaque transaction réalisée via la plateforme",
-                        value: "70%",
-                        color: "from-emerald-400/80 to-teal-400/80",
-                      },
-                      {
-                        title: "Abonnements Premium",
-                        description:
-                          "Fonctionnalités avancées pour les utilisateurs professionnels",
-                        value: "20%",
-                        color: "from-emerald-400/80 to-teal-400/80",
-                      },
-                      {
-                        title: "Services Additionnels",
-                        description:
-                          "Formation, certification, et services de mise en relation",
-                        value: "10%",
-                        color: "from-emerald-400/80 to-teal-400/80",
-                      },
-                    ].map((revenue, index) => (
-                      <motion.div
-                        key={revenue.title}
-                        initial={{ opacity: 0, y: 20 }}
-                        whileInView={{ opacity: 1, y: 0 }}
-                        transition={{ duration: 0.5, delay: index * 0.1 }}
-                        viewport={{ once: true }}
-                        whileHover={{ y: -3 }}
-                        className="p-5 bg-white/5 backdrop-blur-md rounded-2xl border border-white/10 shadow-[0_0_15px_rgba(16,185,129,0.1)] transition-all duration-300 hover:shadow-[0_0_25px_rgba(16,185,129,0.2)] group"
-                      >
-                        <div className="flex justify-between items-center mb-3">
-                          <h4 className="text-lg font-medium text-white">
-                            {revenue.title}
-                          </h4>
-                          <span className="text-emerald-300 font-semibold">
-                            {revenue.value}
-                          </span>
-                        </div>
-                        <p className="text-white/70 text-sm mb-4">
-                          {revenue.description}
+                        <a
+                          href="tel:+243123456789"
+                          className="flex items-center gap-3 p-3 bg-blue-50/50 backdrop-blur-md rounded-xl border border-blue-100 shadow-lg hover:shadow-xl transition-all duration-300 group"
+                        >
+                          <div className="w-10 h-10 bg-gradient-to-br from-green-500 to-green-600 rounded-lg flex items-center justify-center border border-green-500/20 shadow-lg group-hover:scale-110 transition-transform">
+                            <Phone className="w-5 h-5 text-white" />
+                          </div>
+                          <div>
+                            <h4 className="text-sm font-medium text-gray-800">
+                              Téléphone
+                            </h4>
+                            <p className="text-green-600 text-xs">
+                              +243 123 456 789
+                            </p>
+                          </div>
+                        </a>
+
+                        <a
+                          href="https://linkedin.com/company/tunawork"
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="flex items-center gap-3 p-3 bg-blue-50/50 backdrop-blur-md rounded-xl border border-blue-100 shadow-lg hover:shadow-xl transition-all duration-300 group"
+                        >
+                          <div className="w-10 h-10 bg-gradient-to-br from-blue-700 to-blue-800 rounded-lg flex items-center justify-center border border-blue-700/20 shadow-lg group-hover:scale-110 transition-transform">
+                            <Linkedin className="w-5 h-5 text-white" />
+                          </div>
+                          <div>
+                            <h4 className="text-sm font-medium text-gray-800">
+                              LinkedIn
+                            </h4>
+                            <p className="text-blue-700 text-xs">@tunawork</p>
+                          </div>
+                        </a>
+                      </div>
+                    </motion.div>
+
+                    <motion.div
+                      initial={{ opacity: 0, x: 20 }}
+                      whileInView={{ opacity: 1, x: 0 }}
+                      transition={{ duration: 0.8 }}
+                      viewport={{ once: true }}
+                      className="space-y-4"
+                    >
+                      <h3 className="text-xl font-semibold text-gray-800 mb-4">
+                        Prochaines étapes
+                      </h3>
+
+                      <div className="space-y-3">
+                        {[
+                          {
+                            title: "Démonstration produit",
+                            description: "Découvrez TunaWork en action",
+                            icon: Smartphone,
+                          },
+                          {
+                            title: "Business plan détaillé",
+                            description: "Accès aux projections complètes",
+                            icon: FileText,
+                          },
+                          {
+                            title: "Opportunités d'investissement",
+                            description: "Rejoignez notre aventure",
+                            icon: TrendingUp,
+                          },
+                        ].map((step, index) => (
+                          <div
+                            key={step.title}
+                            className="p-3 bg-blue-50/50 backdrop-blur-md rounded-xl border border-blue-100 shadow-lg"
+                          >
+                            <div className="flex items-start gap-3">
+                              <div className="w-8 h-8 bg-gradient-to-br from-blue-500 to-blue-600 rounded-lg flex items-center justify-center border border-blue-500/20 shadow-lg">
+                                <step.icon className="w-4 h-4 text-white" />
+                              </div>
+                              <div>
+                                <h4 className="text-sm font-medium text-gray-800 mb-1">
+                                  {step.title}
+                                </h4>
+                                <p className="text-gray-600 text-xs">
+                                  {step.description}
+                                </p>
+                              </div>
+                            </div>
+                          </div>
+                        ))}
+                      </div>
+
+                      <div className="mt-6 p-4 bg-gradient-to-r from-blue-500 to-blue-600 rounded-xl text-white text-center">
+                        <h4 className="text-sm font-semibold mb-2">
+                          Ensemble, digitalisons l'Afrique !
+                        </h4>
+                        <p className="text-xs opacity-90">
+                          TunaWork - L'avenir du travail en RDC
                         </p>
-                        <div className="h-2 w-full bg-white/5 rounded-full overflow-hidden border border-white/10">
-                          <motion.div
-                            initial={{ width: 0 }}
-                            whileInView={{ width: revenue.value }}
-                            transition={{ duration: 1, delay: index * 0.2 }}
-                            viewport={{ once: true }}
-                            className={`h-full bg-gradient-to-r ${revenue.color} rounded-full`}
-                          />
-                        </div>
-                      </motion.div>
-                    ))}
+                      </div>
+                    </motion.div>
                   </div>
-                </motion.div>
-
-                <motion.div
-                  initial={{ opacity: 0, x: 20 }}
-                  whileInView={{ opacity: 1, x: 0 }}
-                  transition={{ duration: 0.8 }}
-                  viewport={{ once: true }}
-                  className="bg-black/30 backdrop-blur-xl rounded-3xl p-8 border border-white/10 shadow-[0_8px_40px_rgba(16,185,129,0.15)] ring-1 ring-emerald-500/20"
-                >
-                  <h3 className="text-2xl font-semibold mb-6 text-white drop-shadow-md">
-                    Projections Financières
-                  </h3>
-                  <div className="space-y-6">
-                    {[
-                      {
-                        title: "Année 1",
-                        revenue: "2.5M€",
-                        users: "50,000",
-                        growth: "+150%",
-                      },
-                      {
-                        title: "Année 2",
-                        revenue: "6M€",
-                        users: "150,000",
-                        growth: "+140%",
-                      },
-                      {
-                        title: "Année 3",
-                        revenue: "15M€",
-                        users: "500,000",
-                        growth: "+150%",
-                      },
-                    ].map((projection, index) => (
-                      <motion.div
-                        key={projection.title}
-                        initial={{ opacity: 0, y: 20 }}
-                        whileInView={{ opacity: 1, y: 0 }}
-                        transition={{ duration: 0.5, delay: index * 0.1 }}
-                        viewport={{ once: true }}
-                        whileHover={{ y: -3 }}
-                        className="p-5 bg-white/5 backdrop-blur-md rounded-2xl border border-white/10 shadow-[0_0_15px_rgba(16,185,129,0.1)] transition-all duration-300 hover:shadow-[0_0_25px_rgba(16,185,129,0.2)] group"
-                      >
-                        <div className="flex justify-between items-center mb-4">
-                          <h4 className="text-xl font-semibold text-white">
-                            {projection.title}
-                          </h4>
-                          <span className="text-emerald-300 font-semibold">
-                            {projection.growth}
-                          </span>
-                        </div>
-                        <div className="grid grid-cols-2 gap-4">
-                          <div>
-                            <p className="text-sm text-white/70 mb-1">
-                              Revenus
-                            </p>
-                            <p className="text-lg font-semibold bg-clip-text text-transparent bg-gradient-to-r from-emerald-300 to-teal-200 drop-shadow-[0_2px_4px_rgba(16,185,129,0.3)]">
-                              {projection.revenue}
-                            </p>
-                          </div>
-                          <div>
-                            <p className="text-sm text-white/70 mb-1">
-                              Utilisateurs
-                            </p>
-                            <p className="text-lg font-semibold bg-clip-text text-transparent bg-gradient-to-r from-emerald-300 to-teal-200 drop-shadow-[0_2px_4px_rgba(16,185,129,0.3)]">
-                              {projection.users}
-                            </p>
-                          </div>
-                        </div>
-                      </motion.div>
-                    ))}
-                  </div>
-                </motion.div>
-              </div>
-
-              <div className="grid md:grid-cols-3 gap-6">
-                {[
-                  {
-                    icon: Target,
-                    title: "Objectifs de Croissance",
-                    description:
-                      "Atteindre 1 million d'utilisateurs actifs d'ici 2025",
-                  },
-                  {
-                    icon: Globe,
-                    title: "Expansion Internationale",
-                    description: "Présence dans 30 pays africains d'ici 2026",
-                  },
-                  {
-                    icon: TrendingUp,
-                    title: "Performance Financière",
-                    description:
-                      "Objectif de rentabilité atteint dès la deuxième année",
-                  },
-                ].map((feature, index) => (
-                  <motion.div
-                    key={feature.title}
-                    initial={{ opacity: 0, y: 20 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    transition={{ duration: 0.5, delay: index * 0.1 }}
-                    viewport={{ once: true }}
-                    whileHover={{ y: -5 }}
-                    className="bg-white/5 backdrop-blur-xl rounded-2xl p-6 border border-white/10 shadow-[0_0_15px_rgba(16,185,129,0.1)] transition-all duration-300 hover:shadow-[0_0_25px_rgba(16,185,129,0.2)] group"
-                  >
-                    <div className="w-12 h-12 bg-gradient-to-br from-emerald-500/20 to-teal-500/20 rounded-xl flex items-center justify-center mb-4 border border-emerald-500/20 shadow-[0_0_15px_rgba(16,185,129,0.15)] group-hover:shadow-[0_0_20px_rgba(16,185,129,0.25)] transition-all duration-300">
-                      <feature.icon className="w-6 h-6 text-emerald-200" />
-                    </div>
-                    <h3 className="text-xl font-semibold mb-3 text-white drop-shadow-md">
-                      {feature.title}
-                    </h3>
-                    <p className="text-white/80 leading-relaxed">
-                      {feature.description}
-                    </p>
-                  </motion.div>
-                ))}
-              </div>
+                </div>
+              </motion.div>
             </div>
-          </motion.div>
-        </div>
-      </section>
-
-      {/* Footer */}
-      <Footer />
+          </div>
+        </SwiperSlide>
+      </Swiper>
     </main>
   );
 }

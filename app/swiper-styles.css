@@ -1,0 +1,93 @@
+/* Styles personnalisés pour Swiper */
+
+/* Assurez-vous que le slide prend toute la hauteur de l'écran */
+.swiper {
+  height: 100vh;
+  width: 100%;
+}
+
+.swiper-slide {
+  height: 100vh;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  overflow-y: auto;
+  scrollbar-width: none; /* Pour Firefox */
+}
+
+.swiper-slide::-webkit-scrollbar {
+  display: none; /* Pour Chrome, Safari et Opera */
+}
+
+/* Styles pour les puces de pagination */
+.swiper-pagination-bullet {
+  width: 12px;
+  height: 12px;
+  background: rgba(255, 255, 255, 0.5);
+  opacity: 0.7;
+  transition: all 0.3s ease;
+}
+
+.swiper-pagination-bullet-active {
+  background: #10b981; /* Couleur emerald-500 */
+  opacity: 1;
+  transform: scale(1.2);
+  box-shadow: 0 0 10px rgba(16, 185, 129, 0.5);
+}
+
+/* Styles pour les boutons de navigation */
+.swiper-button-next,
+.swiper-button-prev {
+  color: #10b981;
+  background: rgba(0, 0, 0, 0.3);
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.3s ease;
+}
+
+.swiper-button-next:hover,
+.swiper-button-prev:hover {
+  background: rgba(0, 0, 0, 0.5);
+  transform: scale(1.1);
+}
+
+.swiper-button-next:after,
+.swiper-button-prev:after {
+  font-size: 20px;
+}
+
+/* Styles pour le défilement vertical */
+.swiper-scrollbar {
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 10px;
+  height: 8px;
+}
+
+.swiper-scrollbar-drag {
+  background: rgba(16, 185, 129, 0.7);
+  border-radius: 10px;
+}
+
+/* Styles responsifs */
+@media (max-width: 768px) {
+  .swiper-button-next,
+  .swiper-button-prev {
+    width: 40px;
+    height: 40px;
+  }
+  
+  .swiper-button-next:after,
+  .swiper-button-prev:after {
+    font-size: 16px;
+  }
+  
+  .swiper-pagination-bullet {
+    width: 10px;
+    height: 10px;
+  }
+}

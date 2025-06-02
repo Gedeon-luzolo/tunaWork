@@ -1,5 +1,11 @@
 import type React from "react";
 import "./globals.css";
+import "swiper/css";
+import "swiper/css/navigation";
+import "swiper/css/pagination";
+import "swiper/css/scrollbar";
+import "swiper/css/effect-fade";
+import "./swiper-styles.css";
 import { Inter } from "next/font/google";
 
 const inter = Inter({ subsets: ["latin"] });
