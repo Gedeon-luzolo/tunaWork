@@ -1,6 +1,5 @@
 import { motion } from "framer-motion";
 import { cn } from "./lib/utils";
-import Image from "next/image";
 
 interface LogoProps {
   size?: "sm" | "md" | "lg" | "xl";

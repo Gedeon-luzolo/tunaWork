@@ -1,10 +1,26 @@
 import * as React from "react";
 
+// Types pour les axes et séries de graphiques
+interface ChartAxisConfig {
+  dataKey?: string;
+  type?: "number" | "category";
+  domain?: [number | string, number | string];
+  tickFormatter?: (value: unknown) => string;
+  label?: string;
+}
+
+interface ChartSeriesConfig {
+  dataKey: string;
+  name?: string;
+  color?: string;
+  type?: "line" | "bar" | "area" | "pie";
+}
+
 type ChartProps = {
   children: React.ReactNode;
-  xAxis?: any;
-  yAxis?: any;
-  series?: any;
+  xAxis?: ChartAxisConfig;
+  yAxis?: ChartAxisConfig;
+  series?: ChartSeriesConfig[];
   className?: string;
 };
 
@@ -21,8 +37,8 @@ Chart.displayName = "Chart";
 
 type ChartContainerProps = {
   children: React.ReactNode;
-  xAxis?: any;
-  yAxis?: any;
+  xAxis?: ChartAxisConfig;
+  yAxis?: ChartAxisConfig;
   className?: string;
 };
 
@@ -76,8 +92,18 @@ export const ChartLegendItem: React.FC<ChartLegendItemProps> = ({
   );
 };
 
+interface ChartTooltipItem {
+  name: string;
+  value: string | number;
+  color: string;
+}
+
 type ChartTooltipProps = {
-  children: (props: { x: string; y: number; items: any[] }) => React.ReactNode;
+  children: (props: {
+    x: string;
+    y: number;
+    items: ChartTooltipItem[];
+  }) => React.ReactNode;
 };
 
 export const ChartTooltip: React.FC<ChartTooltipProps> = ({ children }) => {
@@ -108,12 +134,29 @@ export const ChartTooltipItem: React.FC<ChartTooltipItemProps> = ({
   );
 };
 
+interface ChartDataPoint {
+  [key: string]: string | number;
+}
+
+interface ChartAreaConfig {
+  fill?: string;
+  fillOpacity?: number;
+  stroke?: string;
+  strokeWidth?: number;
+}
+
+interface ChartLineConfig {
+  stroke?: string;
+  strokeWidth?: number;
+  strokeDasharray?: string;
+}
+
 type ChartAreaSeriesProps = {
-  data: any[];
+  data: ChartDataPoint[];
   xAxisKey: string;
   yAxisKey: string;
-  area?: any;
-  line?: any;
+  area?: ChartAreaConfig;
+  line?: ChartLineConfig;
   children: React.ReactNode;
 };
 
@@ -132,13 +175,18 @@ export const ChartAreaSeriesItem: React.FC<ChartAreaSeriesItemProps> = () => {
   return null;
 };
 
+interface ChartHighlightScope {
+  highlighted?: "item" | "series";
+  faded?: "global" | "series";
+}
+
 type ChartPieSeriesProps = {
-  data: any[];
+  data: ChartDataPoint[];
   valueKey: string;
   cornerRadius?: number;
   innerRadius?: number;
   paddingAngle?: number;
-  highlightScope?: any;
+  highlightScope?: ChartHighlightScope;
   children: React.ReactNode;
 };
 
@@ -158,7 +206,7 @@ export const ChartPieSeriesItem: React.FC<ChartPieSeriesItemProps> = () => {
 };
 
 type ChartBarSeriesProps = {
-  data: any[];
+  data: ChartDataPoint[];
   xAxisKey: string;
   yAxisKey: string;
   children: React.ReactNode;
