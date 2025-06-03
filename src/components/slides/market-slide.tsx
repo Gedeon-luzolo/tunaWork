@@ -48,7 +48,7 @@ export function MarketSlide() {
             </h3>
             <p className="text-green-100 mb-6">
               Kinshasa compte plus de 15 millions d`habitants avec des besoins
-              quotidiens en services de proximité. Un marché de 2,8 milliards
+              quotidiens en services de proximité. Un marché de 1,8 milliards
               USD dominé par l`informel.
             </p>
             <div className="grid md:grid-cols-4 gap-4">
@@ -64,11 +64,7 @@ export function MarketSlide() {
                 <div className="text-2xl font-bold">24 Communes</div>
                 <div className="text-sm text-green-100">Zone de couverture</div>
               </div>
-              <div className="bg-white/10 rounded-lg p-4">
-                <DollarSign className="w-8 h-8 mx-auto mb-2" />
-                <div className="text-2xl font-bold">$2.8B</div>
-                <div className="text-sm text-green-100">Marché total</div>
-              </div>
+
               <div className="bg-white/10 rounded-lg p-4">
                 <TrendingUp className="w-8 h-8 mx-auto mb-2" />
                 <div className="text-2xl font-bold">+18%</div>
@@ -103,10 +99,10 @@ export function MarketSlide() {
                     </p>
                     <div className="flex justify-between mt-1">
                       <span className="text-xs text-green-600 font-medium">
-                        12 000+ actifs
+                        4 000+ actifs
                       </span>
                       <span className="text-xs text-blue-600 font-medium">
-                        $420M/an
+                        $420K/an
                       </span>
                     </div>
                   </div>
@@ -124,10 +120,10 @@ export function MarketSlide() {
                     </p>
                     <div className="flex justify-between mt-1">
                       <span className="text-xs text-green-600 font-medium">
-                        8 500+ actifs
+                        2 000+ actifs
                       </span>
                       <span className="text-xs text-blue-600 font-medium">
-                        $280M/an
+                        $280K/an
                       </span>
                     </div>
                   </div>
@@ -145,10 +141,10 @@ export function MarketSlide() {
                     </p>
                     <div className="flex justify-between mt-1">
                       <span className="text-xs text-green-600 font-medium">
-                        15 000+ actifs
+                        5 000+ actifs
                       </span>
                       <span className="text-xs text-blue-600 font-medium">
-                        $520M/an
+                        $520K/an
                       </span>
                     </div>
                   </div>
@@ -180,10 +176,10 @@ export function MarketSlide() {
                     </p>
                     <div className="flex justify-between mt-1">
                       <span className="text-xs text-green-600 font-medium">
-                        18 000+ actifs
+                        8 000+ actifs
                       </span>
                       <span className="text-xs text-blue-600 font-medium">
-                        $380M/an
+                        $380K/an
                       </span>
                     </div>
                   </div>
@@ -201,10 +197,10 @@ export function MarketSlide() {
                     </p>
                     <div className="flex justify-between mt-1">
                       <span className="text-xs text-green-600 font-medium">
-                        10 000+ actifs
+                        2 000+ actifs
                       </span>
                       <span className="text-xs text-blue-600 font-medium">
-                        $220M/an
+                        $220K/an
                       </span>
                     </div>
                   </div>
@@ -222,10 +218,10 @@ export function MarketSlide() {
                     </p>
                     <div className="flex justify-between mt-1">
                       <span className="text-xs text-green-600 font-medium">
-                        25 000+ actifs
+                        5 000+ actifs
                       </span>
                       <span className="text-xs text-blue-600 font-medium">
-                        $450M/an
+                        $450K/an
                       </span>
                     </div>
                   </div>
@@ -251,28 +247,28 @@ export function MarketSlide() {
                   name: "Transport & Livraison",
                   icon: Car,
                   workers: "8 000+",
-                  market: "$180M",
+                  market: "$180K",
                   color: "yellow",
                 },
                 {
                   name: "Peinture & Décoration",
                   icon: Paintbrush,
                   workers: "6 500+",
-                  market: "$150M",
+                  market: "$150K",
                   color: "purple",
                 },
                 {
                   name: "Sécurité & Gardiennage",
                   icon: Home,
                   workers: "12 000+",
-                  market: "$320M",
+                  market: "$320K",
                   color: "red",
                 },
                 {
                   name: "Formation & Cours",
                   icon: Users,
                   workers: "4 000+",
-                  market: "$120M",
+                  market: "$120K",
                   color: "indigo",
                 },
               ].map((service, index) => (

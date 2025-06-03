@@ -41,11 +41,11 @@ export const ProblemSlide: React.FC = () => {
             className="bg-gradient-to-r from-red-600 to-red-800 rounded-xl p-6 text-white text-center mb-8"
           >
             <h3 className="text-2xl font-bold mb-4">
-              Un Marché de 2,8 Milliards USD Inexploité
+              Un Marché de 1,8 Milliards USD Inexploité
             </h3>
             <p className="text-red-100 mb-6">
-              Plus de 70% de l`économie congolaise fonctionne dans l`informel,
-              générant annuellement 2,8 milliards USD sans aucune structuration
+              Plus de 60% de l`économie congolaise fonctionne dans l`informel,
+              générant annuellement 1,8 milliards USD sans aucune structuration
               digitale.
             </p>
             <div className="grid md:grid-cols-3 gap-4">
@@ -112,7 +112,7 @@ export const ProblemSlide: React.FC = () => {
                       Prix Imprévisibles
                     </h4>
                     <p className="text-sm text-gray-600">
-                      Variations de 300% pour le même service selon le
+                      Variations de 100% pour le même service selon le
                       prestataire
                     </p>
                   </div>
@@ -171,7 +171,7 @@ export const ProblemSlide: React.FC = () => {
                       Invisibilité Totale
                     </h4>
                     <p className="text-sm text-gray-600">
-                      98% n`ont aucune vitrine digitale pour présenter leurs
+                      96% n`ont aucune vitrine digitale pour présenter leurs
                       services
                     </p>
                   </div>
@@ -185,7 +185,7 @@ export const ProblemSlide: React.FC = () => {
                       Paiements Risqués
                     </h4>
                     <p className="text-sm text-gray-600">
-                      45% ne sont jamais payés intégralement pour leurs services
+                      26% ne sont jamais payés intégralement pour leurs services
                     </p>
                   </div>
                 </div>

@@ -3,7 +3,7 @@ import { DollarSign, Building2, Clock, Target } from "lucide-react";
 
 export function FundingSlide() {
   return (
-    <div className="h-full w-full flex items-center overflow-y-scroll justify-center py-20 pt-28">
+    <div className="min-h-full w-full flex items-center overflow-y-scroll justify-center py-20 pt-100">
       <div className="container mx-auto px-6 z-10">
         <motion.div
           initial={{ opacity: 0, y: 30 }}

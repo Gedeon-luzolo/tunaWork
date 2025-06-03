@@ -48,7 +48,7 @@ export function MissionSlide() {
               plateforme numérique qui connecte, forme et autonomise 100 000+
               prestataires locaux.
             </p>
-            <div className="grid md:grid-cols-3 gap-4">
+            <div className="grid grid-cols-2 md:grid-cols-3 gap-4">
               <div className="bg-white/10 rounded-lg p-4">
                 <Target className="w-8 h-8 mx-auto mb-2" />
                 <div className="text-xl font-bold">Mission</div>
@@ -165,27 +165,21 @@ export function MissionSlide() {
                 {[
                   {
                     title: "Emplois Créés",
-                    description: "50 000+ freelancers actifs",
-                    progress: 85,
+                    description: "1 500+ freelancers actifs",
+                    progress: 65,
                     color: "green",
                   },
                   {
                     title: "Formation & Certification",
-                    description: "25 000 freelancers formés",
-                    progress: 70,
+                    description: "700 freelancers formés",
+                    progress: 40,
                     color: "blue",
                   },
                   {
                     title: "Expansion Géographique",
                     description: "Toutes les communes de Kinshasa",
-                    progress: 60,
+                    progress: 70,
                     color: "purple",
-                  },
-                  {
-                    title: "Impact Économique",
-                    description: "$125M de transactions",
-                    progress: 75,
-                    color: "orange",
                   },
                 ].map((goal, index) => (
                   <div key={goal.title} className="space-y-2">
@@ -230,11 +224,11 @@ export function MissionSlide() {
               {[
                 {
                   phase: "Phase 1",
-                  period: "2024-2025",
+                  period: "2025-2026",
                   title: "Lancement & Croissance",
                   objectives: [
                     "Lancement officiel à Kinshasa",
-                    "10 000 freelancers actifs",
+                    "4 000 freelancers actifs",
                     "Partenariats stratégiques",
                   ],
                   color: "blue",
@@ -242,10 +236,10 @@ export function MissionSlide() {
                 },
                 {
                   phase: "Phase 2",
-                  period: "2025-2026",
+                  period: "2026-2027",
                   title: "Expansion & Formation",
                   objectives: [
-                    "50 000 freelancers actifs",
+                    "10 000 freelancers actifs",
                     "Plateforme de formation",
                     "Expansion régionale RDC",
                   ],
@@ -254,11 +248,11 @@ export function MissionSlide() {
                 },
                 {
                   phase: "Phase 3",
-                  period: "2026-2030",
+                  period: "2027-2030",
                   title: "Leadership Africain",
                   objectives: [
                     "Expansion 5 pays africains",
-                    "500 000 freelancers",
+                    "50 000 freelancers",
                     "Référence continentale",
                   ],
                   color: "purple",
@@ -320,7 +314,7 @@ export function MissionSlide() {
               Ensemble, transformons l`économie congolaise et créons un avenir
               prospère pour tous les talents locaux.
             </p>
-            <div className="grid md:grid-cols-3 gap-4">
+            <div className="grid grid-cols-2 md:grid-cols-3 gap-4">
               <div className="bg-white/10 rounded-lg p-3">
                 <div className="text-2xl font-bold">Aujourd`hui</div>
                 <div className="text-sm text-orange-100">Nous lançons</div>

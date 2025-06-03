@@ -53,7 +53,7 @@ export function ContactSlide() {
               l `économie des services en RDC. Ensemble, transformons 2,8
               milliards USD d `opportunités en succès concret.
             </p>
-            <div className="grid md:grid-cols-3 gap-4">
+            <div className="grid grid-cols-2 md:grid-cols-3 gap-4">
               <div className="bg-white/10 rounded-lg p-4">
                 <Rocket className="w-8 h-8 mx-auto mb-2" />
                 <div className="text-xl font-bold">Innovation</div>
@@ -215,7 +215,7 @@ export function ContactSlide() {
               économique qui commence aujourd `hui. Rejoignez-nous pour
               transformer 100 000+ vies et créer l `avenir du travail en RDC.
             </p>
-            <div className="grid md:grid-cols-3 gap-4">
+            <div className="grid grid-cols-2 md:grid-cols-3 gap-4">
               <div className="bg-white/10 rounded-lg p-3">
                 <div className="text-2xl font-bold">Aujourd `hui</div>
                 <div className="text-sm text-green-100">Nous commençons</div>

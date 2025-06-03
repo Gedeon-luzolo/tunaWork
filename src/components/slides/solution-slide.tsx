@@ -39,11 +39,11 @@ export function SolutionSlide() {
             </p>
             <div className="grid md:grid-cols-3 gap-4">
               <div className="bg-white/10 rounded-lg p-3">
-                <div className="text-2xl font-bold">50 000+</div>
+                <div className="text-2xl font-bold">20 000+</div>
                 <div className="text-sm text-blue-100">Freelancers ciblés</div>
               </div>
               <div className="bg-white/10 rounded-lg p-3">
-                <div className="text-2xl font-bold">2.8B USD</div>
+                <div className="text-2xl font-bold">2M USD</div>
                 <div className="text-sm text-blue-100">Marché potentiel</div>
               </div>
               <div className="bg-white/10 rounded-lg p-3">
@@ -116,7 +116,7 @@ export function SolutionSlide() {
               <div className="space-y-2">
                 <div className="flex items-center text-sm text-gray-600">
                   <CheckCircle className="w-4 h-4 text-green-500 mr-2" />
-                  Matching IA précis à 97%
+                  Matching IA précis à 80%
                 </div>
                 <div className="flex items-center text-sm text-gray-600">
                   <CheckCircle className="w-4 h-4 text-green-500 mr-2" />

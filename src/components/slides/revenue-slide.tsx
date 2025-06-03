@@ -35,10 +35,10 @@ export function RevenueSlide() {
                 <strong className="text-blue-700">scalable</strong>.
               </p>
 
-              <div className="grid md:grid-cols-3 gap-3 mb-4">
+              <div className="grid grid-cols-3  gap-3 mb-4">
                 <div className="bg-blue-50 p-3 rounded-lg border border-blue-200">
                   <div className="text-lg font-bold text-blue-600 mb-1">
-                    50%
+                    60%
                   </div>
                   <div className="text-xs text-gray-600">
                     Abonnements premium
@@ -46,7 +46,7 @@ export function RevenueSlide() {
                 </div>
                 <div className="bg-purple-50 p-3 rounded-lg border border-purple-200">
                   <div className="text-lg font-bold text-purple-600 mb-1">
-                    30%
+                    20%
                   </div>
                   <div className="text-xs text-gray-600">
                     Publicités ciblées
@@ -69,21 +69,21 @@ export function RevenueSlide() {
                 {[
                   {
                     name: "Abonnements premium",
-                    percentage: "50%",
-                    projection: "$2.5M",
+                    percentage: "60%",
+                    projection: "$2k",
                     description: "Fonctionnalités avancées, priorité support",
                   },
                   {
                     name: "Publicités ciblées",
-                    percentage: "30%",
-                    projection: "$1.5M",
+                    percentage: "20%",
+                    projection: "$0,8K",
                     description: "Publicités géolocalisées, sponsoring",
                   },
                   {
                     name: "Plateforme de formation",
                     percentage: "20%",
-                    projection: "$1M",
-                    description: "Cours en ligne, certifications",
+                    projection: "$0,6",
+                    description: "Proposition cours à domicile",
                   },
                 ].map((revenue) => (
                   <div
@@ -140,7 +140,7 @@ export function RevenueSlide() {
                       Revenus totaux projetés
                     </div>
                     <div className="text-lg font-bold text-green-600">
-                      $5M / an
+                      $2M / an
                     </div>
                   </div>
                   <div className="bg-blue-50 p-3 rounded-lg border border-blue-100 text-center">
@@ -148,7 +148,7 @@ export function RevenueSlide() {
                       Croissance mensuelle
                     </div>
                     <div className="text-sm font-semibold text-blue-600">
-                      +15% MoM
+                      +35% 
                     </div>
                   </div>
                 </div>

@@ -44,7 +44,7 @@ export function ImpactSlide() {
               Révolutionner l`Économie Congolaise
             </h3>
             <p className="text-purple-100 mb-6">
-              TunaWork transforme 2,8 milliards USD d`économie informelle en un
+              TunaWork transforme 1,8 milliards USD d`économie informelle en un
               écosystème numérique structuré, créant des opportunités durables
               pour 100 000+ prestataires.
             </p>
@@ -56,7 +56,7 @@ export function ImpactSlide() {
               </div>
               <div className="bg-white/10 rounded-lg p-4">
                 <DollarSign className="w-8 h-8 mx-auto mb-2" />
-                <div className="text-2xl font-bold">$2.8B</div>
+                <div className="text-2xl font-bold">$1M</div>
                 <div className="text-sm text-purple-100">
                   Économie structurée
                 </div>
@@ -96,10 +96,10 @@ export function ImpactSlide() {
                       Emploi Durable
                     </h4>
                     <p className="text-sm text-gray-600 mb-1">
-                      50 000+ freelancers avec revenus stables et prévisibles
+                      5 000+ freelancers avec revenus stables et prévisibles
                     </p>
                     <span className="text-xs bg-green-100 text-green-700 px-2 py-1 rounded-full">
-                      +300% revenus moyens
+                      +200% revenus moyens
                     </span>
                   </div>
                 </div>
@@ -115,7 +115,7 @@ export function ImpactSlide() {
                       Formation et certification des compétences
                     </p>
                     <span className="text-xs bg-blue-100 text-blue-700 px-2 py-1 rounded-full">
-                      85% taux de réussite
+                      46% taux de réussite
                     </span>
                   </div>
                 </div>
@@ -163,7 +163,7 @@ export function ImpactSlide() {
                       Croissance Économique
                     </h4>
                     <p className="text-sm text-gray-600 mb-1">
-                      $2.8B d`économie informelle structurée et digitalisée
+                      $1.8M d`économie informelle structurée et digitalisée
                     </p>
                     <span className="text-xs bg-green-100 text-green-700 px-2 py-1 rounded-full">
                       +150% croissance annuelle
@@ -206,75 +206,6 @@ export function ImpactSlide() {
             </motion.div>
           </div>
 
-          {/* Métriques d`impact */}
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.4 }}
-            viewport={{ once: true }}
-            className="bg-white rounded-xl p-6 border border-gray-200 shadow-md"
-          >
-            <h3 className="text-lg font-semibold mb-6 text-center text-gray-800">
-              📊 Métriques d`Impact Projetées
-            </h3>
-            <div className="grid md:grid-cols-4 gap-4">
-              {[
-                {
-                  metric: "Emplois Créés",
-                  value: "50 000+",
-                  description: "Freelancers actifs",
-                  color: "green",
-                  icon: Users,
-                },
-                {
-                  metric: "Revenus Générés",
-                  value: "$125M",
-                  description: "Transactions annuelles",
-                  color: "blue",
-                  icon: DollarSign,
-                },
-                {
-                  metric: "Satisfaction Client",
-                  value: "95%",
-                  description: "Taux de satisfaction",
-                  color: "purple",
-                  icon: Heart,
-                },
-                {
-                  metric: "Croissance",
-                  value: "+18%",
-                  description: "Croissance mensuelle",
-                  color: "orange",
-                  icon: TrendingUp,
-                },
-              ].map((metric, index) => (
-                <motion.div
-                  key={metric.metric}
-                  initial={{ opacity: 0, y: 20 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.5, delay: 0.5 + index * 0.1 }}
-                  viewport={{ once: true }}
-                  className="text-center p-4 rounded-lg border border-gray-100 hover:border-blue-200 transition-all duration-300"
-                >
-                  <div
-                    className={`w-12 h-12 bg-${metric.color}-100 rounded-full flex items-center justify-center mx-auto mb-3`}
-                  >
-                    <metric.icon
-                      className={`w-6 h-6 text-${metric.color}-600`}
-                    />
-                  </div>
-                  <div className="text-2xl font-bold text-gray-800 mb-1">
-                    {metric.value}
-                  </div>
-                  <h4 className="font-semibold text-gray-800 mb-1 text-sm">
-                    {metric.metric}
-                  </h4>
-                  <p className="text-xs text-gray-600">{metric.description}</p>
-                </motion.div>
-              ))}
-            </div>
-          </motion.div>
-
           {/* Vision à long terme */}
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -289,7 +220,7 @@ export function ImpactSlide() {
               locaux, transformant l`économie informelle en opportunités
               durables.
             </p>
-            <div className="grid md:grid-cols-3 gap-4">
+            <div className="grid grid-cols-2 md:grid-cols-3 gap-4">
               <div className="bg-white/10 rounded-lg p-3">
                 <div className="text-2xl font-bold">5 Pays</div>
                 <div className="text-sm text-green-100">
@@ -297,11 +228,11 @@ export function ImpactSlide() {
                 </div>
               </div>
               <div className="bg-white/10 rounded-lg p-3">
-                <div className="text-2xl font-bold">500 000+</div>
+                <div className="text-2xl font-bold">30 000+</div>
                 <div className="text-sm text-green-100">Freelancers actifs</div>
               </div>
               <div className="bg-white/10 rounded-lg p-3">
-                <div className="text-2xl font-bold">$1B+</div>
+                <div className="text-2xl font-bold">$2M+</div>
                 <div className="text-sm text-green-100">Impact économique</div>
               </div>
             </div>

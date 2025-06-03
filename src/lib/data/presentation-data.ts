@@ -79,8 +79,8 @@ export const featuresData = [
 ];
 
 export const revenueData = [
-  { name: "Abonnements premium", value: 50, color: "#3B82F6" },
-  { name: "Publicités ciblées", value: 30, color: "#8B5CF6" },
+  { name: "Abonnements premium", value: 60, color: "#3B82F6" },
+  { name: "Publicités ciblées", value: 20, color: "#8B5CF6" },
   { name: "Plateforme de formation", value: 20, color: "#10B981" },
 ];
 
