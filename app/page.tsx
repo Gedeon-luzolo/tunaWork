@@ -69,7 +69,7 @@ export default function Home() {
   };
 
   return (
-    <main className="h-screen w-screen overflow-hidden relative text-gray-800">
+    <main className="h-auto w-screen overflow-hidden-x  text-gray-800">
       {/* Background with elegant white theme */}
       <Background />
 

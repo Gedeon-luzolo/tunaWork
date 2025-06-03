@@ -1,105 +1,129 @@
 import { motion } from "framer-motion";
-import {
-  Shield,
-  CreditCard,
-  Sparkles,
-  FileText,
-  FolderTree,
-  Star,
-} from "lucide-react";
+import Image from "next/image";
+import { CheckCircle } from "lucide-react";
 
 export function SolutionSlide() {
   return (
-    <div className="h-full w-full flex items-center justify-center">
-      <div className="container mx-auto px-6 z-10 max-h-[90vh] overflow-hidden">
+    <div className="w-full py-20 pt-14 overflow-y-scroll">
+      <div className="container mx-auto px-6 z-10">
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8 }}
           viewport={{ once: true }}
-          className="max-w-5xl mx-auto h-full flex flex-col justify-center"
+          className="max-w-6xl mx-auto"
         >
-          <h2 className="text-3xl font-bold mb-4 bg-clip-text text-transparent bg-gradient-to-r from-blue-600 to-blue-800 text-center">
-            TunaWork : La Solution qui Révolutionne
-          </h2>
+          <div className="flex items-center justify-center mb-8">
+            <div className="w-12 h-12 bg-blue-100 rounded-full flex items-center justify-center mr-4">
+              <CheckCircle className="w-6 h-6 text-blue-600" />
+            </div>
+            <h2 className="text-3xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-blue-700 to-blue-900">
+              Notre Solution
+            </h2>
+          </div>
 
-          <div className="bg-white/80 backdrop-blur-xl rounded-3xl p-4 border border-blue-200/30 shadow-xl">
+          {/* Vision principale */}
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, delay: 0.1 }}
+            viewport={{ once: true }}
+            className="bg-gradient-to-r from-blue-600 to-blue-800 rounded-xl p-6 text-white text-center mb-8"
+          >
+            <h3 className="text-2xl font-bold mb-4">
+              TunaWork : Plateforme SaaS Révolutionnaire
+            </h3>
+            <p className="text-blue-100 mb-4">
+              Transformation complète du marché informel des services en RDC en
+              un écosystème numérique structuré, sécurisé et transparent.
+            </p>
+            <div className="grid md:grid-cols-3 gap-4">
+              <div className="bg-white/10 rounded-lg p-3">
+                <div className="text-2xl font-bold">50 000+</div>
+                <div className="text-sm text-blue-100">Freelancers ciblés</div>
+              </div>
+              <div className="bg-white/10 rounded-lg p-3">
+                <div className="text-2xl font-bold">2.8B USD</div>
+                <div className="text-sm text-blue-100">Marché potentiel</div>
+              </div>
+              <div className="bg-white/10 rounded-lg p-3">
+                <div className="text-2xl font-bold">100%</div>
+                <div className="text-sm text-blue-100">Digital</div>
+              </div>
+            </div>
+          </motion.div>
+
+          {/* Fonctionnalités clés */}
+          <div className="grid md:grid-cols-2 gap-6 mb-8">
             <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: 0.1 }}
+              initial={{ opacity: 0, x: -20 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              transition={{ duration: 0.6, delay: 0.2 }}
               viewport={{ once: true }}
-              className="text-center mb-4"
+              className="bg-white rounded-xl p-6 border border-gray-200 shadow-md"
             >
-              <p className="text-base text-gray-700 leading-relaxed mb-3">
-                TunaWork transforme ce marché informel de{" "}
-                <strong className="text-blue-600">2,8 milliards USD</strong> en
-                un écosystème digital sécurisé.
+              <div className="aspect-video bg-blue-50 rounded-lg mb-4 overflow-hidden">
+                <Image
+                  src="/images/humain1.jpg"
+                  alt="Écosystème Numérique Complet"
+                  width={400}
+                  height={225}
+                  className="w-full h-full object-cover"
+                />
+              </div>
+              <h3 className="text-lg font-semibold mb-2 text-gray-800">
+                Écosystème Numérique Complet
+              </h3>
+              <p className="text-gray-600 text-sm mb-4">
+                Plateforme tout-en-un qui connecte freelancers et clients dans
+                un environnement sécurisé et professionnel.
               </p>
-
-              <div className=" mb-4">
-                <div className="bg-blue-50 p-2 rounded-lg border border-blue-200">
-                  <div className="text-lg font-bold text-blue-600">50,000+</div>
-                  <div className="text-xs text-gray-600">Freelancers</div>
+              <div className="space-y-2">
+                <div className="flex items-center text-sm text-gray-600">
+                  <CheckCircle className="w-4 h-4 text-green-500 mr-2" />
+                  Interface intuitive et moderne
+                </div>
+                <div className="flex items-center text-sm text-gray-600">
+                  <CheckCircle className="w-4 h-4 text-green-500 mr-2" />
+                  Accessible sur tous les appareils
                 </div>
               </div>
             </motion.div>
 
-            <div className="grid md:grid-cols-3 gap-3">
-              {[
-                {
-                  title: "Profils vérifiés",
-                  icon: Shield,
-                  benefit: "100% sécurisé",
-                },
-                {
-                  title: "Paiements intelligents",
-                  icon: CreditCard,
-                  benefit: "Garanti",
-                },
-                {
-                  title: "Matching IA",
-                  icon: Sparkles,
-                  benefit: "97% précis",
-                },
-                {
-                  title: "Contrats digitaux",
-                  icon: FileText,
-                  benefit: "Légal",
-                },
-                {
-                  title: "Portfolio dynamique",
-                  icon: FolderTree,
-                  benefit: "Visible",
-                },
-                {
-                  title: "Reviews transparents",
-                  icon: Star,
-                  benefit: "Confiance",
-                },
-              ].map((feature, index) => (
-                <motion.div
-                  key={feature.title}
-                  initial={{ opacity: 0, y: 20 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.5, delay: index * 0.1 }}
-                  viewport={{ once: true }}
-                  className="bg-blue-50/50 backdrop-blur-xl rounded-lg p-3 border border-blue-100 shadow-lg"
-                >
-                  <div className="w-6 h-6 bg-gradient-to-br from-blue-500 to-blue-600 rounded-lg flex items-center justify-center mb-2 shadow-lg">
-                    <feature.icon className="w-3 h-3 text-white" />
-                  </div>
-                  <div className="mb-1">
-                    <span className="inline-block bg-green-100 text-green-700 text-xs px-2 py-0.5 rounded-full font-semibold">
-                      {feature.benefit}
-                    </span>
-                  </div>
-                  <h3 className="text-xs font-semibold mb-1 text-gray-800">
-                    {feature.title}
-                  </h3>
-                </motion.div>
-              ))}
-            </div>
+            <motion.div
+              initial={{ opacity: 0, x: 20 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              transition={{ duration: 0.6, delay: 0.3 }}
+              viewport={{ once: true }}
+              className="bg-white rounded-xl p-6 border border-gray-200 shadow-md"
+            >
+              <div className="aspect-video bg-blue-50 rounded-lg mb-4 overflow-hidden">
+                <Image
+                  src="/images/ia.jpg"
+                  alt="Technologie Avancée - Intelligence Artificielle"
+                  width={400}
+                  height={225}
+                  className="w-full h-full object-cover"
+                />
+              </div>
+              <h3 className="text-lg font-semibold mb-2 text-gray-800">
+                Technologie Avancée
+              </h3>
+              <p className="text-gray-600 text-sm mb-4">
+                Intelligence artificielle et algorithmes de matching pour des
+                connexions optimales entre offre et demande.
+              </p>
+              <div className="space-y-2">
+                <div className="flex items-center text-sm text-gray-600">
+                  <CheckCircle className="w-4 h-4 text-green-500 mr-2" />
+                  Matching IA précis à 97%
+                </div>
+                <div className="flex items-center text-sm text-gray-600">
+                  <CheckCircle className="w-4 h-4 text-green-500 mr-2" />
+                  Recommandations personnalisées
+                </div>
+              </div>
+            </motion.div>
           </div>
         </motion.div>
       </div>

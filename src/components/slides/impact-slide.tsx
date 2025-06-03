@@ -1,161 +1,313 @@
-import {motion} from "framer-motion"
-import { Globe, TrendingUp, Users } from "lucide-react";
+import { motion } from "framer-motion";
+import {
+  Heart,
+  TrendingUp,
+  Users,
+  DollarSign,
+  Building,
+  Zap,
+  Globe,
+  Award,
+  Target,
+  CheckCircle,
+} from "lucide-react";
 
 export function ImpactSlide() {
-    return (
-      <div className="h-full w-full flex items-center justify-center">
-        <div className="container mx-auto px-6 z-10 max-h-[90vh] overflow-hidden">
-          <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8 }}
-            viewport={{ once: true }}
-            className="max-w-5xl mx-auto h-full flex flex-col justify-center"
-          >
-            <h2 className="text-3xl font-bold mb-6 bg-clip-text text-transparent bg-gradient-to-r from-blue-600 to-blue-800 text-center">
-              Impact Social et Économique
+  return (
+    <div className="min-h-full w-full py-20 pt-14 overflow-y-scroll">
+      <div className="container mx-auto px-6 z-10">
+        <motion.div
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8 }}
+          viewport={{ once: true }}
+          className="max-w-6xl mx-auto"
+        >
+          <div className="flex items-center justify-center mb-8">
+            <div className="w-12 h-12 bg-purple-100 rounded-full flex items-center justify-center mr-4">
+              <Heart className="w-6 h-6 text-purple-600" />
+            </div>
+            <h2 className="text-3xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-purple-600 to-purple-800">
+              Impact Transformationnel
             </h2>
+          </div>
 
-            <div className="bg-white/80 backdrop-blur-xl rounded-3xl p-6 border border-blue-200/30 shadow-xl">
-              <div className="grid md:grid-cols-2 gap-6">
-                <motion.div
-                  initial={{ opacity: 0, x: -20 }}
-                  whileInView={{ opacity: 1, x: 0 }}
-                  transition={{ duration: 0.8 }}
-                  viewport={{ once: true }}
-                >
-                  <h3 className="text-xl font-semibold mb-4 text-gray-800 text-center">
-                    Impact sur l`Emploi
-                  </h3>
-                  <div className="space-y-4">
-                    {[
-                      {
-                        title: "Création d`Emplois",
-                        value: "50,000+",
-                        description: "Freelancers actifs sur la plateforme",
-                      },
-                      {
-                        title: "Revenus Moyens",
-                        value: "$2,500",
-                        description: "Par mois pour les freelancers actifs",
-                      },
-                      {
-                        title: "Taux d`Activité",
-                        value: "85%",
-                        description:
-                          "Des freelancers travaillent régulièrement",
-                      },
-                    ].map((stat) => (
-                      <div
-                        key={stat.title}
-                        className="p-4 bg-blue-50/50 backdrop-blur-md rounded-xl border border-blue-100 shadow-lg"
-                      >
-                        <div className="flex justify-between items-center mb-2">
-                          <h4 className="text-sm font-medium text-gray-800">
-                            {stat.title}
-                          </h4>
-                          <span className="text-blue-600 font-semibold">
-                            {stat.value}
-                          </span>
-                        </div>
-                        <p className="text-gray-600 text-xs">
-                          {stat.description}
-                        </p>
-                      </div>
-                    ))}
-                  </div>
-                </motion.div>
-
-                <motion.div
-                  initial={{ opacity: 0, x: 20 }}
-                  whileInView={{ opacity: 1, x: 0 }}
-                  transition={{ duration: 0.8 }}
-                  viewport={{ once: true }}
-                >
-                  <h3 className="text-xl font-semibold mb-4 text-gray-800 text-center">
-                    Impact Économique
-                  </h3>
-                  <div className="space-y-4">
-                    {[
-                      {
-                        title: "Volume d`Affaires",
-                        value: "$100M",
-                        description: "Transactions annuelles",
-                      },
-                      {
-                        title: "Croissance",
-                        value: "+150%",
-                        description: "Croissance annuelle",
-                      },
-                      {
-                        title: "Satisfaction",
-                        value: "95%",
-                        description: "Des utilisateurs satisfaits",
-                      },
-                    ].map((stat) => (
-                      <div
-                        key={stat.title}
-                        className="p-4 bg-blue-50/50 backdrop-blur-md rounded-xl border border-blue-100 shadow-lg"
-                      >
-                        <div className="flex justify-between items-center mb-2">
-                          <h4 className="text-sm font-medium text-gray-800">
-                            {stat.title}
-                          </h4>
-                          <span className="text-blue-600 font-semibold">
-                            {stat.value}
-                          </span>
-                        </div>
-                        <p className="text-gray-600 text-xs">
-                          {stat.description}
-                        </p>
-                      </div>
-                    ))}
-                  </div>
-                </motion.div>
+          {/* Vision d`impact */}
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, delay: 0.1 }}
+            viewport={{ once: true }}
+            className="bg-gradient-to-r from-purple-600 to-purple-800 rounded-xl p-6 text-white text-center mb-8"
+          >
+            <h3 className="text-2xl font-bold mb-4">
+              Révolutionner l`Économie Congolaise
+            </h3>
+            <p className="text-purple-100 mb-6">
+              TunaWork transforme 2,8 milliards USD d`économie informelle en un
+              écosystème numérique structuré, créant des opportunités durables
+              pour 100 000+ prestataires.
+            </p>
+            <div className="grid md:grid-cols-3 gap-4">
+              <div className="bg-white/10 rounded-lg p-4">
+                <Target className="w-8 h-8 mx-auto mb-2" />
+                <div className="text-2xl font-bold">100 000+</div>
+                <div className="text-sm text-purple-100">Vies transformées</div>
               </div>
-
-              <div className="grid md:grid-cols-3 gap-4 mt-6">
-                {[
-                  {
-                    icon: Globe,
-                    title: "Couverture Géographique",
-                    description:
-                      "20+ pays avec une forte concentration en Afrique",
-                  },
-                  {
-                    icon: Users,
-                    title: "Communauté Active",
-                    description: "100,000+ utilisateurs actifs mensuellement",
-                  },
-                  {
-                    icon: TrendingUp,
-                    title: "Croissance Soutenue",
-                    description: "15% de croissance mensuelle moyenne",
-                  },
-                ].map((feature, index) => (
-                  <motion.div
-                    key={feature.title}
-                    initial={{ opacity: 0, y: 20 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    transition={{ duration: 0.5, delay: index * 0.1 }}
-                    viewport={{ once: true }}
-                    className="bg-blue-50/50 backdrop-blur-xl rounded-xl p-4 border border-blue-100 shadow-lg text-center"
-                  >
-                    <div className="w-8 h-8 bg-gradient-to-br from-blue-500 to-blue-600 rounded-lg flex items-center justify-center mb-3 shadow-lg mx-auto">
-                      <feature.icon className="w-4 h-4 text-white" />
-                    </div>
-                    <h3 className="text-sm font-semibold mb-2 text-gray-800">
-                      {feature.title}
-                    </h3>
-                    <p className="text-gray-600 text-xs leading-relaxed">
-                      {feature.description}
-                    </p>
-                  </motion.div>
-                ))}
+              <div className="bg-white/10 rounded-lg p-4">
+                <DollarSign className="w-8 h-8 mx-auto mb-2" />
+                <div className="text-2xl font-bold">$2.8B</div>
+                <div className="text-sm text-purple-100">
+                  Économie structurée
+                </div>
+              </div>
+              <div className="bg-white/10 rounded-lg p-4">
+                <Zap className="w-8 h-8 mx-auto mb-2" />
+                <div className="text-2xl font-bold">1ère</div>
+                <div className="text-sm text-purple-100">Plateforme RDC</div>
               </div>
             </div>
           </motion.div>
-        </div>
+
+          {/* Impact social et économique */}
+          <div className="grid md:grid-cols-2 gap-6 mb-8">
+            <motion.div
+              initial={{ opacity: 0, x: -20 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              transition={{ duration: 0.6, delay: 0.2 }}
+              viewport={{ once: true }}
+              className="bg-white rounded-xl p-6 border border-gray-200 shadow-md"
+            >
+              <div className="flex items-center mb-4">
+                <div className="w-12 h-12 bg-green-100 rounded-full flex items-center justify-center mr-3">
+                  <Users className="w-6 h-6 text-green-600" />
+                </div>
+                <h3 className="text-lg font-semibold text-gray-800">
+                  💼 Impact Social
+                </h3>
+              </div>
+              <div className="space-y-4">
+                <div className="flex items-start space-x-3">
+                  <div className="w-8 h-8 bg-green-100 rounded-full flex items-center justify-center flex-shrink-0 mt-1">
+                    <CheckCircle className="w-4 h-4 text-green-600" />
+                  </div>
+                  <div>
+                    <h4 className="font-semibold text-gray-800">
+                      Emploi Durable
+                    </h4>
+                    <p className="text-sm text-gray-600 mb-1">
+                      50 000+ freelancers avec revenus stables et prévisibles
+                    </p>
+                    <span className="text-xs bg-green-100 text-green-700 px-2 py-1 rounded-full">
+                      +300% revenus moyens
+                    </span>
+                  </div>
+                </div>
+                <div className="flex items-start space-x-3">
+                  <div className="w-8 h-8 bg-blue-100 rounded-full flex items-center justify-center flex-shrink-0 mt-1">
+                    <Award className="w-4 h-4 text-blue-600" />
+                  </div>
+                  <div>
+                    <h4 className="font-semibold text-gray-800">
+                      Professionnalisation
+                    </h4>
+                    <p className="text-sm text-gray-600 mb-1">
+                      Formation et certification des compétences
+                    </p>
+                    <span className="text-xs bg-blue-100 text-blue-700 px-2 py-1 rounded-full">
+                      85% taux de réussite
+                    </span>
+                  </div>
+                </div>
+                <div className="flex items-start space-x-3">
+                  <div className="w-8 h-8 bg-purple-100 rounded-full flex items-center justify-center flex-shrink-0 mt-1">
+                    <Heart className="w-4 h-4 text-purple-600" />
+                  </div>
+                  <div>
+                    <h4 className="font-semibold text-gray-800">
+                      Inclusion Sociale
+                    </h4>
+                    <p className="text-sm text-gray-600 mb-1">
+                      Accès égal aux opportunités pour tous
+                    </p>
+                    <span className="text-xs bg-purple-100 text-purple-700 px-2 py-1 rounded-full">
+                      40% femmes actives
+                    </span>
+                  </div>
+                </div>
+              </div>
+            </motion.div>
+
+            <motion.div
+              initial={{ opacity: 0, x: 20 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              transition={{ duration: 0.6, delay: 0.3 }}
+              viewport={{ once: true }}
+              className="bg-white rounded-xl p-6 border border-gray-200 shadow-md"
+            >
+              <div className="flex items-center mb-4">
+                <div className="w-12 h-12 bg-blue-100 rounded-full flex items-center justify-center mr-3">
+                  <DollarSign className="w-6 h-6 text-blue-600" />
+                </div>
+                <h3 className="text-lg font-semibold text-gray-800">
+                  💰 Impact Économique
+                </h3>
+              </div>
+              <div className="space-y-4">
+                <div className="flex items-start space-x-3">
+                  <div className="w-8 h-8 bg-green-100 rounded-full flex items-center justify-center flex-shrink-0 mt-1">
+                    <TrendingUp className="w-4 h-4 text-green-600" />
+                  </div>
+                  <div>
+                    <h4 className="font-semibold text-gray-800">
+                      Croissance Économique
+                    </h4>
+                    <p className="text-sm text-gray-600 mb-1">
+                      $2.8B d`économie informelle structurée et digitalisée
+                    </p>
+                    <span className="text-xs bg-green-100 text-green-700 px-2 py-1 rounded-full">
+                      +150% croissance annuelle
+                    </span>
+                  </div>
+                </div>
+                <div className="flex items-start space-x-3">
+                  <div className="w-8 h-8 bg-blue-100 rounded-full flex items-center justify-center flex-shrink-0 mt-1">
+                    <Building className="w-4 h-4 text-blue-600" />
+                  </div>
+                  <div>
+                    <h4 className="font-semibold text-gray-800">
+                      Écosystème Business
+                    </h4>
+                    <p className="text-sm text-gray-600 mb-1">
+                      Création d`un marché structuré et transparent
+                    </p>
+                    <span className="text-xs bg-blue-100 text-blue-700 px-2 py-1 rounded-full">
+                      100M+ transactions/an
+                    </span>
+                  </div>
+                </div>
+                <div className="flex items-start space-x-3">
+                  <div className="w-8 h-8 bg-yellow-100 rounded-full flex items-center justify-center flex-shrink-0 mt-1">
+                    <Globe className="w-4 h-4 text-yellow-600" />
+                  </div>
+                  <div>
+                    <h4 className="font-semibold text-gray-800">
+                      Rayonnement Régional
+                    </h4>
+                    <p className="text-sm text-gray-600 mb-1">
+                      Modèle exportable vers d`autres pays africains
+                    </p>
+                    <span className="text-xs bg-yellow-100 text-yellow-700 px-2 py-1 rounded-full">
+                      5 pays ciblés
+                    </span>
+                  </div>
+                </div>
+              </div>
+            </motion.div>
+          </div>
+
+          {/* Métriques d`impact */}
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, delay: 0.4 }}
+            viewport={{ once: true }}
+            className="bg-white rounded-xl p-6 border border-gray-200 shadow-md"
+          >
+            <h3 className="text-lg font-semibold mb-6 text-center text-gray-800">
+              📊 Métriques d`Impact Projetées
+            </h3>
+            <div className="grid md:grid-cols-4 gap-4">
+              {[
+                {
+                  metric: "Emplois Créés",
+                  value: "50 000+",
+                  description: "Freelancers actifs",
+                  color: "green",
+                  icon: Users,
+                },
+                {
+                  metric: "Revenus Générés",
+                  value: "$125M",
+                  description: "Transactions annuelles",
+                  color: "blue",
+                  icon: DollarSign,
+                },
+                {
+                  metric: "Satisfaction Client",
+                  value: "95%",
+                  description: "Taux de satisfaction",
+                  color: "purple",
+                  icon: Heart,
+                },
+                {
+                  metric: "Croissance",
+                  value: "+18%",
+                  description: "Croissance mensuelle",
+                  color: "orange",
+                  icon: TrendingUp,
+                },
+              ].map((metric, index) => (
+                <motion.div
+                  key={metric.metric}
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.5, delay: 0.5 + index * 0.1 }}
+                  viewport={{ once: true }}
+                  className="text-center p-4 rounded-lg border border-gray-100 hover:border-blue-200 transition-all duration-300"
+                >
+                  <div
+                    className={`w-12 h-12 bg-${metric.color}-100 rounded-full flex items-center justify-center mx-auto mb-3`}
+                  >
+                    <metric.icon
+                      className={`w-6 h-6 text-${metric.color}-600`}
+                    />
+                  </div>
+                  <div className="text-2xl font-bold text-gray-800 mb-1">
+                    {metric.value}
+                  </div>
+                  <h4 className="font-semibold text-gray-800 mb-1 text-sm">
+                    {metric.metric}
+                  </h4>
+                  <p className="text-xs text-gray-600">{metric.description}</p>
+                </motion.div>
+              ))}
+            </div>
+          </motion.div>
+
+          {/* Vision à long terme */}
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, delay: 0.6 }}
+            viewport={{ once: true }}
+            className="bg-gradient-to-r from-green-500 to-green-600 rounded-xl p-6 text-white text-center mt-8"
+          >
+            <h3 className="text-xl font-bold mb-3">🌍 Vision 2030</h3>
+            <p className="text-green-100 mb-4">
+              Devenir la référence africaine pour la digitalisation des services
+              locaux, transformant l`économie informelle en opportunités
+              durables.
+            </p>
+            <div className="grid md:grid-cols-3 gap-4">
+              <div className="bg-white/10 rounded-lg p-3">
+                <div className="text-2xl font-bold">5 Pays</div>
+                <div className="text-sm text-green-100">
+                  Expansion régionale
+                </div>
+              </div>
+              <div className="bg-white/10 rounded-lg p-3">
+                <div className="text-2xl font-bold">500 000+</div>
+                <div className="text-sm text-green-100">Freelancers actifs</div>
+              </div>
+              <div className="bg-white/10 rounded-lg p-3">
+                <div className="text-2xl font-bold">$1B+</div>
+                <div className="text-sm text-green-100">Impact économique</div>
+              </div>
+            </div>
+          </motion.div>
+        </motion.div>
       </div>
-    );
+    </div>
+  );
 }
