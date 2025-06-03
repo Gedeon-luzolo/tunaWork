@@ -3,7 +3,7 @@ import { DollarSign, Building2, Clock, Target } from "lucide-react";
 
 export function FundingSlide() {
   return (
-    <div className="min-h-full w-full flex items-center overflow-y-scroll justify-center py-20 pt-100">
+    <div className="min-h-full w-full flex items-center overflow-y-scroll justify-center py-20 pt-230 md:pt-100">
       <div className="container mx-auto px-6 z-10">
         <motion.div
           initial={{ opacity: 0, y: 30 }}
@@ -33,12 +33,12 @@ export function FundingSlide() {
               <Target className="w-8 h-8 mr-3" />
               <h3 className="text-2xl font-bold">Budget Minimum Requis</h3>
             </div>
-            <div className="text-4xl font-bold mb-2">7 000 USD</div>
+            <div className="text-4xl font-bold mb-2">10 000 USD</div>
             <p className="text-blue-100 mb-4">
               Financement minimum nécessaire pour la réalisation complète du
               projet TunaWork
             </p>
-            <div className="grid md:grid-cols-3 gap-4">
+            <div className="grid grid-cols-2 md:grid-cols-3 gap-4">
               <div className="bg-white/10 rounded-lg p-3">
                 <div className="text-lg font-semibold">MVP</div>
                 <div className="text-sm text-blue-100">
@@ -69,31 +69,31 @@ export function FundingSlide() {
             >
               <h3 className="text-lg font-semibold mb-4 flex items-center">
                 <DollarSign className="w-5 h-5 mr-2 text-green-600" />
-                Répartition du Budget (7 000 USD)
+                Répartition du Budget (10 000 USD)
               </h3>
               <div className="space-y-3">
                 {[
                   {
                     category: "Développement technique",
-                    amount: 3500,
+                    amount: 4000,
                     percentage: 50,
                     color: "blue",
                   },
                   {
                     category: "Marketing & Acquisition",
-                    amount: 1750,
+                    amount: 3000,
                     percentage: 25,
                     color: "green",
                   },
                   {
                     category: "Opérations & Légal",
-                    amount: 1050,
+                    amount: 2000,
                     percentage: 15,
                     color: "purple",
                   },
                   {
                     category: "Fonds de roulement",
-                    amount: 700,
+                    amount: 1000,
                     percentage: 10,
                     color: "orange",
                   },
