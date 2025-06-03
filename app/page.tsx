@@ -2,7 +2,7 @@
 
 import { useRef, useState, useEffect } from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
-import { Navigation, Pagination, Mousewheel, Keyboard } from "swiper/modules";
+import { Navigation, Pagination, Keyboard, Mousewheel } from "swiper/modules";
 import type { Swiper as SwiperType } from "swiper";
 
 // Import Swiper styles
@@ -33,16 +33,23 @@ export default function Home() {
   const [isMobile, setIsMobile] = useState(false);
   const swiperRef = useRef<SwiperType | null>(null);
 
-  // Detect mobile device
+  // Detect mobile device with improved detection
   useEffect(() => {
     const checkMobile = () => {
-      setIsMobile(window.innerWidth < 768);
+      const isMobileWidth = window.innerWidth < 768;
+      const isTouchDevice =
+        "ontouchstart" in window || navigator.maxTouchPoints > 0;
+      setIsMobile(isMobileWidth || isTouchDevice);
     };
 
     checkMobile();
     window.addEventListener("resize", checkMobile);
+    window.addEventListener("orientationchange", checkMobile);
 
-    return () => window.removeEventListener("resize", checkMobile);
+    return () => {
+      window.removeEventListener("resize", checkMobile);
+      window.removeEventListener("orientationchange", checkMobile);
+    };
   }, []);
 
   const handleSlideChange = (direction: "prev" | "next") => {
@@ -81,7 +88,9 @@ export default function Home() {
       )}
 
       {/* Mobile Navigation Indicators */}
-      {isMobile && <MobileNavigation />}
+      {isMobile && (
+        <MobileNavigation activeSlide={activeSlide} totalSlides={10} />
+      )}
 
       {/* Slide Navigation Draggable à gauche */}
       <SlideNavigation
@@ -99,64 +108,108 @@ export default function Home() {
         spaceBetween={0}
         slidesPerView={1}
         direction="horizontal"
-        mousewheel={!isMobile}
-        keyboard={{ enabled: true }}
+        mousewheel={{
+          enabled: true,
+          forceToAxis: true,
+          sensitivity: 1,
+          releaseOnEdges: false,
+        }}
+        keyboard={{
+          enabled: true,
+          onlyInViewport: true,
+          pageUpDown: false,
+        }}
         allowTouchMove={true}
+        touchRatio={1.2}
+        touchAngle={30}
+        threshold={5}
+        longSwipesRatio={0.3}
+        longSwipesMs={200}
+        shortSwipes={true}
+        followFinger={true}
+        touchMoveStopPropagation={false}
+        touchStartPreventDefault={false}
+        touchStartForcePreventDefault={false}
+        touchReleaseOnEdges={true}
+        resistance={true}
+        resistanceRatio={0.85}
         pagination={{
           clickable: true,
           dynamicBullets: true,
+          dynamicMainBullets: 3,
+          hideOnClick: false,
+          renderBullet: (_, className) => {
+            return `<span class="${className} !bg-blue-600 !opacity-100"></span>`;
+          },
         }}
-        modules={[Navigation, Pagination, Mousewheel, Keyboard]}
+        speed={400}
+        grabCursor={true}
+        centeredSlides={false}
+        slidesOffsetBefore={0}
+        slidesOffsetAfter={0}
+        modules={[Navigation, Pagination, Keyboard, Mousewheel]}
         className="h-screen w-screen"
         onSlideChange={(swiper) => setActiveSlide(swiper.activeIndex)}
+        onTouchStart={() => {
+          // Améliore la réactivité tactile
+          if (document.body.style.overflow !== "hidden") {
+            document.body.style.overflow = "hidden";
+          }
+        }}
+        onTouchEnd={() => {
+          // Restaure le scroll après le swipe
+          setTimeout(() => {
+            document.body.style.overflow = "";
+          }, 100);
+        }}
       >
         {/* Hero Slide */}
-        <SwiperSlide className="h-full w-full">
+        <SwiperSlide className="h-full w-full overflow-y-auto">
           <HeroSlide goToSlide={goToSlide} />
         </SwiperSlide>
 
         {/* Problem Slide */}
-        <SwiperSlide className="h-full w-full">
+        <SwiperSlide className="h-full w-full overflow-y-auto">
           <ProblemSlide />
         </SwiperSlide>
 
         {/* Solution Slide */}
-        <SwiperSlide className="h-full w-full">
+        <SwiperSlide className="h-full w-full overflow-y-auto">
           <SolutionSlide />
         </SwiperSlide>
 
         {/* Market Size Slide */}
-        <SwiperSlide className="h-full w-full">
+        <SwiperSlide className="h-full w-full overflow-y-auto">
           <MarketSlide />
         </SwiperSlide>
 
         {/* Features Slide */}
-        <SwiperSlide className="h-full w-full">
+        <SwiperSlide className="h-full w-full overflow-y-auto">
           <FeaturesSlide />
         </SwiperSlide>
 
         {/* Revenue Model Slide */}
-        <SwiperSlide className="h-full w-full">
+        <SwiperSlide className="h-full w-full overflow-y-auto">
           <RevenueSlide />
         </SwiperSlide>
 
         {/* Funding Slide */}
-        <SwiperSlide className="h-full w-full">
+        <SwiperSlide className="h-full w-full overflow-y-auto">
           <FundingSlide />
         </SwiperSlide>
 
         {/* Impact Slide */}
-        <SwiperSlide className="h-full w-full">
+        <SwiperSlide className="h-full w-full overflow-y-auto">
           <ImpactSlide />
         </SwiperSlide>
 
         {/* Mission Slide */}
-        <SwiperSlide className="h-full w-full">
+        <SwiperSlide className="h-full w-full overflow-y-auto">
           <MissionSlide />
         </SwiperSlide>
 
         {/* Contact Slide */}
-        <SwiperSlide className="h-full w-full">
+        <SwiperSlide className="h-full w-full overflow-y-auto">
           <ContactSlide />
         </SwiperSlide>
       </Swiper>

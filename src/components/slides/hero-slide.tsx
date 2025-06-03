@@ -11,8 +11,8 @@ interface HeroSlideProps {
 
 export const HeroSlide: React.FC<HeroSlideProps> = ({ goToSlide }) => {
   return (
-    <div className="h-full w-full flex items-center justify-center">
-      <div className="container mx-auto px-6 z-10 text-center max-h-[90vh] flex flex-col justify-center">
+    <div className="min-h-full w-full flex items-center justify-center py-20">
+      <div className="container mx-auto px-6 z-10 text-center">
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}

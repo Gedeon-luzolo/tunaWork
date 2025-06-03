@@ -7,14 +7,14 @@ import { revenueData } from "@/src/lib/data/presentation-data";
 
 export function RevenueSlide() {
   return (
-    <div className="h-full w-full flex items-center justify-center">
-      <div className="container mx-auto px-6 z-10 max-h-[90vh] overflow-hidden">
+    <div className="min-h-full w-full py-20 pt-18">
+      <div className="container mx-auto px-6 z-10">
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8 }}
           viewport={{ once: true }}
-          className="max-w-5xl mx-auto h-full flex flex-col justify-center"
+          className="max-w-5xl mx-auto"
         >
           <h2 className="text-3xl font-bold mb-4 bg-clip-text text-transparent bg-gradient-to-r from-blue-600 to-blue-800 text-center">
             Modèle de Revenus Diversifié
@@ -30,24 +30,33 @@ export function RevenueSlide() {
             >
               <p className="text-base text-gray-700 leading-relaxed mb-3">
                 Génération de revenus par{" "}
-                <strong className="text-blue-600">4 streams principaux</strong>,
-                avec un objectif de{" "}
-                <strong className="text-blue-700">$50M de GMV</strong> la
-                première année.
+                <strong className="text-blue-600">3 sources principales</strong>
+                , avec un modèle économique diversifié et{" "}
+                <strong className="text-blue-700">scalable</strong>.
               </p>
 
-              <div className="grid md:grid-cols-2 gap-3 mb-4">
-                <div className="bg-green-50 p-3 rounded-lg border border-green-200">
-                  <div className="text-lg font-bold text-green-600 mb-1">
-                    $50M
-                  </div>
-                  <div className="text-xs text-gray-600">GMV cible Année 1</div>
-                </div>
+              <div className="grid md:grid-cols-3 gap-3 mb-4">
                 <div className="bg-blue-50 p-3 rounded-lg border border-blue-200">
                   <div className="text-lg font-bold text-blue-600 mb-1">
-                    12%
+                    50%
                   </div>
-                  <div className="text-xs text-gray-600">Take Rate moyen</div>
+                  <div className="text-xs text-gray-600">
+                    Abonnements premium
+                  </div>
+                </div>
+                <div className="bg-purple-50 p-3 rounded-lg border border-purple-200">
+                  <div className="text-lg font-bold text-purple-600 mb-1">
+                    30%
+                  </div>
+                  <div className="text-xs text-gray-600">
+                    Publicités ciblées
+                  </div>
+                </div>
+                <div className="bg-green-50 p-3 rounded-lg border border-green-200">
+                  <div className="text-lg font-bold text-green-600 mb-1">
+                    20%
+                  </div>
+                  <div className="text-xs text-gray-600">Formation</div>
                 </div>
               </div>
             </motion.div>
@@ -60,37 +69,43 @@ export function RevenueSlide() {
                 {[
                   {
                     name: "Abonnements premium",
-                    percentage: "25%",
-                    projection: "$1.5M",
-                  },
-                  {
-                    name: "Services à valeur ajoutée",
-                    percentage: "10%",
-                    projection: "$600K",
+                    percentage: "50%",
+                    projection: "$2.5M",
+                    description: "Fonctionnalités avancées, priorité support",
                   },
                   {
                     name: "Publicités ciblées",
-                    percentage: "5%",
-                    projection: "$300K",
+                    percentage: "30%",
+                    projection: "$1.5M",
+                    description: "Publicités géolocalisées, sponsoring",
+                  },
+                  {
+                    name: "Plateforme de formation",
+                    percentage: "20%",
+                    projection: "$1M",
+                    description: "Cours en ligne, certifications",
                   },
                 ].map((revenue) => (
                   <div
                     key={revenue.name}
-                    className="p-2 bg-blue-50 rounded-lg border border-blue-100"
+                    className="p-3 bg-white rounded-lg border border-gray-200 shadow-sm"
                   >
-                    <div className="flex justify-between items-center">
-                      <span className="text-xs font-medium text-gray-800">
+                    <div className="flex justify-between items-start mb-2">
+                      <span className="text-sm font-semibold text-gray-800">
                         {revenue.name}
                       </span>
                       <div className="flex gap-2">
-                        <span className="text-blue-600 font-bold text-xs">
+                        <span className="text-blue-600 font-bold text-sm">
                           {revenue.percentage}
                         </span>
-                        <span className="text-green-600 font-medium text-xs">
+                        <span className="text-green-600 font-bold text-sm">
                           {revenue.projection}
                         </span>
                       </div>
                     </div>
+                    <p className="text-xs text-gray-600">
+                      {revenue.description}
+                    </p>
                   </div>
                 ))}
               </div>
@@ -119,10 +134,22 @@ export function RevenueSlide() {
                     </PieChart>
                   </ResponsiveContainer>
                 </div>
-                <div className="bg-green-50 p-2 rounded-lg border border-green-100 text-center">
-                  <div className="text-xs text-gray-600">Revenue Run Rate</div>
-                  <div className="text-sm font-semibold text-green-600">
-                    $500K / mois
+                <div className="space-y-2">
+                  <div className="bg-green-50 p-3 rounded-lg border border-green-100 text-center">
+                    <div className="text-xs text-gray-600">
+                      Revenus totaux projetés
+                    </div>
+                    <div className="text-lg font-bold text-green-600">
+                      $5M / an
+                    </div>
+                  </div>
+                  <div className="bg-blue-50 p-3 rounded-lg border border-blue-100 text-center">
+                    <div className="text-xs text-gray-600">
+                      Croissance mensuelle
+                    </div>
+                    <div className="text-sm font-semibold text-blue-600">
+                      +15% MoM
+                    </div>
                   </div>
                 </div>
               </div>

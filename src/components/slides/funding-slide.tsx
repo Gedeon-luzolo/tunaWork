@@ -3,13 +3,12 @@ import {
   DollarSign,
   Building2,
   Clock,
-  CheckCircle,
   Target,
 } from "lucide-react";
 
 export function FundingSlide() {
   return (
-    <div className="h-full w-full flex items-center justify-center overflow-y-auto py-20 pt-28">
+    <div className="h-full w-full flex items-center overflow-y-scroll justify-center py-20 pt-28">
       <div className="container mx-auto px-6 z-10">
         <motion.div
           initial={{ opacity: 0, y: 30 }}
@@ -193,42 +192,6 @@ export function FundingSlide() {
               </div>
             </motion.div>
           </div>
-
-          {/* Opportunités pour incubateurs */}
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.4 }}
-            viewport={{ once: true }}
-            className="bg-gradient-to-r from-green-500 to-green-600 rounded-xl p-6 text-white text-center"
-          >
-            <h3 className="text-xl font-bold mb-4">
-              🚀 Opportunité pour Incubateurs
-            </h3>
-            <div className="grid md:grid-cols-3 gap-4 mb-4">
-              <div className="bg-white/10 rounded-lg p-4">
-                <div className="text-2xl font-bold">7 000 USD</div>
-                <div className="text-sm text-green-100">Budget minimum</div>
-              </div>
-              <div className="bg-white/10 rounded-lg p-4">
-                <div className="text-2xl font-bold">6-8 mois</div>
-                <div className="text-sm text-green-100">Durée incubation</div>
-              </div>
-              <div className="bg-white/10 rounded-lg p-4">
-                <div className="text-2xl font-bold">ROI 300%+</div>
-                <div className="text-sm text-green-100">Retour attendu</div>
-              </div>
-            </div>
-            <p className="text-green-100 mb-4">
-              Nous recherchons un partenaire incubateur pour nous accompagner
-              dans le développement de TunaWork et la structuration du marché
-              des services freelance en RDC.
-            </p>
-            <div className="flex items-center justify-center">
-              <CheckCircle className="w-5 h-5 mr-2" />
-              <span className="font-semibold">Prêt pour l'incubation</span>
-            </div>
-          </motion.div>
         </motion.div>
       </div>
     </div>

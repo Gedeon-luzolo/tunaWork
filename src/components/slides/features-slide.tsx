@@ -5,14 +5,14 @@ import { featuresData } from "@/src/lib/data/presentation-data";
 
 export const FeaturesSlide: React.FC = () => {
   return (
-    <div className="h-full w-full flex items-center justify-center">
-      <div className="container mx-auto px-6 z-10 max-h-[90vh] overflow-hidden">
+    <div className="min-h-full w-full py-20 pt-14">
+      <div className="container mx-auto px-6 z-10">
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8 }}
           viewport={{ once: true }}
-          className="max-w-5xl mx-auto h-full flex flex-col justify-center"
+          className="max-w-5xl mx-auto"
         >
           <h2 className="text-3xl font-bold mb-6 bg-clip-text text-transparent bg-gradient-to-r from-blue-600 to-blue-800 text-center">
             Fonctionnalités Clés

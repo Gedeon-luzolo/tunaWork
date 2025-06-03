@@ -22,18 +22,23 @@
 
 /* Styles pour les puces de pagination */
 .swiper-pagination-bullet {
-  width: 12px;
-  height: 12px;
-  background: rgba(255, 255, 255, 0.5);
-  opacity: 0.7;
+  width: 8px;
+  height: 8px;
+  background: rgba(59, 130, 246, 0.3);
+  opacity: 0.6;
   transition: all 0.3s ease;
+  margin: 0 4px !important;
 }
 
 .swiper-pagination-bullet-active {
-  background: #10b981; /* Couleur emerald-500 */
-  opacity: 1;
-  transform: scale(1.2);
-  box-shadow: 0 0 10px rgba(16, 185, 129, 0.5);
+  background: #3b82f6 !important; /* Couleur blue-500 */
+  opacity: 1 !important;
+  transform: scale(1.5);
+  box-shadow: 0 0 8px rgba(59, 130, 246, 0.4);
+}
+
+.swiper-pagination {
+  bottom: 20px !important;
 }
 
 /* Styles pour les boutons de navigation */
@@ -79,15 +84,53 @@
   .swiper-button-prev {
     width: 40px;
     height: 40px;
+    display: none; /* Cache les boutons sur mobile */
   }
-  
-  .swiper-button-next:after,
-  .swiper-button-prev:after {
-    font-size: 16px;
-  }
-  
+
   .swiper-pagination-bullet {
-    width: 10px;
-    height: 10px;
+    width: 6px;
+    height: 6px;
+    margin: 0 3px !important;
   }
+
+  .swiper-pagination-bullet-active {
+    transform: scale(1.8);
+  }
+
+  .swiper-pagination {
+    bottom: 80px !important; /* Plus haut pour éviter la navigation mobile */
+  }
+
+  /* Améliore la zone tactile */
+  .swiper-slide {
+    touch-action: pan-y pinch-zoom;
+  }
+
+  /* Optimise le scroll vertical sur mobile */
+  .swiper-slide {
+    -webkit-overflow-scrolling: touch;
+    overscroll-behavior-y: contain;
+  }
+}
+
+/* Styles pour améliorer les performances tactiles */
+.swiper-container {
+  touch-action: pan-x pan-y;
+}
+
+/* Animation de feedback tactile */
+@keyframes touchFeedback {
+  0% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(0.98);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
+.swiper-slide.swiper-slide-active {
+  animation: touchFeedback 0.2s ease-out;
 }
