@@ -12,7 +12,6 @@ import {
   Users,
   TrendingUp,
   MapPin,
-  DollarSign,
 } from "lucide-react";
 
 export function MarketSlide() {
